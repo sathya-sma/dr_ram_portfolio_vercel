@@ -35,11 +35,14 @@ export const MAP_DIRECTIONS_URL =
 /**
  * Appointment enquiries are delivered by Web3Forms (https://web3forms.com) —
  * a static-site form relay that emails submissions to the address the access
- * key is registered with. Create a (free) access key for the clinic's email
- * and set it in `.env` / Vercel project env as VITE_WEB3FORMS_ACCESS_KEY.
- * While unset, the form falls back to a pre-filled WhatsApp enquiry so no
- * patient request is ever lost.
+ * key is registered with (currently sathyadharsan93@gmail.com).
+ *
+ * Web3Forms access keys are public-by-design (they identify the recipient,
+ * not authenticate a sender), so the key lives here as the default; the
+ * VITE_WEB3FORMS_ACCESS_KEY env var still takes precedence when set, which
+ * is how to re-point delivery to a different inbox without a code change.
  */
 export const WEB3FORMS_ACCESS_KEY: string =
-  (import.meta.env.VITE_WEB3FORMS_ACCESS_KEY as string | undefined) ?? "";
+  (import.meta.env.VITE_WEB3FORMS_ACCESS_KEY as string | undefined) ??
+  "1f7d3462-6c29-436c-9b1e-972469f0f160";
 export const WEB3FORMS_ENDPOINT = "https://api.web3forms.com/submit";
