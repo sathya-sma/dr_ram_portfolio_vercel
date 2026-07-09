@@ -1,36 +1,44 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Dr T Ramkumar — Consultant Gastrointestinal Surgeon
 
-## Getting Started
+Single-page marketing site for Chennai Speciality Clinic, built with React 19, Vite 6 and Tailwind CSS v4. British English is the copy standard throughout.
 
-First, run the development server:
+## Development
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev       # local dev server
+npm run build     # type-check + production build into dist/
+npm run preview   # serve the production build locally
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Configuration
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+All clinic contact details (phone, WhatsApp, address, review URL, site URL) live in
+[`src/lib/site.ts`](src/lib/site.ts) — update them there, never inside components.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Appointment form email delivery
 
-## Learn More
+The form emails enquiries via [Web3Forms](https://web3forms.com):
 
-To learn more about Next.js, take a look at the following resources:
+1. Create a free access key using the clinic's email address.
+2. Copy `.env.example` to `.env` and set `VITE_WEB3FORMS_ACCESS_KEY`.
+3. Set the same variable in the Vercel project's Environment Variables and redeploy.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Until the key is configured, the form falls back to opening WhatsApp with the
+enquiry pre-filled, so requests still reach the clinic.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Going live on a custom domain
 
-## Deploy on Vercel
+Replace `https://dr-ramkumar.vercel.app` in:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- `SITE_URL` in `src/lib/site.ts`
+- the canonical/OG/Twitter/JSON-LD URLs in `index.html`
+- `public/sitemap.xml` and `public/robots.txt`
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+then add the domain in Vercel and let the old `*.vercel.app` host redirect to it.
+
+## Deployment
+
+Deployed on Vercel. Security headers, caching and SPA rewrites are configured in
+[`vercel.json`](vercel.json). Analytics is provided by `@vercel/analytics`
+(pageviews plus `call_click`, `whatsapp_click` and `appointment_request` events).

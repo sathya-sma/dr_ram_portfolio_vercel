@@ -26,7 +26,8 @@ export default function SiteEffects() {
     const bar = document.getElementById("scrollProgress");
     const onScroll = () => {
       const h = document.documentElement.scrollHeight - window.innerHeight;
-      if (bar) bar.style.width = (h > 0 ? (window.scrollY / h) * 100 : 0) + "%";
+      // scaleX keeps updates on the compositor (no layout/paint per frame)
+      if (bar) bar.style.transform = `scaleX(${h > 0 ? window.scrollY / h : 0})`;
     };
     window.addEventListener("scroll", onScroll, { passive: true });
     onScroll();

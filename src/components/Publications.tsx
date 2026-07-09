@@ -1,4 +1,4 @@
-import { Search } from "@/lib/icons";
+import { Doc } from "@/lib/icons";
 
 const PUBLICATIONS = [
   {
@@ -47,7 +47,7 @@ export default function Publications() {
             Research &amp; Publications
           </h2>
           <p className="mt-4 text-muted text-[1.05rem]">
-            Peer-reviewed contributions to gastrointestinal surgery and motility research, alongside numerous conference abstracts, presentations and clinical guidelines.
+            Selected peer-reviewed contributions to gastrointestinal surgery and motility research, alongside numerous conference abstracts, presentations and clinical guidelines.
           </p>
         </div>
 
@@ -64,7 +64,7 @@ export default function Publications() {
               data-reveal-delay={(i % 3) * 60}
             >
               <span className="w-[42px] h-[42px] rounded-[12px] grid place-items-center bg-gradient-to-br from-blue/12 to-teal/12 text-blue shrink-0">
-                <Search className="ico w-5 h-5" />
+                <Doc className="ico w-5 h-5" />
               </span>
               <div className="flex-1">
                 <p className="font-bold text-navy text-[1rem] leading-[1.4]">{pub.title}</p>

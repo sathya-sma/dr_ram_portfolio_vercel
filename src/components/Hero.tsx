@@ -1,9 +1,14 @@
 import { ArrowRight, Phone, CheckMini } from "@/lib/icons";
+import { PHONE_DISPLAY, PHONE_TEL } from "@/lib/site";
+
+const EASE = { transitionTimingFunction: "cubic-bezier(.22,1,.36,1)" } as const;
+
+const EXPERTISE = ["Upper GI Surgery", "HPB Surgery", "Colorectal Surgery", "Endoscopy"];
 
 export default function Hero() {
   return (
     <section
-      className="relative min-h-[100svh] flex items-center py-28 pb-16 text-[#eaf3f1] overflow-hidden"
+      className="hero-minh relative flex items-center py-28 pb-16 text-[#eaf3f1] overflow-hidden"
       style={{
         background: "radial-gradient(120% 120% at 80% 0%, #103862 0%, #0a2342 55%, #081c38 100%)",
       }}
@@ -62,9 +67,10 @@ export default function Hero() {
 
           <p className="reveal max-w-[46ch] mt-[1.4rem] text-[#c4d6dd] text-[1.04rem]" data-reveal-delay="240">
             Gastrointestinal Surgeon with over <strong className="text-white">27 years</strong> of expertise in the
-            safe management of benign and malignant gastrointestinal conditions. A pioneer in
-            minimally invasive — Laparoscopic and Robotic — gastrointestinal surgery in Tamil
-            Nadu, trusted by patients across India and internationally.
+            safe management of benign and malignant gastrointestinal conditions. Among the
+            early practitioners of minimally invasive — Laparoscopic and Robotic —
+            gastrointestinal surgery in Tamil Nadu, trusted by patients across India and
+            internationally.
           </p>
 
           <div className="reveal flex flex-wrap gap-[.9rem] mt-8" data-reveal-delay="300">
@@ -78,13 +84,13 @@ export default function Hero() {
                 hover:-translate-y-[3px] hover:shadow-[0_22px_42px_-14px_rgba(21,151,106,.85)]
                 transition-all duration-350 whitespace-nowrap cursor-pointer
               "
-              style={{ transitionTimingFunction: "cubic-bezier(.22,1,.36,1)" }}
+              style={EASE}
             >
               Book an Appointment
               <ArrowRight className="ico w-[18px] h-[18px] shrink-0" />
             </a>
             <a
-              href="tel:04448134300"
+              href={`tel:${PHONE_TEL}`}
               className="
                 inline-flex items-center gap-[.55rem] font-sans font-bold text-[.98rem]
                 py-[.95rem] px-[1.6rem] rounded-full
@@ -92,15 +98,15 @@ export default function Hero() {
                 hover:bg-white/14 hover:-translate-y-[3px]
                 transition-all duration-350 whitespace-nowrap leading-none cursor-pointer
               "
-              style={{ transitionTimingFunction: "cubic-bezier(.22,1,.36,1)" }}
+              style={EASE}
             >
               <Phone className="ico w-[18px] h-[18px] shrink-0" />
-              Call 044 4813 4300
+              Call {PHONE_DISPLAY}
             </a>
           </div>
 
           <ul className="reveal list-none flex flex-wrap gap-2 mt-[2.2rem] p-0" data-reveal-delay="360">
-            {["Esophagus & Stomach", "Liver & Pancreas", "Colorectal", "HPB Surgery"].map((c) => (
+            {EXPERTISE.map((c) => (
               <li
                 key={c}
                 className="text-[.82rem] font-semibold text-[#bcd3da] border border-white/16 rounded-full py-[.35rem] px-[.85rem] bg-white/4"
@@ -118,6 +124,9 @@ export default function Hero() {
               <img
                 src="/brand/portrait.jpeg"
                 alt="Dr T Ramkumar, Consultant Gastrointestinal Surgeon"
+                width="960"
+                height="1440"
+                fetchPriority="high"
                 className="object-cover object-[50%_22%] w-full h-full block"
               />
               {/* Bottom gradient overlay */}
@@ -147,7 +156,7 @@ export default function Hero() {
               style={{ animationDelay: "-3.5s" }}
             >
               <CheckMini className="ico w-[15px] h-[15px] text-emerald" style={{ strokeWidth: 2.2 }} />
-              7,500+ Surgeries
+              7,500+ GI Surgeries
             </div>
           </div>
         </div>
@@ -156,8 +165,8 @@ export default function Hero() {
       {/* Scroll indicator */}
       <a
         href="#stats"
-        className="absolute bottom-[1.4rem] left-1/2 -translate-x-1/2 z-[3] w-[26px] h-[42px] border-2 border-white/35 rounded-[14px] flex justify-center pt-[7px]"
-        aria-label="Scroll down"
+        className="absolute bottom-[1.4rem] left-1/2 -translate-x-1/2 z-[3] w-[26px] h-[42px] border-2 border-white/35 rounded-[14px] flex justify-center pt-[7px] [@media(max-height:520px)]:hidden"
+        aria-label="Scroll down to statistics"
       >
         <span className="w-[3px] h-[9px] rounded-[3px] bg-emerald-glow animate-scrolldot" />
       </a>

@@ -1,7 +1,7 @@
 import { Pin } from "@/lib/icons";
 
 const HOSPITALS = [
-  ["Apollo Speciality Hospital", "Teynampet"],
+  ["Apollo Speciality Hospital", "Mount Road"],
   ["Apollo Spectra Hospital", "MRC Nagar"],
   ["Aakash Hospital Endosurg", "Mylapore"],
   ["BSS Hospital", "Mandaveli"],

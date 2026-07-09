@@ -13,15 +13,15 @@ const DATA: Item[] = [
     tags: ["Robotic", "Laparoscopic"],
     items: [
       { label: "Heller's cardiomyotomy" },
-      { label: "Fundoplication (360° / 270°)" },
-      { label: "Esophageal cancer surgery" },
+      { label: "Fundoplication" },
+      { label: "Oesophageal cancer surgery" },
       { label: "Stomach cancer surgery", mode: "open" },
       { label: "Hiatus hernia repair" },
     ],
   },
   {
     title: "Hepatobiliary & Pancreatic Surgery",
-    tags: ["Lap", "Robotic", "Open"],
+    tags: ["Laparoscopic", "Robotic", "Open"],
     items: [
       { label: "Gallbladder and bile duct surgery" },
       { label: "Pancreatic surgery — Whipple's, Central & Distal Pancreatectomy" },
@@ -55,8 +55,13 @@ const DATA: Item[] = [
   },
   {
     title: "Endoscopy",
-    tags: ["Diagnostic"],
-    items: [{ label: "Colonoscopy" }],
+    tags: ["Diagnostic", "Therapeutic"],
+    items: [
+      { label: "Upper GI Endoscopy" },
+      { label: "Colonoscopy" },
+      { label: "Diagnostic Endoscopy" },
+      { label: "Therapeutic Endoscopy" },
+    ],
   },
 ];
 
@@ -77,9 +82,10 @@ export default function Specialities() {
             Surgical Specialities
           </h2>
           <p className="mt-4 text-muted text-[1.05rem]">
-            Each patient is evaluated pre-operatively for the correct indication. The choice of{" "}
-            <strong>Robotic, Laparoscopic or Open</strong> surgery is guided by the merits of the
-            disease and the patient.
+            Every patient is evaluated thoroughly pre-operatively to identify the correct
+            diagnosis. The choice between{" "}
+            <strong>Laparoscopic, Robotic and Open Surgeries</strong> is guided by the merits of
+            the disease and the patient.
           </p>
         </div>
 
@@ -101,7 +107,7 @@ export default function Specialities() {
                   aria-expanded={isOpen}
                   onClick={() => setOpenIdx(isOpen ? -1 : i)}
                 >
-                  <span className="font-serif font-semibold text-[1.05rem] text-emerald-2 min-w-[1.8rem]">
+                  <span className="font-serif font-semibold text-[1.05rem] text-teal min-w-[1.8rem]">
                     {String(i + 1).padStart(2, "0")}
                   </span>
                   <span className="flex-1 font-bold text-[1.12rem] text-navy">{item.title}</span>
@@ -132,8 +138,8 @@ export default function Specialities() {
                         >
                           {it.label}
                           {it.mode ? (
-                            <span className="text-[.66rem] font-bold uppercase tracking-[.05em] text-[#b06a00] bg-[rgba(214,140,0,.12)] rounded-[5px] py-[.05rem] px-[.4rem] ml-[.3rem] align-middle">
-                              {it.mode}
+                            <span className="text-[.7rem] font-bold uppercase tracking-[.05em] text-[#8a5300] bg-[rgba(214,140,0,.12)] rounded-[5px] py-[.05rem] px-[.4rem] ml-[.3rem] align-middle">
+                              {it.mode} surgery
                             </span>
                           ) : null}
                         </li>

@@ -12,6 +12,7 @@ import Reviews from "./components/Reviews";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import Floaties from "./components/Floaties";
+import Legal from "./components/Legal";
 
 export default function App() {
   return (
@@ -32,6 +33,7 @@ export default function App() {
       </main>
       <Footer />
       <Floaties />
+      <Legal />
     </>
   );
 }

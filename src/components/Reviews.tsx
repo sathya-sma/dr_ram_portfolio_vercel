@@ -1,4 +1,4 @@
-const REVIEW_URL = "https://share.google/avpJT84DsPSXmc7IG";
+import { REVIEW_URL } from "@/lib/site";
 
 function GoogleG({ size = 19 }: { size?: number }) {
   return (
@@ -63,26 +63,38 @@ export default function Reviews() {
                 valuable feedback. Your review will greatly help others seeking quality medical
                 care.
               </p>
-              <a
-                href={REVIEW_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="
-                  inline-flex items-center gap-[.7rem] bg-white text-[#0c2a37]
-                  text-[.97rem] font-bold py-[.9rem] px-[1.6rem] rounded-[13px]
-                  shadow-[0_16px_34px_-16px_rgba(0,0,0,.5)]
-                  hover:-translate-y-[3px] hover:shadow-[0_22px_40px_-16px_rgba(0,0,0,.6)]
-                  transition-all duration-250 no-underline
-                "
-                style={{ transitionTimingFunction: "cubic-bezier(.22,1,.36,1)" }}
-              >
-                <GoogleG />
-                Leave a Google Review
-              </a>
+              <div className="flex flex-wrap items-center gap-4">
+                <a
+                  href={REVIEW_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="
+                    inline-flex items-center gap-[.7rem] bg-white text-[#0c2a37]
+                    text-[.97rem] font-bold py-[.9rem] px-[1.6rem] rounded-[13px]
+                    shadow-[0_16px_34px_-16px_rgba(0,0,0,.5)]
+                    hover:-translate-y-[3px] hover:shadow-[0_22px_40px_-16px_rgba(0,0,0,.6)]
+                    transition-all duration-250 no-underline
+                  "
+                  style={{ transitionTimingFunction: "cubic-bezier(.22,1,.36,1)" }}
+                >
+                  <GoogleG />
+                  Leave a Google Review
+                </a>
+                <a
+                  href={REVIEW_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[.92rem] font-semibold text-[#bcd4cf] underline underline-offset-4 transition-colors duration-250 hover:text-white"
+                >
+                </a>
+              </div>
             </div>
 
             {/* Review cards */}
             <div className="flex flex-col gap-4">
+              <p className="m-0 text-[.78rem] font-bold tracking-[.1em] uppercase text-[#7fe3cf]/80">
+                From patients on Google
+              </p>
               {TESTIMONIALS.map((t, i) => (
                 <figure
                   className="

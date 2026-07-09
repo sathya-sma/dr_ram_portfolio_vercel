@@ -1,7 +1,7 @@
 import { Check, Stethoscope, Users, Bolt, Chat, Activity } from "@/lib/icons";
-import type { SVGProps } from "react";
+import type { JSX, SVGProps } from "react";
 
-const CARDS: { Icon: (p: SVGProps<SVGSVGElement>) => React.JSX.Element; title: string; body: string }[] = [
+const CARDS: { Icon: (p: SVGProps<SVGSVGElement>) => JSX.Element; title: string; body: string }[] = [
   { Icon: Check, title: "Evidence-based decisions", body: "Surgical decision-making grounded in current evidence and the right indication for every patient." },
   { Icon: Stethoscope, title: "Minimally invasive first", body: "Laparoscopic and robotic techniques whenever feasible — less pain, faster recovery." },
   { Icon: Users, title: "Multidisciplinary boards", body: "Complex cases discussed in tumour boards with oncology, radiology and critical care." },
@@ -12,13 +12,13 @@ const CARDS: { Icon: (p: SVGProps<SVGSVGElement>) => React.JSX.Element; title: s
 
 export default function Approach() {
   return (
-    <section className="py-[clamp(4.5rem,9vw,8rem)] relative" id="approach">
+    <section className="py-[clamp(4.5rem,9vw,8rem)] relative" id="patient-care">
       <div className="w-[min(100%-2.4rem,1180px)] mx-auto">
         {/* Section head */}
         <div className="reveal max-w-[680px] mx-auto mb-[3.2rem] text-center">
           <p className="inline-flex items-center gap-[.6rem] font-bold text-[.78rem] tracking-[.16em] uppercase text-teal justify-center">
             <span className="w-[26px] h-[2px] bg-emerald-2 rounded-sm" />
-            Philosophy
+            Patient Care
             <span className="w-[26px] h-[2px] bg-emerald-2 rounded-sm" />
           </p>
           <h2 className="font-serif font-semibold leading-[1.1] tracking-tight text-[clamp(1.9rem,4vw,2.9rem)] text-navy mt-[.9rem] text-center">

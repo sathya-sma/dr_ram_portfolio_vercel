@@ -10,12 +10,16 @@ export default function About() {
           <div className="absolute -inset-x-0 -top-[14px] -left-[14px] w-[120px] h-[120px] rounded-[20px] bg-gradient-to-br from-emerald-2 to-teal opacity-18 -z-[1]" />
           <img
             src="/brand/or-action.jpeg"
-            alt="Dr T Ramkumar performing minimally invasive surgery"
+            alt="Dr T Ramkumar performing laparoscopic surgery"
+            width="1200"
+            height="900"
+            loading="lazy"
+            decoding="async"
             className="rounded-[26px] shadow-[0_18px_50px_-20px_rgba(16,56,98,.28)] w-full aspect-[4/3.4] object-cover"
           />
           <div className="absolute left-[1.1rem] bottom-[1.1rem] flex items-center gap-2 bg-navy/82 backdrop-blur-[6px] text-[#eaf3f1] font-semibold text-[.82rem] py-[.55rem] px-[.9rem] rounded-full">
             <Stethoscope className="ico w-4 h-4 text-emerald-glow" />
-            Minimally Invasive · Robotic
+            Laparoscopic Surgery
           </div>
         </div>
 
@@ -31,7 +35,7 @@ export default function About() {
             Dr T Ramkumar is a highly experienced Surgical Gastroenterologist specialising in
             the comprehensive surgical management of diseases of the{" "}
             <strong className="text-teal">
-              esophagus, stomach, liver, pancreas, gallbladder, intestines, colon and rectum
+              oesophagus, stomach, liver, pancreas, gallbladder, intestines, colon and rectum
             </strong>{" "}
             — with a strong emphasis on evidence-based care and patient safety.
           </p>
@@ -44,7 +48,7 @@ export default function About() {
           <div className="reveal mt-[1.6rem] pt-[1.3rem] border-t border-line" data-reveal-delay="200">
             <span className="block font-serif text-[1.45rem] text-navy font-semibold">Dr T Ramkumar</span>
             <span className="text-[.9rem] text-muted font-semibold">
-              MS · Surgical Gastroenterology &amp; HPB Surgery
+              Gastrointestinal Surgery
             </span>
           </div>
         </div>

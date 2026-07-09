@@ -1,12 +1,12 @@
 const CONDITIONS = [
-  "GI cancers — stomach, colon, pancreas, liver, esophagus",
+  "GI cancers — stomach, colon, pancreas, liver, oesophagus",
   "Gallstones & bile duct stones",
   "Pancreatitis (acute & chronic)",
   "Liver tumours & cysts",
   "Hernias — inguinal, incisional, complex",
   "Intestinal obstruction",
   "Colorectal diseases",
-  "GERD & hiatal hernia",
+  "Acid reflux (GORD) & hiatus hernia",
   "GI perforations",
   "Abdominal infections & abscess",
 ];

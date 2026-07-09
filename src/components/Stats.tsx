@@ -5,9 +5,9 @@ type Stat = { value: number; suffix?: string; label: string; Icon: typeof Clock 
 
 const STATS: Stat[] = [
   { value: 27, suffix: "+", label: "Years of Experience", Icon: Clock },
-  { value: 7500, suffix: "+", label: "Gastrointestinal Surgeries", Icon: Kit },
+  { value: 7500, suffix: "+", label: "GI Surgeries", Icon: Kit },
   { value: 20, suffix: "+", label: "Research Publications", Icon: Doc },
-  { value: 5, label: "Senior Consultant Roles", Icon: Building },
+  { value: 8, label: "Consulting Hospitals", Icon: Building },
 ];
 
 function Counter({ value, suffix }: { value: number; suffix?: string }) {
