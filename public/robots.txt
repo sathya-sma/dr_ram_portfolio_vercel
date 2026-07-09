@@ -2,4 +2,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://dr-ramkumar.vercel.app/sitemap.xml
+Sitemap: https://dr-ram-portfolio-vercel.vercel.app/sitemap.xml
