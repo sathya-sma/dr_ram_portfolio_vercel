@@ -49,7 +49,7 @@ export default function Hero() {
             Consultant Gastrointestinal Surgeon
           </p>
 
-          <h1 className="reveal font-serif font-semibold leading-[1.02] tracking-tight text-[clamp(2.6rem,6vw,4.5rem)] mt-[1.1rem] text-white" data-reveal-delay="60">
+          <h1 id="hero-name" className="reveal font-serif font-semibold leading-[1.02] tracking-tight text-[clamp(2.6rem,6vw,4.5rem)] mt-[1.1rem] text-white" data-reveal-delay="60">
             Dr T Ramkumar
           </h1>
 

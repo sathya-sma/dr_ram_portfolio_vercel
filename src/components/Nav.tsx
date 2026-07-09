@@ -7,7 +7,6 @@ const LINKS = [
   ["Patient Care", "#patient-care"],
   ["Specialities", "#specialities"],
   ["Conditions", "#conditions"],
-  ["Publications", "#publications"],
   ["Hospitals", "#hospitals"],
   ["Reviews", "#reviews"],
   ["Contact", "#contact"],
@@ -20,6 +19,7 @@ export default function Nav() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState<string>("");
+  const [showBrand, setShowBrand] = useState(false);
   const drawerRef = useRef<HTMLElement>(null);
   const burgerRef = useRef<HTMLButtonElement>(null);
 
@@ -28,6 +28,26 @@ export default function Nav() {
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  useEffect(() => {
+    const target = document.getElementById("hero-name");
+    if (!target) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        // If target is not intersecting, check if its top is above the header threshold (80px)
+        const crossed = !entry.isIntersecting && entry.boundingClientRect.top < 80;
+        setShowBrand(crossed);
+      },
+      {
+        rootMargin: "-80px 0px 0px 0px",
+        threshold: 0,
+      }
+    );
+
+    observer.observe(target);
+    return () => observer.disconnect();
   }, []);
 
   useEffect(() => {
@@ -74,8 +94,8 @@ export default function Nav() {
     <header
       className={`fixed inset-x-0 top-0 z-[900] transition-all duration-400 ${
         scrolled
-          ? "bg-white/86 backdrop-blur-[14px] backdrop-saturate-[140%] shadow-[0_8px_30px_-18px_rgba(10,35,66,.5)] py-[.35rem]"
-          : "py-2"
+          ? "bg-white/90 backdrop-blur-[16px] backdrop-saturate-[150%] shadow-[0_10px_35px_-15px_rgba(10,35,66,0.12)] border-b border-navy/5"
+          : ""
       }`}
       style={EASE}
       id="nav"
@@ -107,28 +127,33 @@ export default function Nav() {
       </div>
 
       {/* Main nav */}
-      <div className="w-[min(100%-2.4rem,1280px)] mx-auto flex items-center justify-between gap-6">
-        {/* Brand — hidden on initial load, revealed smoothly once scrolled */}
+      <div
+        className={`w-[min(100%-2.4rem,1280px)] mx-auto flex items-center justify-between gap-6 transition-all duration-400 ${
+          scrolled ? "py-[15px]" : "py-[26px]"
+        }`}
+        style={EASE}
+      >
+        {/* Brand — hidden by default, visible when scrolled past the hero name */}
         <a
           href="#home"
-          className={`flex items-center gap-[.7rem] transition-all duration-400 ${
-            scrolled
+          className={`flex items-center gap-[0.85rem] transition-all duration-400 hover:scale-[1.01] ${
+            showBrand
               ? "opacity-100 translate-y-0"
               : "opacity-0 -translate-y-2 pointer-events-none"
           }`}
           style={EASE}
           aria-label={`${DOCTOR_NAME} — home`}
-          aria-hidden={!scrolled}
-          inert={!scrolled}
+          aria-hidden={!showBrand}
+          inert={!showBrand}
         >
           <img
             src="/brand/logo.png"
             alt={CLINIC_NAME}
             width="457"
             height="128"
-            className="w-auto h-[34px]"
+            className="w-auto h-[42px]"
           />
-          <span className="font-serif font-semibold text-[1.15rem] tracking-wide whitespace-nowrap text-navy max-[480px]:hidden">
+          <span className="font-serif font-bold text-[1.28rem] tracking-wide whitespace-nowrap text-navy max-[480px]:hidden">
             {DOCTOR_NAME}
           </span>
         </a>
@@ -145,7 +170,7 @@ export default function Nav() {
         <nav
           ref={drawerRef}
           className={`
-            flex gap-[.35rem]
+            flex items-center gap-[.35rem]
             max-[1200px]:fixed max-[1200px]:inset-y-0 max-[1200px]:right-0 max-[1200px]:left-auto
             max-[1200px]:w-[min(78%,320px)] max-[1200px]:flex-col max-[1200px]:justify-center
             max-[1200px]:gap-4 max-[1200px]:bg-navy/97 max-[1200px]:backdrop-blur-[10px]
@@ -161,13 +186,13 @@ export default function Nav() {
               key={href}
               href={href}
               className={`
-                relative font-semibold text-[.95rem] py-2 px-[.7rem] rounded-lg
+                relative font-semibold text-[0.98rem] py-2 px-[0.8rem] rounded-lg
                 transition-colors duration-250 cursor-pointer whitespace-nowrap
-                max-[1200px]:text-[#eaf3f1] max-[1200px]:text-[1.1rem]
+                max-[1200px]:text-[#eaf3f1] max-[1200px]:text-[1.15rem]
                 ${scrolled ? "text-muted hover:text-navy" : "text-white/82 hover:text-white"}
                 ${active === href.slice(1) ? (scrolled ? "!text-navy" : "!text-white") : ""}
-                after:content-[''] after:absolute after:left-[.7rem] after:right-[.7rem]
-                after:bottom-[.32rem] after:h-[2px] after:bg-emerald-glow after:rounded-sm
+                after:content-[''] after:absolute after:left-[0.8rem] after:right-[0.8rem]
+                after:bottom-[0.32rem] after:h-[2px] after:bg-emerald-glow after:rounded-sm
                 after:origin-left after:transition-transform after:duration-300
                 ${active === href.slice(1) ? "after:scale-x-100" : "after:scale-x-0 hover:after:scale-x-100"}
               `}
@@ -198,11 +223,11 @@ export default function Nav() {
             href="#contact"
             className="
               max-[1200px]:hidden
-              inline-flex items-center gap-[.55rem] font-sans font-bold text-[.9rem]
-              py-[.7rem] px-[1.15rem] rounded-full border border-transparent
+              inline-flex items-center gap-[0.55rem] font-sans font-bold text-[0.92rem]
+              py-[0.75rem] px-[1.3rem] rounded-full border border-transparent
               bg-gradient-to-br from-emerald-2 to-teal text-white
-              shadow-[0_14px_30px_-12px_rgba(21,151,106,.7)]
-              hover:-translate-y-[3px] hover:shadow-[0_22px_42px_-14px_rgba(21,151,106,.85)]
+              shadow-[0_14px_30px_-12px_rgba(21,151,106,0.5)]
+              hover:-translate-y-[3px] hover:shadow-[0_22px_42px_-14px_rgba(21,151,106,0.65)]
               transition-all duration-350 whitespace-nowrap leading-none cursor-pointer
             "
             style={EASE}
