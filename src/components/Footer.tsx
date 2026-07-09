@@ -30,7 +30,7 @@ export default function Footer() {
         {/* Explore */}
         <div>
           <h4 className="text-white text-[.95rem] mb-4 tracking-[.03em]">Explore</h4>
-          {["about", "specialities", "conditions", "hospitals", "reviews"].map((link) => (
+          {["about", "specialities", "conditions", "publications", "hospitals", "reviews"].map((link) => (
             <a
               key={link}
               href={`#${link}`}

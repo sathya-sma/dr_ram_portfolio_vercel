@@ -4,6 +4,7 @@ const LINKS = [
   ["About", "#about"],
   ["Specialities", "#specialities"],
   ["Conditions", "#conditions"],
+  ["Publications", "#publications"],
   ["Hospitals", "#hospitals"],
   ["Reviews", "#reviews"],
   ["Contact", "#contact"],

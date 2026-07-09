@@ -115,23 +115,11 @@ export default function Hero() {
         <div className="reveal flex justify-center max-[980px]:order-first max-[980px]:max-w-[320px] max-[980px]:mx-auto" data-reveal-delay="200">
           <div className="relative w-[min(100%,380px)]">
             <div className="relative rounded-[30px] overflow-hidden shadow-[0_40px_80px_-28px_rgba(10,35,66,.45)] border border-white/12 aspect-[5/6]">
-              <svg
-                className="w-full h-full block"
-                viewBox="0 0 400 480"
-                role="img"
-                aria-label="Professional portrait placeholder of Dr T Ramkumar"
-              >
-                <defs>
-                  <linearGradient id="pg" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0" stopColor="#163a5f" />
-                    <stop offset="1" stopColor="#0a2342" />
-                  </linearGradient>
-                </defs>
-                <rect width="400" height="480" fill="url(#pg)" />
-                <circle cx="200" cy="186" r="74" fill="#28557d" />
-                <path d="M86 470c0-72 51-118 114-118s114 46 114 118z" fill="#28557d" />
-                <circle cx="200" cy="186" r="74" fill="none" stroke="#2fd6a0" strokeOpacity=".5" strokeWidth="2" />
-              </svg>
+              <img
+                src="/brand/portrait.jpeg"
+                alt="Dr T Ramkumar, Consultant Gastrointestinal Surgeon"
+                className="object-cover object-[50%_22%] w-full h-full block"
+              />
               {/* Bottom gradient overlay */}
               <div className="absolute inset-0 rounded-[30px] shadow-[inset_0_-90px_80px_-50px_rgba(8,28,56,.9)]" />
             </div>
