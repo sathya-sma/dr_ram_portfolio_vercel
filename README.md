@@ -29,7 +29,7 @@ enquiry pre-filled, so requests still reach the clinic.
 
 ### Going live on a custom domain
 
-Replace `https://dr-ramkumar.vercel.app` in:
+Replace `https://dr-ram-portfolio-vercel.vercel.app` in:
 
 - `SITE_URL` in `src/lib/site.ts`
 - the canonical/OG/Twitter/JSON-LD URLs in `index.html`
