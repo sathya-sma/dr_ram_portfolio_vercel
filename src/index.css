@@ -134,13 +134,22 @@ input:focus-visible, textarea:focus-visible { outline: none; }
 .spec-body {
   display: grid;
   grid-template-rows: 0fr;
-  transition: grid-template-rows 0.4s cubic-bezier(.22,1,.36,1);
+  transition: grid-template-rows 0.45s cubic-bezier(.22,1,.36,1);
 }
 .spec-body.is-open {
   grid-template-rows: 1fr;
 }
 .spec-body > div {
   overflow: hidden;
+}
+
+/* Speciality detail panel swap-in (desktop explorer) */
+@keyframes panelIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: none; }
+}
+.panel-swap {
+  animation: panelIn 0.45s cubic-bezier(.22,1,.36,1);
 }
 
 /* ============================================================
