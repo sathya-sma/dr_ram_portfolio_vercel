@@ -130,24 +130,14 @@ export default function Nav() {
             }`}
             style={EASE}
           >
-            {/* White logo over the dark hero; colored logo once the bar turns white on scroll */}
-            <img
-              src="/brand/logo-white.png"
-              alt=""
-              aria-hidden
-              width="457"
-              height="128"
-              className={`absolute inset-0 w-full h-full object-contain transition-opacity duration-400 ${
-                scrolled ? "opacity-0" : "opacity-100"
-              }`}
-            />
+            {/* Transparent white logo over the dark hero (using CSS filter); colored logo once the bar turns white on scroll */}
             <img
               src="/brand/logo.png"
               alt={CLINIC_NAME}
               width="457"
               height="128"
-              className={`absolute inset-0 w-full h-full object-contain transition-opacity duration-400 ${
-                scrolled ? "opacity-100" : "opacity-0"
+              className={`absolute inset-0 w-full h-full object-contain transition-all duration-400 ${
+                scrolled ? "brightness-100 invert-0" : "brightness-0 invert"
               }`}
             />
           </div>
