@@ -59,6 +59,23 @@
     /* Keep anchor targets clear of the fixed header */
     scroll-padding-top: 5.5rem;
     -webkit-text-size-adjust: 100%;
+
+    /* Desktop default scaling */
+    font-size: clamp(14px, calc(100vw / 1440 * 16), 18px);
+  }
+
+  @media (max-width: 1279px) {
+    html {
+      /* Tablet scaling */
+      font-size: clamp(13px, calc(100vw / 1024 * 16), 16px);
+    }
+  }
+
+  @media (max-width: 767px) {
+    html {
+      /* Mobile scaling */
+      font-size: clamp(12px, calc(100vw / 375 * 16), 15px);
+    }
   }
   body {
     font-family: var(--font-sans);
