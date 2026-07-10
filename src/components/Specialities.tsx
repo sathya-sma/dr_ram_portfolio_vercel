@@ -69,7 +69,7 @@ export default function Specialities() {
   const [openIdx, setOpenIdx] = useState(0);
 
   return (
-    <section className="py-[clamp(3.2rem,6vw,5.5rem)] relative" id="specialities">
+    <section className="py-[clamp(1.8rem,3.5vw,2.8rem)] relative" id="specialities">
       <div className="w-[min(100%-2.4rem,1180px)] mx-auto">
         {/* Section head */}
         <div className="reveal max-w-[680px] mx-auto mb-[3.2rem] text-center">
@@ -130,7 +130,7 @@ export default function Specialities() {
                 </button>
                 <div className={`spec-body ${isOpen ? "is-open" : ""}`}>
                   <div>
-                    <ul className="list-none p-0 px-[1.6rem] pb-[1.5rem] pl-[4.9rem] grid grid-cols-2 gap-x-[1.4rem] gap-y-[.6rem] m-0 max-[560px]:grid-cols-1 max-[560px]:pl-[1.6rem]">
+                    <ul className="list-none pt-0 pr-[1.6rem] pb-[1.5rem] pl-[4.9rem] grid grid-cols-2 gap-x-[1.4rem] gap-y-[.6rem] m-0 max-[560px]:grid-cols-1 max-[560px]:pl-[1.6rem]">
                       {item.items.map((it) => (
                         <li
                           key={it.label}

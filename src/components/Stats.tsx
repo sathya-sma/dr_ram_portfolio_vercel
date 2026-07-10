@@ -61,7 +61,7 @@ function Counter({ value, suffix }: { value: number; suffix?: string }) {
 
 export default function Stats() {
   return (
-    <section className="relative text-[#eaf3f1] py-[clamp(3rem,6vw,4.5rem)] bg-navy isolate" id="stats">
+    <section className="relative text-[#eaf3f1] py-[clamp(1.5rem,3vw,2.2rem)] bg-navy isolate" id="stats">
       {/* Background */}
       <div
         className="absolute inset-0 -z-[1]"

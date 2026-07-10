@@ -12,7 +12,7 @@ const CARDS: { Icon: (p: SVGProps<SVGSVGElement>) => JSX.Element; title: string;
 
 export default function Approach() {
   return (
-    <section className="py-[clamp(3.2rem,6vw,5.5rem)] relative" id="patient-care">
+    <section className="py-[clamp(1.8rem,3.5vw,2.8rem)] relative" id="patient-care">
       <div className="w-[min(100%-2.4rem,1180px)] mx-auto">
         {/* Section head */}
         <div className="reveal max-w-[680px] mx-auto mb-[3.2rem] text-center">

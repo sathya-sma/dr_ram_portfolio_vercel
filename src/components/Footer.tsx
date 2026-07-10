@@ -37,7 +37,7 @@ export default function Footer() {
         <div>
           <span className="inline-block bg-white rounded-[12px] p-[6px] mb-4">
             <img
-              src="/brand/logo-white.png"
+              src="/brand/logo.png"
               alt={CLINIC_NAME}
               width="493"
               height="138"

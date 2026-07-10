@@ -2,7 +2,7 @@ import { Stethoscope } from "@/lib/icons";
 
 export default function About() {
   return (
-    <section className="py-[clamp(3.2rem,6vw,5.5rem)] relative" id="about">
+    <section className="py-[clamp(1.8rem,3.5vw,2.8rem)] relative" id="about">
       <div className="w-[min(100%-2.4rem,1180px)] mx-auto grid grid-cols-[.9fr_1.1fr] gap-[clamp(2rem,5vw,4rem)] items-center max-[980px]:grid-cols-1">
         {/* Image */}
         <div className="reveal relative">
