@@ -109,21 +109,21 @@ export default function Nav() {
 
       {/* Main nav */}
       <div
-        className={`w-[min(100%-2.4rem,1380px)] mx-auto flex items-center justify-between gap-6 transition-all duration-400 ${
-          scrolled ? "py-[15px]" : "py-[26px]"
+        className={`w-[min(100%-2.4rem,1600px)] mx-auto flex min-[1200px]:grid justify-between min-[1200px]:justify-normal min-[1200px]:grid-cols-[1fr_auto_1fr] items-center gap-6 transition-all duration-400 ${
+          scrolled ? "py-[10px]" : "py-[16px]"
         }`}
         style={EASE}
       >
         {/* Brand — visible with dynamic scaling and theme transition on scroll */}
         <a
           href="#home"
-          className="flex items-center gap-[0.85rem] transition-all duration-400 hover:scale-[1.01]"
+          className="flex items-center gap-[0.85rem] transition-all duration-400 hover:scale-[1.01] min-[1200px]:justify-self-start"
           style={EASE}
           aria-label={`${DOCTOR_NAME} — home`}
         >
           <div
             className={`relative aspect-[457/128] shrink-0 transition-all duration-400 ${
-              scrolled ? "h-[46px]" : "h-[68px]"
+              scrolled ? "h-[80px]" : "h-[125px]"
             }`}
             style={EASE}
           >
@@ -159,6 +159,7 @@ export default function Nav() {
         <nav
           ref={drawerRef}
           className={`
+            min-[1200px]:justify-self-center
             flex items-center gap-[.35rem]
             max-[1200px]:fixed max-[1200px]:inset-y-0 max-[1200px]:right-0 max-[1200px]:left-auto
             max-[1200px]:w-[min(78%,320px)] max-[1200px]:flex-col max-[1200px]:justify-center
@@ -207,7 +208,7 @@ export default function Nav() {
           </a>
         </nav>
 
-        <div className="flex items-center gap-[.8rem]">
+        <div className="flex items-center gap-[.8rem] min-[1200px]:justify-self-end">
           <a
             href="#contact"
             className="
