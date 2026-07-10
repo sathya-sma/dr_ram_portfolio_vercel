@@ -174,15 +174,9 @@ export default function Nav() {
 
         <nav
           ref={drawerRef}
-          className={`
-            xl:justify-self-center xl:-translate-x-[60px]
-            flex items-center gap-[.35rem]
-            max-xl:fixed max-xl:inset-y-0 max-xl:right-0 max-xl:left-auto
-            max-xl:w-[min(78%,320px)] max-xl:flex-col max-xl:justify-center
-            max-xl:gap-4 max-xl:bg-navy/97 max-xl:backdrop-blur-[10px]
-            max-xl:p-8 max-xl:transition-[transform,visibility] max-xl:duration-400
-            ${open ? "max-xl:translate-x-0 max-xl:visible" : "max-xl:translate-x-full max-xl:invisible"}
-          `}
+          className={`xl:justify-self-center xl:-translate-x-[60px] flex items-center gap-[.35rem] max-xl:fixed max-xl:inset-y-0 max-xl:right-0 max-xl:left-auto max-xl:w-[min(85%,320px)] max-xl:flex-col max-xl:justify-start max-xl:pt-[90px] max-xl:overflow-y-auto max-xl:gap-4 max-xl:bg-navy max-xl:backdrop-blur-[12px] max-xl:p-8 max-xl:transition-[transform,visibility] max-xl:duration-400 ${
+            open ? "max-xl:translate-x-0 max-xl:visible" : "max-xl:translate-x-full max-xl:invisible"
+          }`}
           style={EASE}
           id="navLinks"
           aria-label="Primary"
