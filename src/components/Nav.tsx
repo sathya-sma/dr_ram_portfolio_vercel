@@ -123,7 +123,7 @@ export default function Nav() {
         >
           <div
             className={`relative aspect-[457/128] shrink-0 transition-all duration-400 ${
-              scrolled ? "h-[80px]" : "h-[125px]"
+              scrolled ? "h-[65px]" : "h-[98px]"
             }`}
             style={EASE}
           >
