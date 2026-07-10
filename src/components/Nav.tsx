@@ -154,6 +154,7 @@ export default function Nav() {
             </span>
           </a>
 
+          {/* Desktop navbar menu - Trigger rebuild */}
           <nav
             className="flex items-center gap-[.35rem] xl:justify-self-center xl:-translate-x-[60px] max-xl:hidden"
             aria-label="Primary"
