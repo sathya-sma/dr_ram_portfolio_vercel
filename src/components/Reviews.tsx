@@ -13,8 +13,8 @@ function GoogleG({ size = 19 }: { size?: number }) {
 
 const TESTIMONIALS = [
   {
-    initial: "R",
-    name: "Ravi",
+    initial: "S",
+    name: "Sathya",
     quote:
       "Underwent a laparoscopic gallbladder surgery. Clear explanation, painless recovery and I was home in two days. Deeply grateful to Dr Ramkumar and team.",
   },

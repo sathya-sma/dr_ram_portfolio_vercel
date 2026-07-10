@@ -21,7 +21,7 @@ export const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURICo
 export const ADDRESS_FULL =
   "1, Thiruvalluvarpuram 3rd St, near Thiripurasundari Temple & next to Jothi Medicals, Thiruvalluvar Puram, Choolaimedu, Chennai, Tamil Nadu 600094";
 
-export const REVIEW_URL = "https://share.google/avpJT84DsPSXmc7IG";
+export const REVIEW_URL = "https://share.google/ihlCn3a7GKLdswUA7";
 
 export const MAP_EMBED_SRC =
   "https://maps.google.com/maps?q=" +
