@@ -7,6 +7,7 @@ const LINKS = [
   ["Patient Care", "#patient-care"],
   ["Specialities", "#specialities"],
   ["Conditions", "#conditions"],
+  ["Gallery", "#gallery"],
   ["Hospitals", "#hospitals"],
   ["Reviews", "#reviews"],
   ["Contact", "#contact"],
@@ -156,7 +157,7 @@ export default function Nav() {
 
           {/* Desktop navbar menu - Trigger rebuild */}
           <nav
-            className="flex items-center gap-[.35rem] xl:justify-self-center xl:-translate-x-[60px] max-xl:hidden"
+            className="flex items-center gap-[.35rem] xl:justify-self-center xl:-translate-x-[20px] max-xl:hidden"
             aria-label="Primary"
           >
             {LINKS.map(([label, href]) => (

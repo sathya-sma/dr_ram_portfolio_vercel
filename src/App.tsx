@@ -7,6 +7,7 @@ import Approach from "./components/Approach";
 import Specialities from "./components/Specialities";
 import Conditions from "./components/Conditions";
 import Publications from "./components/Publications";
+import Gallery from "./components/Gallery";
 import Hospitals from "./components/Hospitals";
 import Reviews from "./components/Reviews";
 import Contact from "./components/Contact";
@@ -27,6 +28,7 @@ export default function App() {
         <Specialities />
         <Conditions />
         <Publications />
+        <Gallery />
         <Hospitals />
         <Reviews />
         <Contact />
