@@ -91,7 +91,7 @@ export default function Nav() {
         // Keep the collapsed strip out of the tab order for keyboard/AT users.
         inert={scrolled}
       >
-        <div className="w-[min(100%-2.4rem,1380px)] mx-auto flex items-center gap-[.9rem] justify-end py-[.35rem] text-white/82 text-[.8rem] font-semibold">
+        <div className="w-[min(100%-2.4rem,1380px)] mx-auto flex items-center gap-[.9rem] justify-end py-[.35rem] text-white text-[0.88rem] font-bold">
           <span className="inline-flex items-center gap-[.4rem]">
             <Pin className="ico text-emerald-glow w-[14px] h-[14px]" />
             {CLINIC_NAME}, Choolaimedu
@@ -109,7 +109,7 @@ export default function Nav() {
 
       {/* Main nav */}
       <div
-        className={`w-[min(100%-2.4rem,1600px)] mx-auto flex min-[1200px]:grid justify-between min-[1200px]:justify-normal min-[1200px]:grid-cols-[1fr_auto_1fr] items-center gap-6 transition-all duration-400 ${
+        className={`w-[min(100%-2.4rem,1600px)] mx-auto flex xl:grid justify-between xl:justify-normal xl:grid-cols-[1fr_auto_1fr] items-center gap-6 transition-all duration-400 ${
           scrolled ? "py-[10px]" : "py-[16px]"
         }`}
         style={EASE}
@@ -117,7 +117,7 @@ export default function Nav() {
         {/* Brand — visible with dynamic scaling and theme transition on scroll */}
         <a
           href="#home"
-          className="flex items-center gap-[0.85rem] transition-all duration-400 hover:scale-[1.01] min-[1200px]:justify-self-start"
+          className="flex items-center gap-[0.85rem] transition-all duration-400 hover:scale-[1.01] xl:justify-self-start"
           style={EASE}
           aria-label={`${DOCTOR_NAME} — home`}
         >
@@ -149,7 +149,7 @@ export default function Nav() {
 
         {/* Backdrop for the drawer menu */}
         <div
-          className={`hidden max-[1200px]:block fixed inset-0 z-[-1] bg-navy/45 backdrop-blur-[2px] transition-opacity duration-400 ${
+          className={`hidden max-xl:block fixed inset-0 z-[-1] bg-navy/45 backdrop-blur-[2px] transition-opacity duration-400 ${
             open ? "opacity-100" : "opacity-0 pointer-events-none"
           }`}
           onClick={() => setOpen(false)}
@@ -159,13 +159,13 @@ export default function Nav() {
         <nav
           ref={drawerRef}
           className={`
-            min-[1200px]:justify-self-center
+            xl:justify-self-center xl:-translate-x-[60px]
             flex items-center gap-[.35rem]
-            max-[1200px]:fixed max-[1200px]:inset-y-0 max-[1200px]:right-0 max-[1200px]:left-auto
-            max-[1200px]:w-[min(78%,320px)] max-[1200px]:flex-col max-[1200px]:justify-center
-            max-[1200px]:gap-4 max-[1200px]:bg-navy/97 max-[1200px]:backdrop-blur-[10px]
-            max-[1200px]:p-8 max-[1200px]:transition-[transform,visibility] max-[1200px]:duration-400
-            ${open ? "max-[1200px]:translate-x-0 max-[1200px]:visible" : "max-[1200px]:translate-x-full max-[1200px]:invisible"}
+            max-xl:fixed max-xl:inset-y-0 max-xl:right-0 max-xl:left-auto
+            max-xl:w-[min(78%,320px)] max-xl:flex-col max-xl:justify-center
+            max-xl:gap-4 max-xl:bg-navy/97 max-xl:backdrop-blur-[10px]
+            max-xl:p-8 max-xl:transition-[transform,visibility] max-xl:duration-400
+            ${open ? "max-xl:translate-x-0 max-xl:visible" : "max-xl:translate-x-full max-xl:invisible"}
           `}
           style={EASE}
           id="navLinks"
@@ -176,10 +176,10 @@ export default function Nav() {
               key={href}
               href={href}
               className={`
-                relative font-semibold text-[0.98rem] py-2 px-[0.8rem] rounded-lg
+                relative font-bold text-[1.06rem] py-2 px-[0.8rem] rounded-lg
                 transition-colors duration-250 cursor-pointer whitespace-nowrap
-                max-[1200px]:text-[#eaf3f1] max-[1200px]:text-[1.15rem]
-                ${scrolled ? "text-muted hover:text-navy" : "text-white/82 hover:text-white"}
+                max-xl:text-[#eaf3f1] max-xl:text-[1.15rem]
+                ${scrolled ? "text-muted hover:text-navy" : "text-white/90 hover:text-white"}
                 ${active === href.slice(1) ? (scrolled ? "!text-navy" : "!text-white") : ""}
                 after:content-[''] after:absolute after:left-[0.8rem] after:right-[0.8rem]
                 after:bottom-[0.32rem] after:h-[2px] after:bg-emerald-glow after:rounded-sm
@@ -196,7 +196,7 @@ export default function Nav() {
           <a
             href="#contact"
             className="
-              hidden max-[1200px]:inline-flex items-center justify-center gap-[.55rem]
+              hidden max-xl:inline-flex items-center justify-center gap-[.55rem]
               font-sans font-bold text-[1rem] mt-4
               py-[.85rem] px-[1.3rem] rounded-full border border-transparent
               bg-gradient-to-br from-emerald-2 to-teal text-white
@@ -208,11 +208,11 @@ export default function Nav() {
           </a>
         </nav>
 
-        <div className="flex items-center gap-[.8rem] min-[1200px]:justify-self-end">
+        <div className="flex items-center gap-[.8rem] xl:justify-self-end">
           <a
             href="#contact"
             className="
-              max-[1200px]:hidden
+              max-xl:hidden
               inline-flex items-center gap-[0.55rem] font-sans font-bold text-[0.92rem]
               py-[0.75rem] px-[1.3rem] rounded-full border border-transparent
               bg-gradient-to-br from-emerald-2 to-teal text-white
@@ -226,7 +226,7 @@ export default function Nav() {
           </a>
           <button
             ref={burgerRef}
-            className="hidden max-[1200px]:flex flex-col gap-[5px] bg-transparent border-0 cursor-pointer p-[6px]"
+            className="hidden max-xl:flex flex-col gap-[5px] bg-transparent border-0 cursor-pointer p-[6px]"
             aria-label={open ? "Close menu" : "Open menu"}
             aria-expanded={open}
             aria-controls="navLinks"
