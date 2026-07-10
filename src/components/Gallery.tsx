@@ -141,7 +141,7 @@ export default function Gallery() {
         </div>
 
         {/* Gallery Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[clamp(0.8rem,3vw,1.5rem)]">
           {filteredItems.map((item) => (
             <article
               key={item.src}
@@ -160,7 +160,7 @@ export default function Gallery() {
                       className="w-full h-full object-cover"
                     />
                     <div className="absolute inset-0 bg-navy/30 flex items-center justify-center transition-colors duration-400 group-hover:bg-navy/40">
-                      <span className="w-14 h-14 rounded-full bg-white/90 text-navy flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
+                      <span className="w-[clamp(44px,8vw,56px)] h-[clamp(44px,8vw,56px)] rounded-full bg-white/90 text-navy flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
                         <Play className="ico w-6 h-6 ml-0.5" />
                       </span>
                     </div>
@@ -179,7 +179,7 @@ export default function Gallery() {
               </div>
 
               {/* Text Container */}
-              <div className="p-5 flex-1 flex flex-col justify-between">
+              <div className="p-[clamp(1rem,2vw,1.25rem)] flex-1 flex flex-col justify-between">
                 <div>
                   <h3 className="font-serif font-bold text-[1.12rem] text-navy leading-[1.3] group-hover:text-teal transition-colors duration-300">
                     {item.title}

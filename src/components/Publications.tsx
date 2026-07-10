@@ -57,13 +57,13 @@ export default function Publications() {
               key={i}
               className="
                 bg-card border border-line rounded-[18px]
-                shadow-[0_4px_18px_rgba(16,56,98,.07)] p-[1.3rem_1.4rem] flex gap-4
+                shadow-[0_4px_18px_rgba(16,56,98,.07)] p-[clamp(1rem,2.5vw,1.4rem)] flex gap-[clamp(0.7rem,2vw,1rem)]
                 transition-all duration-350 hover:shadow-[0_18px_50px_-20px_rgba(16,56,98,.28)] hover:border-teal/30 hover:-translate-y-1
               "
               style={{ transitionTimingFunction: "cubic-bezier(.22,1,.36,1)" }}
               data-reveal-delay={(i % 3) * 60}
             >
-              <span className="w-[42px] h-[42px] rounded-[12px] grid place-items-center bg-gradient-to-br from-blue/12 to-teal/12 text-blue shrink-0">
+              <span className="w-[clamp(36px,5vw,42px)] h-[clamp(36px,5vw,42px)] rounded-[12px] grid place-items-center bg-gradient-to-br from-blue/12 to-teal/12 text-blue shrink-0">
                 <Doc className="ico w-5 h-5" />
               </span>
               <div className="flex-1">

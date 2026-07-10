@@ -30,11 +30,11 @@ export default function Approach() {
         </div>
 
         {/* Cards grid */}
-        <div className="grid grid-cols-3 gap-[1.3rem] max-[980px]:grid-cols-2 max-[560px]:grid-cols-1">
+        <div className="grid grid-cols-3 gap-[clamp(0.8rem,2vw,1.3rem)] max-[980px]:grid-cols-2 max-[560px]:grid-cols-1">
           {CARDS.map(({ Icon, title, body }, i) => (
             <article
               className="
-                reveal group bg-card border border-line rounded-[18px] p-[1.8rem]
+                reveal group bg-card border border-line rounded-[18px] p-[clamp(1.2rem,3vw,1.8rem)]
                 shadow-[0_4px_18px_rgba(16,56,98,.07)] relative overflow-hidden
                 transition-all duration-400 cursor-default
                 hover:-translate-y-[7px] hover:shadow-[0_18px_50px_-20px_rgba(16,56,98,.28)] hover:border-transparent
@@ -49,7 +49,7 @@ export default function Approach() {
             >
               <div
                 className="
-                  w-[50px] h-[50px] rounded-[14px] grid place-items-center
+                  w-[clamp(44px,8vw,50px)] h-[clamp(44px,8vw,50px)] rounded-[14px] grid place-items-center
                   bg-gradient-to-br from-emerald-2/14 to-teal/14 text-teal
                   mb-[1.1rem] transition-transform duration-400
                   group-hover:scale-108 group-hover:-rotate-[4deg]

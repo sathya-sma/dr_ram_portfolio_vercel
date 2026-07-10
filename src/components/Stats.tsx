@@ -75,12 +75,12 @@ export default function Stats() {
         aria-hidden
       />
 
-      <div className="w-[min(100%-2.4rem,1180px)] mx-auto grid grid-cols-4 gap-[1.2rem] text-center max-[980px]:grid-cols-2 max-[980px]:gap-[.6rem]">
+      <div className="w-[min(100%-2.4rem,1180px)] mx-auto grid grid-cols-4 gap-[clamp(0.8rem,3vw,1.2rem)] text-center max-[980px]:grid-cols-2 max-[480px]:grid-cols-1">
         {STATS.map(({ value, suffix, label, Icon }, i) => (
           <div
-            className={`reveal py-[1.4rem] px-4 rounded-[18px] relative ${
+            className={`reveal py-[clamp(1rem,3vw,1.4rem)] px-[clamp(0.5rem,2vw,1rem)] rounded-[18px] relative ${
               i < 3
-                ? `after:content-[''] after:absolute after:-right-[.6rem] after:top-[22%] after:bottom-[22%] after:w-px after:bg-white/12 ${
+                ? `after:content-[''] after:absolute after:-right-[.6rem] after:top-[22%] after:bottom-[22%] after:w-px after:bg-white/12 max-[480px]:after:hidden ${
                     i === 1 ? "max-[980px]:after:hidden" : ""
                   }`
                 : ""

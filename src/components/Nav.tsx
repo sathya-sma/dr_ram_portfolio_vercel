@@ -112,10 +112,9 @@ export default function Nav() {
           </div>
         </div>
 
-        {/* Main nav */}
         <div
           className={`w-[min(100%-2.4rem,1600px)] mx-auto flex xl:grid justify-between xl:justify-normal xl:grid-cols-[1fr_auto_1fr] items-center gap-6 transition-all duration-400 ${
-            scrolled ? "py-[10px]" : "py-[16px]"
+            scrolled ? "py-[0.625rem]" : "py-[1rem]"
           }`}
           style={EASE}
         >
@@ -128,7 +127,7 @@ export default function Nav() {
           >
             <div
               className={`relative aspect-[457/128] shrink-0 transition-all duration-400 ${
-                scrolled ? "h-[46px] sm:h-[54px] xl:h-[65px]" : "h-[54px] sm:h-[72px] xl:h-[98px]"
+                scrolled ? "h-[2.875rem] sm:h-[3.375rem] xl:h-[4.0625rem]" : "h-[3.375rem] sm:h-[4.5rem] xl:h-[6.125rem]"
               }`}
               style={EASE}
             >

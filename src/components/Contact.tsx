@@ -19,7 +19,7 @@ type Status = "idle" | "sending" | "sent" | "whatsapp" | "error";
 type Errors = Partial<Record<"name" | "phone" | "consent", string>>;
 
 const INPUT_CLASS =
-  "w-full font-sans text-[.97rem] text-ink py-[.85rem] px-4 border rounded-[12px] bg-[#fbfdfc] transition-all duration-250 focus:outline-none focus:border-emerald-2 focus:shadow-[0_0_0_4px_rgba(31,184,134,.14)]";
+  "w-full font-sans text-[.97rem] text-ink py-[clamp(0.6rem,2vw,0.85rem)] px-[clamp(0.8rem,2vw,1.1rem)] border rounded-[12px] bg-[#fbfdfc] transition-all duration-250 focus:outline-none focus:border-emerald-2 focus:shadow-[0_0_0_4px_rgba(31,184,134,.14)]";
 
 function todayISO() {
   const d = new Date();
@@ -168,7 +168,7 @@ export default function Contact() {
             </li>
           </ul>
 
-          <div className="mt-[1.8rem] rounded-[18px] overflow-hidden border border-line shadow-[0_4px_18px_rgba(16,56,98,.07)] h-[230px]">
+          <div className="mt-[1.8rem] rounded-[18px] overflow-hidden border border-line shadow-[0_4px_18px_rgba(16,56,98,.07)] h-[clamp(180px,22vw,240px)]">
             <iframe
               title={`${CLINIC_NAME} location on Google Maps`}
               src={MAP_EMBED_SRC}
@@ -181,7 +181,7 @@ export default function Contact() {
 
         {/* Form */}
         <form
-          className="reveal bg-card border border-line rounded-[26px] p-8 shadow-[0_18px_50px_-20px_rgba(16,56,98,.28)]"
+          className="reveal bg-card border border-line rounded-[26px] p-[clamp(1rem,4vw,2rem)] shadow-[0_18px_50px_-20px_rgba(16,56,98,.28)]"
           data-reveal-delay="120"
           onSubmit={onSubmit}
           noValidate

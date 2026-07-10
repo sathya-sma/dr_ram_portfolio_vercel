@@ -46,7 +46,7 @@ export default function Legal() {
           <button
             onClick={close}
             aria-label="Close dialog"
-            className="shrink-0 w-9 h-9 grid place-items-center rounded-full border border-line bg-bg text-muted text-[1.1rem] leading-none cursor-pointer transition-colors duration-250 hover:text-navy hover:border-teal/40"
+            className="shrink-0 w-11 h-11 grid place-items-center rounded-full border border-line bg-bg text-muted text-[1.2rem] leading-none cursor-pointer transition-colors duration-250 hover:text-navy hover:border-teal/40"
           >
             ×
           </button>
@@ -99,7 +99,7 @@ export default function Legal() {
           onClick={close}
           className="
             mt-6 inline-flex items-center gap-[.55rem] font-sans font-bold text-[.9rem]
-            py-[.7rem] px-[1.15rem] rounded-full border border-transparent
+            py-[clamp(0.6rem,2vw,0.7rem)] px-[clamp(0.9rem,3vw,1.15rem)] rounded-full border border-transparent
             bg-gradient-to-br from-emerald-2 to-teal text-white
             shadow-[0_14px_30px_-12px_rgba(21,151,106,.7)] leading-none cursor-pointer
           "

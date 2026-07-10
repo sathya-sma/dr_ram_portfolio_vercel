@@ -4,11 +4,11 @@ import { PHONE_TEL, WHATSAPP_URL } from "@/lib/site";
 
 export default function Floaties() {
   return (
-    <div className="fixed right-[1.1rem] bottom-[1.1rem] z-[950] flex flex-col gap-[.8rem]">
+    <div className="fixed right-[clamp(0.8rem,3vw,1.1rem)] bottom-[clamp(0.8rem,3vw,1.1rem)] z-[950] flex flex-col gap-[.8rem]">
       <a
         href={WHATSAPP_URL}
         className="
-          relative w-14 h-14 rounded-full grid place-items-center text-white
+          relative w-[clamp(48px,6vw,56px)] h-[clamp(48px,6vw,56px)] rounded-full grid place-items-center text-white
           bg-[#25d366] shadow-[0_14px_30px_-10px_rgba(0,0,0,.45)]
           hover:scale-108 transition-transform duration-300
         "
@@ -18,12 +18,12 @@ export default function Floaties() {
         aria-label="Chat on WhatsApp"
         onClick={() => track("whatsapp_click", { source: "floaties" })}
       >
-        <WhatsApp className="w-7 h-7 fill-current stroke-none" />
+        <WhatsApp className="w-[clamp(24px,4vw,28px)] h-[clamp(24px,4vw,28px)] fill-current stroke-none" />
       </a>
       <a
         href={`tel:${PHONE_TEL}`}
         className="
-          relative w-14 h-14 rounded-full grid place-items-center text-white
+          relative w-[clamp(48px,6vw,56px)] h-[clamp(48px,6vw,56px)] rounded-full grid place-items-center text-white
           bg-gradient-to-br from-emerald-2 to-teal
           shadow-[0_14px_30px_-10px_rgba(0,0,0,.45)]
           hover:scale-108 transition-transform duration-300
@@ -32,7 +32,7 @@ export default function Floaties() {
         aria-label="Call the clinic"
         onClick={() => track("call_click", { source: "floaties" })}
       >
-        <Phone className="ico w-6 h-6 !fill-none !stroke-white" style={{ strokeWidth: 1.7 }} />
+        <Phone className="ico w-[clamp(20px,3.5vw,24px)] h-[clamp(20px,3.5vw,24px)] !fill-none !stroke-white" style={{ strokeWidth: 1.7 }} />
         <span className="absolute inset-0 rounded-full border-2 border-emerald-2 animate-pulse-ring" />
       </a>
     </div>

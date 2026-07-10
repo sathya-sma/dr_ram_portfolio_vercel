@@ -7,7 +7,7 @@ export default function About() {
         {/* Image */}
         <div className="reveal relative">
           {/* Decorative corner */}
-          <div className="absolute -inset-x-0 -top-[14px] -left-[14px] w-[120px] h-[120px] rounded-[20px] bg-gradient-to-br from-emerald-2 to-teal opacity-18 -z-[1]" />
+          <div className="absolute -top-[0.875rem] -left-[0.875rem] w-[clamp(80px,10vw,120px)] h-[clamp(80px,10vw,120px)] rounded-[20px] bg-gradient-to-br from-emerald-2 to-teal opacity-18 -z-[1]" />
           <img
             src="/brand/or-action.jpeg"
             alt="Dr. T. Ramkumar performing laparoscopic surgery"

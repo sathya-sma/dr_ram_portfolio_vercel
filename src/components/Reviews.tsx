@@ -65,7 +65,7 @@ export default function Reviews() {
                   rel="noopener noreferrer"
                   className="
                     inline-flex items-center gap-[.7rem] bg-white text-[#0c2a37]
-                    text-[.97rem] font-bold py-[.9rem] px-[1.6rem] rounded-[13px]
+                    text-[.97rem] font-bold py-[clamp(0.7rem,2vw,0.9rem)] px-[clamp(1.1rem,3vw,1.6rem)] rounded-[13px]
                     shadow-[0_16px_34px_-16px_rgba(0,0,0,.5)]
                     hover:-translate-y-[3px] hover:shadow-[0_22px_40px_-16px_rgba(0,0,0,.6)]
                     transition-all duration-250 no-underline whitespace-nowrap

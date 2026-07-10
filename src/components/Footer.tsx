@@ -22,7 +22,7 @@ const headingClass = "text-white text-[.95rem] font-bold mb-4 tracking-[.03em]";
 
 export default function Footer() {
   return (
-    <footer className="bg-navy text-[#c4d6dd] pt-16 pb-[1.5rem] relative isolate">
+    <footer className="bg-navy text-[#c4d6dd] pt-[clamp(3rem,6vw,4rem)] pb-[1.5rem] relative isolate">
       {/* Glow background */}
       <div
         className="absolute inset-0 -z-[1]"
@@ -32,7 +32,7 @@ export default function Footer() {
         aria-hidden
       />
 
-      <div className="w-[min(100%-2.4rem,1180px)] mx-auto grid grid-cols-[1.6fr_1fr_1.2fr_1.1fr] gap-8 max-[980px]:grid-cols-2 max-[560px]:grid-cols-1">
+      <div className="w-[min(100%-2.4rem,1180px)] mx-auto grid grid-cols-[1.6fr_1fr_1.2fr_1.1fr] gap-[clamp(1.5rem,3vw,2rem)] max-[980px]:grid-cols-2 max-[560px]:grid-cols-1">
         {/* Brand */}
         <div>
           <span className="inline-block bg-white rounded-[12px] p-[6px] mb-4">
@@ -43,7 +43,7 @@ export default function Footer() {
               height="138"
               loading="lazy"
               decoding="async"
-              className="h-[38px] w-auto block"
+              className="h-[2.375rem] w-auto block"
             />
           </span>
           <p className="font-serif text-[1.4rem] text-white font-semibold">{DOCTOR_NAME}</p>
@@ -94,7 +94,7 @@ export default function Footer() {
             href="#contact"
             className="
               inline-flex items-center gap-[.55rem] font-sans font-bold text-[.9rem]
-              py-[.7rem] px-[1.15rem] rounded-full border border-transparent
+              py-[clamp(0.6rem,2vw,0.7rem)] px-[clamp(0.9rem,3vw,1.15rem)] rounded-full border border-transparent
               bg-gradient-to-br from-emerald-2 to-teal text-white
               shadow-[0_14px_30px_-12px_rgba(21,151,106,.7)]
               hover:-translate-y-[3px] hover:shadow-[0_22px_42px_-14px_rgba(21,151,106,.85)]
