@@ -21,7 +21,7 @@
         },
         {
           "key": "Content-Security-Policy",
-          "value": "default-src 'self'; script-src 'self' https://va.vercel-scripts.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://api.web3forms.com https://va.vercel-scripts.com; frame-src https://maps.google.com https://www.google.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self' https://api.web3forms.com"
+          "value": "default-src 'self'; script-src 'self' https://va.vercel-scripts.com https://*.jotform.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://*.jotform.com; font-src https://fonts.gstatic.com; img-src 'self' data: https://*.jotform.com https://*.googleusercontent.com https://*.google.com; connect-src 'self' https://api.web3forms.com https://va.vercel-scripts.com https://*.jotform.com; frame-src https://maps.google.com https://www.google.com https://*.jotform.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self' https://api.web3forms.com"
         },
         { "key": "X-Frame-Options", "value": "DENY" }
       ]
