@@ -249,37 +249,36 @@ export default function Specialities() {
           <aside className="max-[899px]:hidden relative">
             <div
               key={detailIdx}
-              className="panel-swap relative overflow-hidden rounded-[26px] border border-white/12 p-[clamp(1.8rem,3vw,2.6rem)] text-[#eaf4f2] shadow-[0_30px_70px_-28px_rgba(8,32,48,.65)] min-h-[460px]"
-              style={{ background: "radial-gradient(120% 150% at 90% -20%, #13485f, #0b2a39)" }}
+              className="panel-swap relative overflow-hidden rounded-[26px] border border-line bg-card p-[clamp(1.8rem,3vw,2.6rem)] shadow-[0_18px_45px_-20px_rgba(16,56,98,.12)] min-h-[460px]"
             >
-              {/* Glow */}
+              {/* Soft light glow */}
               <span
                 aria-hidden
                 className="absolute -top-[80px] -right-[50px] w-[300px] h-[300px] rounded-full pointer-events-none"
-                style={{ background: "radial-gradient(circle, rgba(54,214,180,.22), transparent 70%)" }}
+                style={{ background: "radial-gradient(circle, rgba(31,184,134,.05), transparent 70%)" }}
               />
               {/* Watermark number */}
               <span
                 aria-hidden
-                className="absolute -top-4 right-6 font-serif font-bold leading-none text-[6.5rem] text-white/6 select-none pointer-events-none"
+                className="absolute -top-4 right-6 font-serif font-bold leading-none text-[6.5rem] text-navy/4 select-none pointer-events-none"
               >
                 {String(detailIdx + 1).padStart(2, "0")}
               </span>
 
-              <span className="relative w-[58px] h-[58px] rounded-[16px] grid place-items-center bg-white/10 border border-white/14 text-emerald-glow">
+              <span className="relative w-[58px] h-[58px] rounded-[16px] grid place-items-center bg-gradient-to-br from-emerald-2/14 to-teal/14 text-teal border border-teal/10">
                 <DetailIcon className="ico w-[29px] h-[29px]" />
               </span>
 
-              <h3 className="relative font-serif font-semibold text-[clamp(1.4rem,2.4vw,1.75rem)] leading-[1.2] text-white mt-[1.15rem]">
+              <h3 className="relative font-serif font-semibold text-[clamp(1.4rem,2.4vw,1.75rem)] leading-[1.2] text-navy mt-[1.15rem]">
                 {detail.title}
               </h3>
               <span
-                className="relative block w-14 h-[3px] rounded-sm mt-[.75rem] mb-[1.2rem] bg-gradient-to-r from-emerald-glow to-transparent"
+                className="relative block w-14 h-[3px] rounded-sm mt-[.75rem] mb-[1.2rem] bg-gradient-to-r from-emerald-2 to-teal"
                 aria-hidden
               />
 
               <div className="relative">
-                <Procedures item={detail} dark />
+                <Procedures item={detail} dark={false} />
               </div>
             </div>
           </aside>

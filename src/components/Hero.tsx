@@ -66,7 +66,7 @@ export default function Hero() {
           </h2>
 
           <p className="reveal max-w-[46ch] mt-[1.4rem] text-[#c4d6dd] text-[1.04rem]" data-reveal-delay="240">
-            Gastrointestinal Surgeon with over <strong className="text-white">27 years</strong> of expertise in the
+            Gastrointestinal Surgeon with over <strong className="text-white">24 years</strong> of expertise in the
             safe management of benign and malignant gastrointestinal conditions. Among the
             early practitioners of minimally invasive — Laparoscopic and Robotic —
             gastrointestinal surgery in Tamil Nadu, trusted by patients across India and
@@ -136,7 +136,7 @@ export default function Hero() {
             {/* Experience badge */}
             <div className="absolute left-[-22px] md:left-[-54px] bottom-[42px] z-[3] bg-white text-navy rounded-[18px] py-[.85rem] px-[1.1rem] flex items-center gap-[.7rem] shadow-[0_18px_50px_-20px_rgba(16,56,98,.28)] animate-float-y">
               <span className="font-serif font-bold text-[2.1rem] leading-none text-teal">
-                27<span className="text-emerald-2">+</span>
+                24<span className="text-emerald-2">+</span>
               </span>
               <span className="text-[.72rem] font-bold uppercase tracking-[.06em] text-muted leading-[1.2]">
                 Years of<br />Experience

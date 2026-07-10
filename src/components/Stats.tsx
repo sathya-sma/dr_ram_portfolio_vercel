@@ -4,7 +4,7 @@ import { Clock, Kit, Doc, Building } from "@/lib/icons";
 type Stat = { value: number; suffix?: string; label: string; Icon: typeof Clock };
 
 const STATS: Stat[] = [
-  { value: 27, suffix: "+", label: "Years of Experience", Icon: Clock },
+  { value: 24, suffix: "+", label: "Years of Experience", Icon: Clock },
   { value: 7500, suffix: "+", label: "GI Surgeries", Icon: Kit },
   { value: 20, suffix: "+", label: "Research Publications", Icon: Doc },
   { value: 8, label: "Consulting Hospitals", Icon: Building },
