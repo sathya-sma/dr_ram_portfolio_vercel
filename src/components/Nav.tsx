@@ -227,7 +227,7 @@ export default function Nav() {
 
       {/* Mobile Drawer (Sibling to header to avoid backdrop-filter containers clipping fixed drawers) */}
       <div
-        className={`xl:hidden fixed inset-0 z-[940] bg-navy/45 backdrop-blur-[2px] transition-all duration-400 ${
+        className={`hidden max-xl:block fixed inset-0 z-[940] bg-navy/45 backdrop-blur-[2px] transition-all duration-400 ${
           open ? "opacity-100 visible" : "opacity-0 invisible pointer-events-none"
         }`}
         onClick={() => setOpen(false)}
@@ -236,7 +236,7 @@ export default function Nav() {
 
       <nav
         ref={drawerRef}
-        className={`xl:hidden flex flex-col items-center justify-start max-xl:fixed max-xl:inset-y-0 max-xl:right-0 max-xl:left-auto max-xl:w-[min(85%,320px)] max-xl:pt-[90px] max-xl:overflow-y-auto max-xl:gap-4 max-xl:bg-navy max-xl:p-8 max-xl:transition-[transform,visibility] max-xl:duration-400 z-[950] ${
+        className={`hidden max-xl:flex max-xl:flex-col max-xl:items-center max-xl:justify-start max-xl:fixed max-xl:inset-y-0 max-xl:right-0 max-xl:left-auto max-xl:w-[min(85%,320px)] max-xl:pt-[90px] max-xl:overflow-y-auto max-xl:gap-4 max-xl:bg-navy max-xl:p-8 max-xl:transition-[transform,visibility] max-xl:duration-400 z-[950] ${
           open ? "max-xl:translate-x-0 max-xl:visible" : "max-xl:translate-x-full max-xl:invisible"
         }`}
         style={EASE}
