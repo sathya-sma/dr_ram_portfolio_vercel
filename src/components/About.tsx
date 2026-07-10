@@ -3,7 +3,7 @@ import { Stethoscope } from "@/lib/icons";
 export default function About() {
   return (
     <section className="py-[clamp(1.8rem,3.5vw,2.8rem)] relative" id="about">
-      <div className="w-[min(100%-2.4rem,1180px)] mx-auto grid grid-cols-[.9fr_1.1fr] gap-[clamp(2rem,5vw,4rem)] items-center max-[980px]:grid-cols-1">
+      <div className="w-[min(100%-2.4rem,73.75rem)] mx-auto grid grid-cols-[.9fr_1.1fr] gap-[4rem] items-center">
         {/* Image */}
         <div className="reveal relative">
           {/* Decorative corner */}
@@ -28,7 +28,7 @@ export default function About() {
           <p className="reveal inline-flex items-center gap-[.6rem] font-bold text-[.78rem] tracking-[.16em] uppercase text-teal">
             <span className="w-[26px] h-[2px] bg-emerald-2 rounded-sm" /> About the Surgeon
           </p>
-          <h2 className="reveal font-serif font-semibold leading-[1.1] tracking-tight text-[clamp(1.9rem,4vw,2.9rem)] text-navy mt-[.9rem]" data-reveal-delay="60">
+          <h2 className="reveal font-serif font-semibold leading-[1.1] tracking-tight text-[2.9rem] text-navy mt-[.9rem]" data-reveal-delay="60">
             A surgeon&apos;s precision, a clinician&apos;s care
           </h2>
           <p className="reveal text-[1.15rem] text-ink mt-[1.3rem] font-medium" data-reveal-delay="120">

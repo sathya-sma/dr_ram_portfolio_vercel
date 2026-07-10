@@ -156,7 +156,7 @@ export default function Nav() {
 
           {/* Desktop navbar menu - Trigger rebuild */}
           <nav
-            className="hidden xl:flex items-center gap-[.35rem] xl:justify-self-center xl:-translate-x-[20px]"
+            className="flex items-center gap-[.35rem] xl:justify-self-center xl:-translate-x-[20px]"
             aria-label="Primary"
           >
             {LINKS.map(([label, href]) => (
@@ -183,7 +183,7 @@ export default function Nav() {
             <a
               href="#contact"
               className="
-                hidden xl:inline-flex items-center gap-[0.55rem] font-sans font-bold text-[0.92rem]
+                inline-flex items-center gap-[0.55rem] font-sans font-bold text-[0.92rem]
                 py-[0.75rem] px-[1.3rem] rounded-full border border-transparent
                 bg-gradient-to-br from-emerald-2 to-teal text-white
                 shadow-[0_14px_30px_-12px_rgba(21,151,106,0.5)]
@@ -196,7 +196,7 @@ export default function Nav() {
             </a>
             <button
               ref={burgerRef}
-              className="flex xl:hidden flex-col gap-[5px] bg-transparent border-0 cursor-pointer p-[6px]"
+              className="hidden flex-col gap-[5px] bg-transparent border-0 cursor-pointer p-[6px]"
               aria-label={open ? "Close menu" : "Open menu"}
               aria-expanded={open}
               aria-controls="navLinks"
@@ -225,20 +225,15 @@ export default function Nav() {
         </div>
       </header>
 
-      {/* Mobile Drawer (Sibling to header to avoid backdrop-filter containers clipping fixed drawers) */}
+      {/* Mobile Drawer (disabled/hidden) */}
       <div
-        className={`xl:!hidden fixed inset-0 z-[940] bg-navy/45 backdrop-blur-[2px] transition-all duration-400 ${
-          open ? "opacity-100 visible" : "opacity-0 invisible pointer-events-none"
-        }`}
-        onClick={() => setOpen(false)}
+        className="hidden"
         aria-hidden
       />
 
       <nav
         ref={drawerRef}
-        className={`xl:!hidden flex flex-col items-center justify-start fixed inset-y-0 right-0 left-auto w-[min(85%,320px)] pt-[90px] overflow-y-auto gap-4 bg-navy p-8 transition-[transform,visibility] duration-400 z-[950] ${
-          open ? "translate-x-0 visible" : "translate-x-full invisible"
-        }`}
+        className="hidden"
         style={EASE}
         id="navLinks"
         aria-label="Mobile Navigation"

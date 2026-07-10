@@ -13,7 +13,7 @@ const CARDS: { Icon: (p: SVGProps<SVGSVGElement>) => JSX.Element; title: string;
 export default function Approach() {
   return (
     <section className="py-[clamp(1.8rem,3.5vw,2.8rem)] relative" id="patient-care">
-      <div className="w-[min(100%-2.4rem,1180px)] mx-auto">
+      <div className="w-[min(100%-2.4rem,73.75rem)] mx-auto">
         {/* Section head */}
         <div className="reveal max-w-[680px] mx-auto mb-[3.2rem] text-center">
           <p className="inline-flex items-center gap-[.6rem] font-bold text-[.78rem] tracking-[.16em] uppercase text-teal justify-center">
@@ -21,7 +21,7 @@ export default function Approach() {
             Patient Care
             <span className="w-[26px] h-[2px] bg-emerald-2 rounded-sm" />
           </p>
-          <h2 className="font-serif font-semibold leading-[1.1] tracking-tight text-[clamp(1.9rem,4vw,2.9rem)] text-navy mt-[.9rem] text-center">
+          <h2 className="font-serif font-semibold leading-[1.1] tracking-tight text-[2.9rem] text-navy mt-[.9rem] text-center">
             Approach to Patient Care
           </h2>
           <p className="mt-4 text-muted text-[1.05rem]">
@@ -30,7 +30,7 @@ export default function Approach() {
         </div>
 
         {/* Cards grid */}
-        <div className="grid grid-cols-3 gap-[clamp(0.8rem,2vw,1.3rem)] max-[980px]:grid-cols-2 max-[560px]:grid-cols-1">
+        <div className="grid grid-cols-3 gap-[1.3rem]">
           {CARDS.map(({ Icon, title, body }, i) => (
             <article
               className="

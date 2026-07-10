@@ -42,22 +42,22 @@ export default function Hero() {
       </div>
 
       {/* Content */}
-      <div className="relative z-[2] w-[min(100%-2.4rem,1180px)] mx-auto grid grid-cols-[1.15fr_.85fr] gap-[clamp(1.5rem,5vw,3rem)] items-center max-[980px]:grid-cols-1 max-[980px]:gap-10 pt-[clamp(5.5rem,7vw,7rem)]">
+      <div className="relative z-[2] w-[min(100%-2.4rem,73.75rem)] mx-auto grid grid-cols-[1.15fr_.85fr] gap-[3rem] items-center pt-[7rem]">
         <div>
           <p className="reveal inline-flex items-center gap-[.55rem] font-bold text-[.82rem] tracking-[.14em] uppercase text-emerald-glow bg-emerald-glow/10 border border-emerald-glow/25 py-[.45rem] px-[.9rem] rounded-full">
             <span className="w-2 h-2 rounded-full bg-emerald-glow shadow-[0_0_0_4px_rgba(47,214,160,.2)]" />
             Consultant Gastrointestinal Surgeon
           </p>
 
-          <h1 id="hero-name" className="reveal font-serif font-semibold leading-[1.02] tracking-tight text-[clamp(2.6rem,6vw,4.5rem)] mt-[1.1rem] text-white" data-reveal-delay="60">
+          <h1 id="hero-name" className="reveal font-serif font-semibold leading-[1.02] tracking-tight text-[4.5rem] mt-[1.1rem] text-white" data-reveal-delay="60">
             Dr. T. Ramkumar
           </h1>
 
-          <p className="reveal font-semibold text-[#9fc7d6] mt-[.4rem] text-[clamp(.95rem,2vw,1.15rem)]" data-reveal-delay="120">
+          <p className="reveal font-semibold text-[#9fc7d6] mt-[.4rem] text-[1.15rem]" data-reveal-delay="120">
             Laparoscopic &amp; Robotic Cancer Surgeon
           </p>
 
-          <h2 className="reveal font-serif font-medium text-[clamp(1.6rem,3.6vw,2.6rem)] leading-[1.12] mt-[1.4rem] text-[#eef6f4]" data-reveal-delay="180">
+          <h2 className="reveal font-serif font-medium text-[2.6rem] leading-[1.12] mt-[1.4rem] text-[#eef6f4]" data-reveal-delay="180">
             Surgical Excellence,
             <br />
             <span className="bg-gradient-to-r from-emerald-glow via-[#7fe3c4] to-[#aee9ff] bg-clip-text text-transparent">
@@ -118,8 +118,8 @@ export default function Hero() {
         </div>
 
         {/* Portrait */}
-        <div className="reveal flex justify-center max-[980px]:order-first max-[980px]:max-w-[320px] max-[980px]:mx-auto" data-reveal-delay="200">
-          <div className="relative w-[min(100%,380px)]">
+        <div className="reveal flex justify-center" data-reveal-delay="200">
+          <div className="relative w-[min(100%,23.75rem)]">
             <div className="relative rounded-[30px] overflow-hidden shadow-[0_40px_80px_-28px_rgba(10,35,66,.45)] border border-white/12 aspect-[5/6]">
               <img
                 src="/brand/portrait.jpeg"

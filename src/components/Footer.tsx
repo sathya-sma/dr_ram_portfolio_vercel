@@ -32,7 +32,7 @@ export default function Footer() {
         aria-hidden
       />
 
-      <div className="w-[min(100%-2.4rem,1180px)] mx-auto grid grid-cols-[1.6fr_1fr_1.2fr_1.1fr] gap-[clamp(1.5rem,3vw,2rem)] max-[980px]:grid-cols-2 max-[560px]:grid-cols-1">
+      <div className="w-[min(100%-2.4rem,73.75rem)] mx-auto grid grid-cols-[1.6fr_1fr_1.2fr_1.1fr] gap-8">
         {/* Brand */}
         <div>
           <span className="inline-block bg-white rounded-[12px] p-[6px] mb-4">
@@ -116,7 +116,7 @@ export default function Footer() {
       </div>
 
       {/* Bottom bar */}
-      <div className="w-[min(100%-2.4rem,1180px)] mx-auto flex justify-between items-center gap-4 flex-wrap mt-12 pt-[1.4rem] border-t border-white/12 text-[.82rem] text-[#8ba4ad]">
+      <div className="w-[min(100%-2.4rem,73.75rem)] mx-auto flex justify-between items-center gap-4 flex-wrap mt-12 pt-[1.4rem] border-t border-white/12 text-[.82rem] text-[#8ba4ad]">
         <p className="m-0">
           © {new Date().getFullYear()} {DOCTOR_NAME} · {CLINIC_NAME}. All rights reserved.
         </p>

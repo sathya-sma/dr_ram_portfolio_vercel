@@ -52,7 +52,7 @@ function Counter({ value, suffix }: { value: number; suffix?: string }) {
   }, [value]);
 
   return (
-    <div className="font-serif font-semibold text-[clamp(2.2rem,5vw,3.1rem)] leading-none text-white flex justify-center items-baseline">
+    <div className="font-serif font-semibold text-[3.1rem] leading-none text-white flex justify-center items-baseline">
       <span ref={ref}>{display}</span>
       {suffix ? <i className="not-italic text-emerald-glow ml-[2px]">{suffix}</i> : null}
     </div>
@@ -61,7 +61,7 @@ function Counter({ value, suffix }: { value: number; suffix?: string }) {
 
 export default function Stats() {
   return (
-    <section className="relative text-[#eaf3f1] py-[clamp(1.5rem,3vw,2.2rem)] bg-navy isolate" id="stats">
+    <section className="relative text-[#eaf3f1] py-[2.2rem] bg-navy isolate" id="stats">
       {/* Background */}
       <div
         className="absolute inset-0 -z-[1]"
@@ -75,14 +75,12 @@ export default function Stats() {
         aria-hidden
       />
 
-      <div className="w-[min(100%-2.4rem,1180px)] mx-auto grid grid-cols-4 gap-[clamp(0.8rem,3vw,1.2rem)] text-center max-[980px]:grid-cols-2 max-[480px]:grid-cols-1">
+      <div className="w-[min(100%-2.4rem,73.75rem)] mx-auto grid grid-cols-4 gap-[1.2rem] text-center">
         {STATS.map(({ value, suffix, label, Icon }, i) => (
           <div
-            className={`reveal py-[clamp(1rem,3vw,1.4rem)] px-[clamp(0.5rem,2vw,1rem)] rounded-[18px] relative ${
+            className={`reveal py-[1.4rem] px-4 rounded-[18px] relative ${
               i < 3
-                ? `after:content-[''] after:absolute after:-right-[.6rem] after:top-[22%] after:bottom-[22%] after:w-px after:bg-white/12 max-[480px]:after:hidden ${
-                    i === 1 ? "max-[980px]:after:hidden" : ""
-                  }`
+                ? `after:content-[''] after:absolute after:-right-[.6rem] after:top-[22%] after:bottom-[22%] after:w-px after:bg-white/12`
                 : ""
             }`}
             key={label}

@@ -98,7 +98,7 @@ export default function Gallery() {
 
   return (
     <section className="py-[clamp(1.8rem,3.5vw,2.8rem)] relative bg-bg" id="gallery">
-      <div className="w-[min(100%-2.4rem,1180px)] mx-auto">
+      <div className="w-[min(100%-2.4rem,73.75rem)] mx-auto">
         {/* Section Head */}
         <div className="reveal max-w-[680px] mx-auto mb-[2.4rem] text-center">
           <p className="inline-flex items-center gap-[.6rem] font-bold text-[.78rem] tracking-[.16em] uppercase text-teal justify-center">
@@ -106,7 +106,7 @@ export default function Gallery() {
             Clinical Gallery
             <span className="w-[26px] h-[2px] bg-emerald-2 rounded-sm" />
           </p>
-          <h2 className="font-serif font-semibold leading-[1.1] tracking-tight text-[clamp(1.9rem,4vw,2.9rem)] text-navy mt-[.9rem] text-center">
+          <h2 className="font-serif font-semibold leading-[1.1] tracking-tight text-[2.9rem] text-navy mt-[.9rem] text-center">
             Surgical &amp; Clinical Gallery
           </h2>
           <p className="mt-4 text-muted text-[1.05rem]">
@@ -141,7 +141,7 @@ export default function Gallery() {
         </div>
 
         {/* Gallery Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[clamp(0.8rem,3vw,1.5rem)]">
+        <div className="grid grid-cols-3 gap-6">
           {filteredItems.map((item) => (
             <article
               key={item.src}
@@ -179,7 +179,7 @@ export default function Gallery() {
               </div>
 
               {/* Text Container */}
-              <div className="p-[clamp(1rem,2vw,1.25rem)] flex-1 flex flex-col justify-between">
+              <div className="p-5 flex-1 flex flex-col justify-between">
                 <div>
                   <h3 className="font-serif font-bold text-[1.12rem] text-navy leading-[1.3] group-hover:text-teal transition-colors duration-300">
                     {item.title}

@@ -118,14 +118,14 @@ export default function Contact() {
   };
 
   return (
-    <section className="py-[clamp(1.8rem,3.5vw,2.8rem)] relative" id="contact">
-      <div className="w-[min(100%-2.4rem,1180px)] mx-auto grid grid-cols-[1.05fr_.95fr] gap-[clamp(2rem,5vw,3.5rem)] items-start max-[980px]:grid-cols-1">
+    <section className="py-[2.8rem] relative" id="contact">
+      <div className="w-[min(100%-2.4rem,73.75rem)] mx-auto grid grid-cols-[1.05fr_.95fr] gap-[3.5rem] items-start">
         {/* Info */}
         <div className="reveal">
           <p className="inline-flex items-center gap-[.6rem] font-bold text-[.78rem] tracking-[.16em] uppercase text-teal">
             <span className="w-[26px] h-[2px] bg-emerald-2 rounded-sm" /> Get in touch
           </p>
-          <h2 className="font-serif font-semibold leading-[1.1] tracking-tight text-[clamp(1.9rem,4vw,2.9rem)] text-navy mt-[.9rem]">
+          <h2 className="font-serif font-semibold leading-[1.1] tracking-tight text-[2.9rem] text-navy mt-[.9rem]">
             Book an Appointment
           </h2>
           <p className="text-muted mt-4 max-w-[46ch]">

@@ -28,7 +28,7 @@ export default function Reviews() {
 
   return (
     <section className="py-[clamp(1.8rem,3.5vw,2.8rem)] relative" id="reviews">
-      <div className="w-[min(100%-2.4rem,1180px)] mx-auto">
+      <div className="w-[min(100%-2.4rem,73.75rem)] mx-auto">
         <div
           className="reveal relative overflow-hidden rounded-[28px] pt-[clamp(2.2rem,5vw,4rem)] px-[clamp(2.2rem,5vw,4rem)] pb-4 text-[#eaf4f2]"
           style={{
@@ -44,12 +44,12 @@ export default function Reviews() {
 
           <div className="relative flex flex-col gap-8">
             {/* Header / Intro info */}
-            <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-white/10 pb-6">
+            <div className="flex flex-row items-end justify-between gap-6 border-b border-white/10 pb-6">
               <div className="max-w-[620px]">
                 <p className="text-[.78rem] font-bold tracking-[.16em] uppercase text-[#7fe3cf] mb-[.9rem]">
                   Patient Reviews
                 </p>
-                <h2 className="font-serif font-medium text-[clamp(1.7rem,3.4vw,2.6rem)] text-white m-0 mb-[1.1rem] leading-[1.12] tracking-tight">
+                <h2 className="font-serif font-medium text-[2.6rem] text-white m-0 mb-[1.1rem] leading-[1.12] tracking-tight">
                   Your experience helps others heal
                 </h2>
                 <p className="text-[1.05rem] text-[#bcd4cf] m-0">

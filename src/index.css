@@ -60,21 +60,14 @@
     scroll-padding-top: 5.5rem;
     -webkit-text-size-adjust: 100%;
 
-    /* Desktop default scaling */
-    font-size: clamp(14px, calc(100vw / 1440 * 16), 18px);
+    /* Proportional scaling relative to 1440px desktop base layout */
+    font-size: calc(100vw / 1440 * 16);
   }
 
-  @media (max-width: 1279px) {
+  @media (min-width: 1441px) {
     html {
-      /* Tablet scaling */
-      font-size: clamp(13px, calc(100vw / 1024 * 16), 16px);
-    }
-  }
-
-  @media (max-width: 767px) {
-    html {
-      /* Mobile scaling */
-      font-size: clamp(12px, calc(100vw / 375 * 16), 15px);
+      /* Lock sizing on screens wider than 1440px to prevent infinite text/layout growth */
+      font-size: 16px;
     }
   }
   body {

@@ -134,7 +134,7 @@ export default function Specialities() {
 
   return (
     <section className="py-[clamp(1.8rem,3.5vw,2.8rem)] relative" id="specialities">
-      <div className="w-[min(100%-2.4rem,1180px)] mx-auto">
+      <div className="w-[min(100%-2.4rem,73.75rem)] mx-auto">
         {/* Section head */}
         <div className="reveal max-w-[680px] mx-auto mb-[3.2rem] text-center">
           <p className="inline-flex items-center gap-[.6rem] font-bold text-[.78rem] tracking-[.16em] uppercase text-teal justify-center">
@@ -142,7 +142,7 @@ export default function Specialities() {
             What we treat
             <span className="w-[26px] h-[2px] bg-emerald-2 rounded-sm" />
           </p>
-          <h2 className="font-serif font-semibold leading-[1.1] tracking-tight text-[clamp(1.9rem,4vw,2.9rem)] text-navy mt-[.9rem] text-center">
+          <h2 className="font-serif font-semibold leading-[1.1] tracking-tight text-[2.9rem] text-navy mt-[.9rem] text-center">
             Surgical Specialities
           </h2>
           <p className="mt-4 text-muted text-[1.05rem]">
@@ -154,7 +154,7 @@ export default function Specialities() {
         </div>
 
         {/* Split explorer: selector list left, showcase panel right (accordion on mobile) */}
-        <div className="reveal grid min-[900px]:grid-cols-[.92fr_1.08fr] gap-6 items-start">
+        <div className="reveal grid grid-cols-[.92fr_1.08fr] gap-6 items-start">
           {/* Selector list */}
           <div className="flex flex-col gap-[.85rem]">
             {DATA.map((item, i) => {
@@ -220,17 +220,17 @@ export default function Specialities() {
                     <span
                       className={`w-[clamp(28px,5vw,34px)] h-[clamp(28px,5vw,34px)] shrink-0 rounded-full grid place-items-center border transition-all duration-400 ${
                         isOpen
-                          ? "rotate-180 min-[900px]:-rotate-90 bg-gradient-to-br from-emerald-2 to-teal text-white border-transparent"
-                          : "min-[900px]:-rotate-90 text-muted border-line bg-bg"
+                          ? "bg-gradient-to-br from-emerald-2 to-teal text-white border-transparent"
+                          : "text-muted border-line bg-bg"
                       }`}
                       style={EASE}
                     >
-                      <Chevron className="ico w-[17px] h-[17px]" />
+                      <Chevron className="ico w-[17px] h-[17px] -rotate-90" />
                     </span>
                   </button>
 
-                  {/* Mobile / tablet drawer — the showcase panel takes over from 900px up */}
-                  <div className="min-[900px]:hidden">
+                  {/* Mobile / tablet drawer — disabled */}
+                  <div className="hidden">
                     <div className={`spec-body relative ${isOpen ? "is-open" : ""}`}>
                       <div>
                         <div className="mx-[1.15rem] h-px bg-line" aria-hidden />
@@ -246,7 +246,7 @@ export default function Specialities() {
           </div>
 
           {/* Showcase panel (desktop) */}
-          <aside className="max-[899px]:hidden relative">
+          <aside className="relative">
             <div
               key={detailIdx}
               className="panel-swap relative overflow-hidden rounded-[26px] border border-line bg-card p-[clamp(1.8rem,3vw,2.6rem)] shadow-[0_18px_45px_-20px_rgba(16,56,98,.12)] min-h-[clamp(360px,30vw,460px)]"

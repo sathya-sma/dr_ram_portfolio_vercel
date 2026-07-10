@@ -14,14 +14,14 @@ const HOSPITALS = [
 export default function Hospitals() {
   return (
     <section className="py-[clamp(1.8rem,3.5vw,2.8rem)] relative" id="hospitals">
-      <div className="w-[min(100%-2.4rem,1180px)] mx-auto">
+      <div className="w-[min(100%-2.4rem,73.75rem)] mx-auto">
         <div className="reveal max-w-[680px] mx-auto mb-[3.2rem] text-center">
           <p className="inline-flex items-center gap-[.6rem] font-bold text-[.78rem] tracking-[.16em] uppercase text-teal justify-center">
             <span className="w-[26px] h-[2px] bg-emerald-2 rounded-sm" />
             Where to consult
             <span className="w-[26px] h-[2px] bg-emerald-2 rounded-sm" />
           </p>
-          <h2 className="font-serif font-semibold leading-[1.1] tracking-tight text-[clamp(1.9rem,4vw,2.9rem)] text-navy mt-[.9rem] text-center">
+          <h2 className="font-serif font-semibold leading-[1.1] tracking-tight text-[2.9rem] text-navy mt-[.9rem] text-center">
             Consulting Hospitals
           </h2>
           <p className="mt-4 text-muted text-[1.05rem]">
@@ -29,7 +29,7 @@ export default function Hospitals() {
           </p>
         </div>
 
-        <div className="grid grid-cols-4 gap-[clamp(0.8rem,3vw,1.2rem)] max-[980px]:grid-cols-2 max-[560px]:grid-cols-1">
+        <div className="grid grid-cols-4 gap-[1.2rem]">
           {HOSPITALS.map(([name, loc], i) => (
             <a
               href="#contact"
