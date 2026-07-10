@@ -92,11 +92,14 @@ export default function Nav() {
         inert={scrolled}
       >
         <div className="w-[min(100%-2.4rem,1380px)] mx-auto flex items-center gap-[.9rem] justify-end py-[.35rem] text-white text-[0.88rem] font-bold">
-          <span className="inline-flex items-center gap-[.4rem]">
+          {/* NOTE: the Jotform widget injects unlayered CSS with Tailwind-colliding class
+              names (.hidden/.flex/.inline-flex) that beats our layered utilities, so
+              display toggles here must use media-variant classes on BOTH sides. */}
+          <span className="max-[420px]:hidden min-[421px]:inline-flex items-center gap-[.4rem]">
             <Pin className="ico text-emerald-glow w-[14px] h-[14px]" />
             {CLINIC_NAME}, Choolaimedu
           </span>
-          <span className="w-px h-[14px] bg-white/22" />
+          <span className="max-[420px]:hidden w-px h-[14px] bg-white/22" />
           <a
             className="inline-flex items-center gap-[.4rem] transition-colors duration-250 hover:text-white"
             href={`tel:${PHONE_TEL}`}
@@ -123,16 +126,29 @@ export default function Nav() {
         >
           <div
             className={`relative aspect-[457/128] shrink-0 transition-all duration-400 ${
-              scrolled ? "h-[65px]" : "h-[98px]"
+              scrolled ? "h-[46px] sm:h-[54px] xl:h-[65px]" : "h-[54px] sm:h-[72px] xl:h-[98px]"
             }`}
             style={EASE}
           >
+            {/* White logo over the dark hero; colored logo once the bar turns white on scroll */}
+            <img
+              src="/brand/logo-white.png"
+              alt=""
+              aria-hidden
+              width="457"
+              height="128"
+              className={`absolute inset-0 w-full h-full object-contain transition-opacity duration-400 ${
+                scrolled ? "opacity-0" : "opacity-100"
+              }`}
+            />
             <img
               src="/brand/logo.png"
               alt={CLINIC_NAME}
               width="457"
               height="128"
-              className="w-full h-full object-contain"
+              className={`absolute inset-0 w-full h-full object-contain transition-opacity duration-400 ${
+                scrolled ? "opacity-100" : "opacity-0"
+              }`}
             />
           </div>
           <span
@@ -149,7 +165,7 @@ export default function Nav() {
 
         {/* Backdrop for the drawer menu */}
         <div
-          className={`hidden max-xl:block fixed inset-0 z-[-1] bg-navy/45 backdrop-blur-[2px] transition-opacity duration-400 ${
+          className={`xl:hidden fixed inset-0 z-[-1] bg-navy/45 backdrop-blur-[2px] transition-opacity duration-400 ${
             open ? "opacity-100" : "opacity-0 pointer-events-none"
           }`}
           onClick={() => setOpen(false)}
@@ -196,7 +212,7 @@ export default function Nav() {
           <a
             href="#contact"
             className="
-              hidden max-xl:inline-flex items-center justify-center gap-[.55rem]
+              max-xl:inline-flex xl:hidden items-center justify-center gap-[.55rem]
               font-sans font-bold text-[1rem] mt-4
               py-[.85rem] px-[1.3rem] rounded-full border border-transparent
               bg-gradient-to-br from-emerald-2 to-teal text-white
@@ -212,8 +228,7 @@ export default function Nav() {
           <a
             href="#contact"
             className="
-              max-xl:hidden
-              inline-flex items-center gap-[0.55rem] font-sans font-bold text-[0.92rem]
+              max-xl:hidden xl:inline-flex items-center gap-[0.55rem] font-sans font-bold text-[0.92rem]
               py-[0.75rem] px-[1.3rem] rounded-full border border-transparent
               bg-gradient-to-br from-emerald-2 to-teal text-white
               shadow-[0_14px_30px_-12px_rgba(21,151,106,0.5)]
@@ -226,7 +241,7 @@ export default function Nav() {
           </a>
           <button
             ref={burgerRef}
-            className="hidden max-xl:flex flex-col gap-[5px] bg-transparent border-0 cursor-pointer p-[6px]"
+            className="max-xl:flex xl:hidden flex-col gap-[5px] bg-transparent border-0 cursor-pointer p-[6px]"
             aria-label={open ? "Close menu" : "Open menu"}
             aria-expanded={open}
             aria-controls="navLinks"

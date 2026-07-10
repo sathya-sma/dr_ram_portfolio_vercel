@@ -111,7 +111,7 @@ export default function Specialities() {
                     {String(i + 1).padStart(2, "0")}
                   </span>
                   <span className="flex-1 font-bold text-[1.12rem] text-navy">{item.title}</span>
-                  <span className="flex gap-[.4rem] flex-wrap max-[560px]:hidden">
+                  <span className="min-[561px]:flex gap-[.4rem] flex-wrap max-[560px]:hidden">
                     {item.tags.map((t) => (
                       <em
                         key={t}

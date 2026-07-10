@@ -165,7 +165,7 @@ export default function Hero() {
       {/* Scroll indicator */}
       <a
         href="#stats"
-        className="absolute bottom-[1.4rem] left-1/2 -translate-x-1/2 z-[3] w-[26px] h-[42px] border-2 border-white/35 rounded-[14px] flex justify-center pt-[7px] [@media(max-height:520px)]:hidden"
+        className="absolute bottom-[1.4rem] left-1/2 -translate-x-1/2 z-[3] w-[26px] h-[42px] border-2 border-white/35 rounded-[14px] [@media(min-height:521px)]:flex justify-center pt-[7px] [@media(max-height:520px)]:hidden"
         aria-label="Scroll down to statistics"
       >
         <span className="w-[3px] h-[9px] rounded-[3px] bg-emerald-glow animate-scrolldot" />
