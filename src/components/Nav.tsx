@@ -154,9 +154,8 @@ export default function Nav() {
             </span>
           </a>
 
-          {/* Desktop navbar menu */}
           <nav
-            className="hidden xl:flex items-center gap-[.35rem] xl:justify-self-center xl:-translate-x-[60px]"
+            className="flex items-center gap-[.35rem] xl:justify-self-center xl:-translate-x-[60px] max-xl:hidden"
             aria-label="Primary"
           >
             {LINKS.map(([label, href]) => (
