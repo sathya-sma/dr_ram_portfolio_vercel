@@ -2,7 +2,7 @@ import { Stethoscope } from "@/lib/icons";
 
 export default function About() {
   return (
-    <section className="py-[clamp(4.5rem,9vw,8rem)] relative" id="about">
+    <section className="py-[clamp(3.2rem,6vw,5.5rem)] relative" id="about">
       <div className="w-[min(100%-2.4rem,1180px)] mx-auto grid grid-cols-[.9fr_1.1fr] gap-[clamp(2rem,5vw,4rem)] items-center max-[980px]:grid-cols-1">
         {/* Image */}
         <div className="reveal relative">
@@ -10,7 +10,7 @@ export default function About() {
           <div className="absolute -inset-x-0 -top-[14px] -left-[14px] w-[120px] h-[120px] rounded-[20px] bg-gradient-to-br from-emerald-2 to-teal opacity-18 -z-[1]" />
           <img
             src="/brand/or-action.jpeg"
-            alt="Dr T Ramkumar performing laparoscopic surgery"
+            alt="Dr. T. Ramkumar performing laparoscopic surgery"
             width="1200"
             height="900"
             loading="lazy"
@@ -32,7 +32,7 @@ export default function About() {
             A surgeon&apos;s precision, a clinician&apos;s care
           </h2>
           <p className="reveal text-[1.15rem] text-ink mt-[1.3rem] font-medium" data-reveal-delay="120">
-            Dr T Ramkumar is a highly experienced Surgical Gastroenterologist specialising in
+            Dr. T. Ramkumar is a highly experienced Surgical Gastroenterologist specialising in
             the comprehensive surgical management of diseases of the{" "}
             <strong className="text-teal">
               oesophagus, stomach, liver, pancreas, gallbladder, intestines, colon and rectum
@@ -46,7 +46,7 @@ export default function About() {
             individualised treatment strategies for both benign and complex GI conditions.
           </p>
           <div className="reveal mt-[1.6rem] pt-[1.3rem] border-t border-line" data-reveal-delay="200">
-            <span className="block font-serif text-[1.45rem] text-navy font-semibold">Dr T Ramkumar</span>
+            <span className="block font-serif text-[1.45rem] text-navy font-semibold">Dr. T. Ramkumar</span>
             <span className="text-[.9rem] text-muted font-semibold">
               Gastrointestinal Surgery
             </span>

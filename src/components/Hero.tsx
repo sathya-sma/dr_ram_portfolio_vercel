@@ -50,7 +50,7 @@ export default function Hero() {
           </p>
 
           <h1 id="hero-name" className="reveal font-serif font-semibold leading-[1.02] tracking-tight text-[clamp(2.6rem,6vw,4.5rem)] mt-[1.1rem] text-white" data-reveal-delay="60">
-            Dr T Ramkumar
+            Dr. T. Ramkumar
           </h1>
 
           <p className="reveal font-semibold text-[#9fc7d6] mt-[.4rem] text-[clamp(.95rem,2vw,1.15rem)]" data-reveal-delay="120">
@@ -123,7 +123,7 @@ export default function Hero() {
             <div className="relative rounded-[30px] overflow-hidden shadow-[0_40px_80px_-28px_rgba(10,35,66,.45)] border border-white/12 aspect-[5/6]">
               <img
                 src="/brand/portrait.jpeg"
-                alt="Dr T Ramkumar, Consultant Gastrointestinal Surgeon"
+                alt="Dr. T. Ramkumar, Consultant Gastrointestinal Surgeon"
                 width="960"
                 height="1440"
                 fetchPriority="high"
@@ -134,7 +134,7 @@ export default function Hero() {
             </div>
 
             {/* Experience badge */}
-            <div className="absolute -left-[22px] bottom-[42px] z-[3] bg-white text-navy rounded-[18px] py-[.85rem] px-[1.1rem] flex items-center gap-[.7rem] shadow-[0_18px_50px_-20px_rgba(16,56,98,.28)] animate-float-y">
+            <div className="absolute left-[-22px] md:left-[-54px] bottom-[42px] z-[3] bg-white text-navy rounded-[18px] py-[.85rem] px-[1.1rem] flex items-center gap-[.7rem] shadow-[0_18px_50px_-20px_rgba(16,56,98,.28)] animate-float-y">
               <span className="font-serif font-bold text-[2.1rem] leading-none text-teal">
                 27<span className="text-emerald-2">+</span>
               </span>
@@ -145,14 +145,14 @@ export default function Hero() {
 
             {/* Floating pills */}
             <div
-              className="absolute -right-[14px] top-[34px] z-[3] flex items-center gap-[.4rem] bg-white/95 text-navy font-bold text-[.8rem] py-[.45rem] px-[.8rem] rounded-full shadow-[0_4px_18px_rgba(16,56,98,.07)] animate-float-y-slow"
+              className="absolute right-[-14px] md:right-[-48px] top-[34px] z-[3] flex items-center gap-[.4rem] bg-white/95 text-navy font-bold text-[.8rem] py-[.45rem] px-[.8rem] rounded-full shadow-[0_4px_18px_rgba(16,56,98,.07)] animate-float-y-slow"
               style={{ animationDelay: "-1.5s" }}
             >
               <CheckMini className="ico w-[15px] h-[15px] text-emerald" style={{ strokeWidth: 2.2 }} />
               Robotic Surgery
             </div>
             <div
-              className="absolute -right-[26px] top-[96px] z-[3] flex items-center gap-[.4rem] bg-white/95 text-navy font-bold text-[.8rem] py-[.45rem] px-[.8rem] rounded-full shadow-[0_4px_18px_rgba(16,56,98,.07)] animate-float-y-slow"
+              className="absolute right-[-26px] md:right-[-64px] top-[96px] z-[3] flex items-center gap-[.4rem] bg-white/95 text-navy font-bold text-[.8rem] py-[.45rem] px-[.8rem] rounded-full shadow-[0_4px_18px_rgba(16,56,98,.07)] animate-float-y-slow"
               style={{ animationDelay: "-3.5s" }}
             >
               <CheckMini className="ico w-[15px] h-[15px] text-emerald" style={{ strokeWidth: 2.2 }} />

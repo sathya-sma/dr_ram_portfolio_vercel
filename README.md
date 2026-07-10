@@ -1,4 +1,4 @@
-# Dr T Ramkumar — Consultant Gastrointestinal Surgeon
+# Dr. T. Ramkumar — Consultant Gastrointestinal Surgeon
 
 Single-page marketing site for Chennai Speciality Clinic, built with React 19, Vite 6 and Tailwind CSS v4. British English is the copy standard throughout.
 

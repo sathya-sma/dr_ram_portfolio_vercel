@@ -6,7 +6,7 @@
 /** Production origin. Must match the canonical URL in index.html, sitemap.xml and robots.txt. */
 export const SITE_URL = "https://dr-ram-portfolio-vercel.vercel.app";
 
-export const DOCTOR_NAME = "Dr T Ramkumar";
+export const DOCTOR_NAME = "Dr. T. Ramkumar";
 export const DOCTOR_TITLE = "Consultant Gastrointestinal Surgeon";
 export const CLINIC_NAME = "Chennai Speciality Clinic";
 
@@ -15,7 +15,7 @@ export const PHONE_TEL = "+914448134300";
 
 /** WhatsApp number in international format, digits only (no +). */
 export const WHATSAPP_NUMBER = "919344903258";
-export const WHATSAPP_MESSAGE = "Hello, I would like to book an appointment with Dr T Ramkumar.";
+export const WHATSAPP_MESSAGE = "Hello, I would like to book an appointment with Dr. T. Ramkumar.";
 export const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(WHATSAPP_MESSAGE)}`;
 
 export const ADDRESS_FULL =

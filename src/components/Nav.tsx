@@ -19,7 +19,6 @@ export default function Nav() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState<string>("");
-  const [showBrand, setShowBrand] = useState(false);
   const drawerRef = useRef<HTMLElement>(null);
   const burgerRef = useRef<HTMLButtonElement>(null);
 
@@ -30,25 +29,7 @@ export default function Nav() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  useEffect(() => {
-    const target = document.getElementById("hero-name");
-    if (!target) return;
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        // If target is not intersecting, check if its top is above the header threshold (80px)
-        const crossed = !entry.isIntersecting && entry.boundingClientRect.top < 80;
-        setShowBrand(crossed);
-      },
-      {
-        rootMargin: "-80px 0px 0px 0px",
-        threshold: 0,
-      }
-    );
-
-    observer.observe(target);
-    return () => observer.disconnect();
-  }, []);
+  // Removed IntersectionObserver for showBrand as logo is now always visible and shrinks dynamically
 
   useEffect(() => {
     const ids = LINKS.map(([, h]) => h.slice(1));
@@ -110,7 +91,7 @@ export default function Nav() {
         // Keep the collapsed strip out of the tab order for keyboard/AT users.
         inert={scrolled}
       >
-        <div className="w-[min(100%-2.4rem,1280px)] mx-auto flex items-center gap-[.9rem] justify-end py-[.35rem] text-white/82 text-[.8rem] font-semibold">
+        <div className="w-[min(100%-2.4rem,1380px)] mx-auto flex items-center gap-[.9rem] justify-end py-[.35rem] text-white/82 text-[.8rem] font-semibold">
           <span className="inline-flex items-center gap-[.4rem]">
             <Pin className="ico text-emerald-glow w-[14px] h-[14px]" />
             {CLINIC_NAME}, Choolaimedu
@@ -128,32 +109,40 @@ export default function Nav() {
 
       {/* Main nav */}
       <div
-        className={`w-[min(100%-2.4rem,1280px)] mx-auto flex items-center justify-between gap-6 transition-all duration-400 ${
+        className={`w-[min(100%-2.4rem,1380px)] mx-auto flex items-center justify-between gap-6 transition-all duration-400 ${
           scrolled ? "py-[15px]" : "py-[26px]"
         }`}
         style={EASE}
       >
-        {/* Brand — hidden by default, visible when scrolled past the hero name */}
+        {/* Brand — visible with dynamic scaling and theme transition on scroll */}
         <a
           href="#home"
-          className={`flex items-center gap-[0.85rem] transition-all duration-400 hover:scale-[1.01] ${
-            showBrand
-              ? "opacity-100 translate-y-0"
-              : "opacity-0 -translate-y-2 pointer-events-none"
-          }`}
+          className="flex items-center gap-[0.85rem] transition-all duration-400 hover:scale-[1.01]"
           style={EASE}
           aria-label={`${DOCTOR_NAME} — home`}
-          aria-hidden={!showBrand}
-          inert={!showBrand}
         >
-          <img
-            src="/brand/logo.png"
-            alt={CLINIC_NAME}
-            width="457"
-            height="128"
-            className="w-auto h-[42px]"
-          />
-          <span className="font-serif font-bold text-[1.28rem] tracking-wide whitespace-nowrap text-navy max-[480px]:hidden">
+          <div
+            className={`relative aspect-[457/128] shrink-0 transition-all duration-400 ${
+              scrolled ? "h-[46px]" : "h-[68px]"
+            }`}
+            style={EASE}
+          >
+            <img
+              src="/brand/logo.png"
+              alt={CLINIC_NAME}
+              width="457"
+              height="128"
+              className="w-full h-full object-contain"
+            />
+          </div>
+          <span
+            className={`font-serif font-bold tracking-wide whitespace-nowrap transition-all duration-400 max-[480px]:hidden ${
+              scrolled
+                ? "text-navy text-[1.15rem] opacity-100 translate-x-0"
+                : "text-white text-[1.35rem] opacity-0 -translate-x-2 pointer-events-none"
+            }`}
+            style={EASE}
+          >
             {DOCTOR_NAME}
           </span>
         </a>

@@ -34,7 +34,7 @@ const TESTIMONIALS = [
 
 export default function Reviews() {
   return (
-    <section className="py-[clamp(4.5rem,9vw,8rem)] relative" id="reviews">
+    <section className="py-[clamp(3.2rem,6vw,5.5rem)] relative" id="reviews">
       <div className="w-[min(100%-2.4rem,1180px)] mx-auto">
         <div
           className="reveal relative overflow-hidden rounded-[28px] p-[clamp(2.2rem,5vw,4rem)] text-[#eaf4f2]"

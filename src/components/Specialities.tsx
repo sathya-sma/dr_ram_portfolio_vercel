@@ -69,7 +69,7 @@ export default function Specialities() {
   const [openIdx, setOpenIdx] = useState(0);
 
   return (
-    <section className="py-[clamp(4.5rem,9vw,8rem)] relative" id="specialities">
+    <section className="py-[clamp(3.2rem,6vw,5.5rem)] relative" id="specialities">
       <div className="w-[min(100%-2.4rem,1180px)] mx-auto">
         {/* Section head */}
         <div className="reveal max-w-[680px] mx-auto mb-[3.2rem] text-center">

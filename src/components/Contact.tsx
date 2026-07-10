@@ -118,7 +118,7 @@ export default function Contact() {
   };
 
   return (
-    <section className="py-[clamp(4.5rem,9vw,8rem)] relative" id="contact">
+    <section className="py-[clamp(3.2rem,6vw,5.5rem)] relative" id="contact">
       <div className="w-[min(100%-2.4rem,1180px)] mx-auto grid grid-cols-[1.05fr_.95fr] gap-[clamp(2rem,5vw,3.5rem)] items-start max-[980px]:grid-cols-1">
         {/* Info */}
         <div className="reveal">
