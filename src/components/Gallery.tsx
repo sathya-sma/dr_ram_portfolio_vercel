@@ -1,12 +1,6 @@
 import { useState } from "react";
 import { Chevron } from "@/lib/icons";
 
-const Play = (p: React.SVGProps<SVGSVGElement>) => (
-  <svg viewBox="0 0 24 24" className="ico" fill="currentColor" {...p}>
-    <path d="M8 5v14l11-7z" />
-  </svg>
-);
-
 const CloseMini = (p: React.SVGProps<SVGSVGElement>) => (
   <svg viewBox="0 0 24 24" className="ico" stroke="currentColor" strokeWidth="2" strokeLinecap="round" fill="none" {...p}>
     <path d="M18 6 6 18M6 6l12 12" />
