@@ -144,7 +144,8 @@ export default function Nav() {
               />
             </div>
             <span
-              className={`font-serif font-bold tracking-wide whitespace-nowrap transition-all duration-400 max-[480px]:hidden ${
+              // Hidden on tight desktop widths (xl..1560) where name + menu + CTA can't all fit
+              className={`font-serif font-bold tracking-wide whitespace-nowrap transition-all duration-400 max-[480px]:hidden [@media(min-width:1280px)_and_(max-width:1560px)]:hidden ${
                 scrolled
                   ? "text-navy text-[1.15rem] opacity-100 translate-x-0"
                   : "text-white text-[1.35rem] opacity-0 -translate-x-2 pointer-events-none"
@@ -166,6 +167,8 @@ export default function Nav() {
                 href={href}
                 className={`
                   relative font-bold text-[1.06rem] py-2 px-[0.8rem] rounded-lg
+                  [@media(min-width:1280px)_and_(max-width:1560px)]:text-[0.98rem]
+                  [@media(min-width:1280px)_and_(max-width:1560px)]:px-[0.55rem]
                   transition-colors duration-250 cursor-pointer whitespace-nowrap
                   ${scrolled ? "text-muted hover:text-navy" : "text-white/90 hover:text-white"}
                   ${active === href.slice(1) ? (scrolled ? "!text-navy" : "!text-white") : ""}
@@ -181,16 +184,19 @@ export default function Nav() {
           </nav>
 
           <div className="flex items-center gap-[.8rem] xl:justify-self-end">
+            {/* Shown only once the bar compacts on scroll — at the top it overflows
+                narrow desktop widths and the hero already carries the same CTA. */}
             <a
               href="#contact"
-              className="
-                max-xl:hidden xl:inline-flex items-center gap-[0.55rem] font-sans font-bold text-[0.92rem]
+              className={`
+                items-center gap-[0.55rem] font-sans font-bold text-[0.92rem]
                 py-[0.75rem] px-[1.3rem] rounded-full border border-transparent
                 bg-gradient-to-br from-emerald-2 to-teal text-white
                 shadow-[0_14px_30px_-12px_rgba(21,151,106,0.5)]
                 hover:-translate-y-[3px] hover:shadow-[0_22px_42px_-14px_rgba(21,151,106,0.65)]
                 transition-all duration-350 whitespace-nowrap leading-none cursor-pointer
-              "
+                ${scrolled ? "max-xl:hidden xl:inline-flex" : "hidden"}
+              `}
               style={EASE}
             >
               Book Appointment
