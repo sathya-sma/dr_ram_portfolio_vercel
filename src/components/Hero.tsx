@@ -1,4 +1,3 @@
-import { useEffect, useRef } from "react";
 import { ArrowRight, Phone } from "@/lib/icons";
 import { PHONE_DISPLAY, PHONE_TEL } from "@/lib/site";
 import HeroScene from "./HeroScene";
@@ -6,72 +5,26 @@ import HeroScene from "./HeroScene";
 const EASE = { transitionTimingFunction: "cubic-bezier(.22,1,.36,1)" } as const;
 
 export default function Hero() {
-  const portraitBoxRef = useRef<HTMLDivElement>(null);
-
-  /* Pin the portrait window so the head starts exactly at the headline and the
-     waist crop meets the section bottom — measured, so it holds on any
-     viewport size or browser zoom (the svh class is just the pre-JS guess). */
-  useEffect(() => {
-    const align = () => {
-      const box = portraitBoxRef.current;
-      const title = document.getElementById("hero-title");
-      if (!box || !title) return;
-      if (window.innerWidth <= 980) {
-        box.style.height = "";
-        return;
-      }
-      // The box is bottom-anchored (self-end), so its bottom edge stays put while
-      // the height changes — head top lands exactly on the headline.
-      const boxBottom = box.getBoundingClientRect().bottom;
-      const titleTop = title.getBoundingClientRect().top;
-      box.style.height = `${Math.max(380, Math.round(boxBottom - titleTop))}px`;
-    };
-    align();
-
-    // The headline and the portrait wrapper both use the .reveal fade-in
-    // (translateY, on independent timers — the portrait has an extra 200ms
-    // delay), so a measurement taken mid-animation can be wrong. Re-align
-    // whenever either element's transform transition finishes; a timeout
-    // covers browsers/paths where the event doesn't fire.
-    const hero = document.getElementById("home");
-    const onTransitionEnd = (e: TransitionEvent) => {
-      if (e.propertyName === "transform") align();
-    };
-    hero?.addEventListener("transitionend", onTransitionEnd);
-    const settleTimer = window.setTimeout(align, 1100);
-
-    window.addEventListener("resize", align);
-    // Fraunces loading shifts the headline's position; re-align once fonts settle.
-    document.fonts?.ready.then(align);
-
-    return () => {
-      window.removeEventListener("resize", align);
-      hero?.removeEventListener("transitionend", onTransitionEnd);
-      window.clearTimeout(settleTimer);
-    };
-  }, []);
-
   return (
     <section
-      className="hero-minh relative flex items-center pt-28 pb-0 text-[#eaf3f1] overflow-hidden"
+      className="hero-minh relative flex items-center py-28 text-[#eaf3f1] overflow-hidden"
       style={{
         background: "radial-gradient(120% 140% at 85% -10%, #14506b 0%, #0b2a39 55%, #071e2a 100%)",
       }}
       id="home"
     >
-      {/* Background decorations */}
+      {/* Background decorations — decorative overlay only, not part of the
+          content layout. Absolute positioning here is fine: it fills the
+          section behind the grid and never participates in sizing it. */}
       <div className="absolute inset-0 z-0" aria-hidden>
-        {/* Emerald aurora — single intentional light source, top-right */}
         <span
           className="absolute w-[720px] h-[720px] rounded-full blur-[70px] animate-float -top-[260px] -right-[160px]"
           style={{ background: "radial-gradient(circle, rgba(47,214,160,.16), transparent 65%)" }}
         />
-        {/* Faint teal counter-glow anchoring the bottom-left */}
         <span
           className="absolute w-[560px] h-[560px] rounded-full blur-[70px] -bottom-[240px] -left-[180px]"
           style={{ background: "radial-gradient(circle, rgba(20,80,107,.55), transparent 70%)" }}
         />
-        {/* Dot grid */}
         <span
           className="absolute inset-0 opacity-50"
           style={{
@@ -81,16 +34,19 @@ export default function Hero() {
             WebkitMaskImage: "radial-gradient(120% 80% at 50% 0%, #000 35%, transparent 75%)",
           }}
         />
-        {/* Flowing liquid-light ribbons (canvas, additive glow) */}
         <HeroScene />
       </div>
 
-      {/* Content */}
-      {/* min-h stretches the grid to the section bottom so the cropped portrait can anchor there */}
-      <div className="relative z-[2] w-[min(100%-2.4rem,1180px)] mx-auto grid grid-cols-[1.02fr_.98fr] gap-12 items-center max-[980px]:grid-cols-1 max-[980px]:gap-10 pt-4 min-[981px]:min-h-[calc(100svh-8.5rem)]">
-        {/* self-start keeps the heading near the nav instead of centering in the
-            taller row (which the portrait crop needs) and opening a dead gap above it */}
-        <div className="min-[981px]:self-start min-[981px]:pt-8">
+      {/*
+        Content — pure CSS grid. This is the entire layout algorithm: two
+        equal columns, both vertically centered on the row by the browser's
+        own layout engine. No JavaScript measures or positions anything
+        below this point, so there is nothing that can desync from a zoom
+        or resize event — the grid recomputes for free on every reflow,
+        exactly like every other section on this page.
+      */}
+      <div className="relative z-[2] w-[min(100%-2.4rem,1180px)] mx-auto grid grid-cols-1 min-[981px]:grid-cols-2 gap-10 min-[981px]:gap-16 items-center justify-items-center">
+        <div className="w-full max-[980px]:text-center">
           {/* Tagline is the hero statement; the doctor's name follows as the credential line. */}
           <h1 id="hero-title" className="reveal font-serif font-semibold leading-[1.06] tracking-tight text-[clamp(2.5rem,5.4vw,4rem)] text-white">
             Surgical Excellence,
@@ -101,7 +57,10 @@ export default function Hero() {
             <span className="sr-only"> — Dr. T. Ramkumar, Consultant Gastrointestinal Surgeon</span>
           </h1>
 
-          <p className="reveal mt-[1.3rem] flex flex-wrap items-baseline gap-x-[.7rem] gap-y-[.15rem]" data-reveal-delay="80">
+          <p
+            className="reveal mt-[1.3rem] flex flex-wrap items-baseline gap-x-[.7rem] gap-y-[.15rem] max-[980px]:justify-center"
+            data-reveal-delay="80"
+          >
             <span className="font-serif font-semibold text-white text-[clamp(1.35rem,2.6vw,1.7rem)] leading-tight">
               Dr. T. Ramkumar
             </span>
@@ -110,13 +69,13 @@ export default function Hero() {
             </span>
           </p>
 
-          <p className="reveal max-w-[46ch] mt-[1.1rem] text-[#c4d6dd] text-[1.04rem]" data-reveal-delay="160">
+          <p className="reveal max-w-[46ch] mt-[1.1rem] text-[#c4d6dd] text-[1.04rem] max-[980px]:mx-auto" data-reveal-delay="160">
             Over <strong className="text-white">24 years</strong> of expertise in laparoscopic,
             robotic and open GI surgery — among Tamil Nadu&apos;s early pioneers of minimally
             invasive surgery, trusted by patients across India and internationally.
           </p>
 
-          <div className="reveal flex flex-wrap items-center gap-[.9rem] mt-8" data-reveal-delay="240">
+          <div className="reveal flex flex-wrap items-center gap-[.9rem] mt-8 max-[980px]:justify-center" data-reveal-delay="240">
             <a
               href="#contact"
               className="
@@ -161,37 +120,34 @@ export default function Hero() {
           </a>
         </div>
 
-        {/* Transparent Doctor Portrait Cutout — waist-up crop, anchored to the hero's bottom edge */}
-        {/* Desktop: the box is absolutely positioned so its height never feeds back
-            into the grid's height — align() can then pin the head to the headline
-            in a single measured pass. */}
-        <div
-          className="reveal relative w-full min-[981px]:self-stretch max-[980px]:max-w-[440px] max-[980px]:mx-auto max-[980px]:flex max-[980px]:justify-center"
-          data-reveal-delay="200"
-        >
-          {/* Height is measured in Hero's align() so the head lines up with the headline */}
-          <div
-            ref={portraitBoxRef}
-            className="max-[980px]:relative min-[981px]:absolute min-[981px]:bottom-0 min-[981px]:right-0 w-full max-w-[560px] min-[1200px]:max-w-[640px] h-[min(66.5svh,675px)] max-[980px]:h-[min(58svh,520px)] overflow-hidden"
-          >
-            {/* Emerald rim glow behind the figure — hero background stays visible through the cutout */}
-            <span
-              aria-hidden
-              className="absolute left-1/2 top-[12%] -translate-x-1/2 w-[120%] aspect-square rounded-full blur-[80px] pointer-events-none"
-              style={{ background: "radial-gradient(circle, rgba(47,214,160,.16), transparent 65%)" }}
-            />
-            {/* The crop is already tight to the figure (sharp .trim()), so keep
-                width at 100% — anything over that hard-clips the sleeves against
-                the box's overflow-hidden edge, which reads as an ugly cut. */}
-            <img
-              src="/brand/portrait-cutout.webp"
-              alt="Dr. T. Ramkumar, Consultant Gastrointestinal Surgeon"
-              width="376"
-              height="1122"
-              fetchPriority="high"
-              className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-none h-auto filter drop-shadow-[0_18px_40px_rgba(0,0,0,0.4)]"
-            />
-          </div>
+        {/*
+          Portrait — pure CSS, zero layout JavaScript.
+          - The wrapper is an ordinary grid item (static flow, no absolute
+            positioning, no transform, no inline styles for size/position).
+          - align-items:center on the grid above vertically centers this
+            column against the text column at all times.
+          - The image itself caps at max-h-[75vh] with object-contain, so
+            the full figure is always visible and never overflows the
+            viewport, at any zoom level or window size — the browser's
+            layout engine handles it on every reflow, the same way it
+            already handles text reflow.
+        */}
+        <div className="reveal relative w-full" data-reveal-delay="200">
+          {/* Decorative glow behind the figure — a background-gradient fill,
+              not a positioned/transformed element, so it can't affect layout. */}
+          <span
+            aria-hidden
+            className="absolute inset-0 pointer-events-none"
+            style={{ background: "radial-gradient(circle at 50% 42%, rgba(47,214,160,.16), transparent 65%)" }}
+          />
+          <img
+            src="/brand/portrait-cutout.webp"
+            alt="Dr. T. Ramkumar, Consultant Gastrointestinal Surgeon"
+            width="691"
+            height="1030"
+            fetchPriority="high"
+            className="relative block w-full h-auto object-contain max-h-[75vh] mx-auto filter drop-shadow-[0_18px_40px_rgba(0,0,0,0.4)]"
+          />
         </div>
       </div>
 
