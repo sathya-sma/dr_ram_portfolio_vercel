@@ -52,28 +52,47 @@ function Counter({ value, suffix }: { value: number; suffix?: string }) {
   }, [value]);
 
   return (
-    <div className="font-serif font-bold text-[2.8rem] leading-none text-navy flex justify-center items-baseline">
+    <div className="font-serif font-semibold text-[clamp(2.2rem,5vw,3.1rem)] leading-none text-white flex justify-center items-baseline">
       <span ref={ref}>{display}</span>
-      {suffix ? <i className="not-italic text-teal ml-[2px]">{suffix}</i> : null}
+      {suffix ? <i className="not-italic text-emerald-glow ml-[2px]">{suffix}</i> : null}
     </div>
   );
 }
 
 export default function Stats() {
   return (
-    <section className="relative py-[3rem] bg-bg-2 isolate" id="stats">
-      <div className="w-[min(100%-2.4rem,73.75rem)] mx-auto grid grid-cols-2 lg:grid-cols-4 gap-[1.2rem] md:gap-[1.5rem] text-center">
+    <section className="relative text-[#eaf3f1] py-[clamp(1.5rem,3vw,2.2rem)] bg-navy isolate" id="stats">
+      {/* Background */}
+      <div
+        className="absolute inset-0 -z-[1]"
+        style={{
+          background: `
+            radial-gradient(60% 120% at 85% 110%, rgba(31,184,134,.18), transparent 60%),
+            radial-gradient(rgba(255,255,255,.05) 1.5px, transparent 1.5px) 0 0/30px 30px,
+            linear-gradient(180deg, #0c2c52, #0a2342)
+          `,
+        }}
+        aria-hidden
+      />
+
+      <div className="w-[min(100%-2.4rem,1180px)] mx-auto grid grid-cols-4 gap-[1.2rem] text-center max-[980px]:grid-cols-2 max-[980px]:gap-[.6rem]">
         {STATS.map(({ value, suffix, label, Icon }, i) => (
           <div
-            className="reveal py-[1.8rem] px-5 rounded-[22px] bg-card border border-line shadow-[0_10px_35px_-15px_rgba(16,56,98,.12)] relative hover:shadow-[0_18px_45px_-18px_rgba(16,56,98,.18)] transition-all duration-300 hover:-translate-y-1 flex flex-col items-center justify-center"
+            className={`reveal py-[1.4rem] px-4 rounded-[18px] relative ${
+              i < 3
+                ? `after:content-[''] after:absolute after:-right-[.6rem] after:top-[22%] after:bottom-[22%] after:w-px after:bg-white/12 ${
+                    i === 1 ? "max-[980px]:after:hidden" : ""
+                  }`
+                : ""
+            }`}
             key={label}
             data-reveal-delay={i * 80}
           >
-            <div className="w-[54px] h-[54px] mb-4 rounded-[15px] grid place-items-center bg-teal/8 border border-teal/15 text-teal">
+            <div className="w-[54px] h-[54px] mx-auto mb-4 rounded-[15px] grid place-items-center bg-emerald-glow/12 border border-emerald-glow/25 text-emerald-glow">
               <Icon className="ico w-[26px] h-[26px]" />
             </div>
             <Counter value={value} suffix={suffix} />
-            <div className="mt-[.6rem] text-[.8rem] font-bold tracking-[.06em] uppercase text-muted leading-tight">
+            <div className="mt-[.6rem] text-[.85rem] font-semibold tracking-[.04em] uppercase text-[#a7c0c9]">
               {label}
             </div>
           </div>

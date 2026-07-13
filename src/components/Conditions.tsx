@@ -35,7 +35,7 @@ export default function Conditions() {
               key={c}
               className="
                 font-semibold text-[.98rem] text-navy bg-card border border-line
-                rounded-full py-[clamp(0.5rem,1.5vw,0.7rem)] px-[clamp(0.9rem,2.5vw,1.25rem)]
+                rounded-full py-[.7rem] px-[1.25rem]
                 shadow-[0_4px_18px_rgba(16,56,98,.07)]
                 transition-all duration-300 cursor-default
                 hover:-translate-y-1 hover:bg-gradient-to-br hover:from-emerald-2 hover:to-teal

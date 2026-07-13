@@ -8,7 +8,7 @@ const EXPERTISE = ["Upper GI Surgery", "HPB Surgery", "Colorectal Surgery", "End
 export default function Hero() {
   return (
     <section
-      className="hero-minh relative flex items-center py-[clamp(5rem,10vw,8rem)] pb-[clamp(3.5rem,6vw,5.5rem)] text-[#eaf3f1] overflow-hidden"
+      className="hero-minh relative flex items-center py-28 pb-16 text-[#eaf3f1] overflow-hidden"
       style={{
         background: "radial-gradient(120% 120% at 80% 0%, #103862 0%, #0a2342 55%, #081c38 100%)",
       }}
@@ -18,12 +18,12 @@ export default function Hero() {
       <div className="absolute inset-0 z-0" aria-hidden>
         {/* Blob 1 */}
         <span
-          className="absolute w-[clamp(280px,32vw,460px)] h-[clamp(280px,32vw,460px)] rounded-full blur-[60px] opacity-55 animate-float -top-[120px] -right-[80px]"
+          className="absolute w-[460px] h-[460px] rounded-full blur-[60px] opacity-55 animate-float -top-[120px] -right-[80px]"
           style={{ background: "radial-gradient(circle, #1fb886, transparent 70%)" }}
         />
         {/* Blob 2 */}
         <span
-          className="absolute w-[clamp(320px,36vw,520px)] h-[clamp(320px,36vw,520px)] rounded-full blur-[60px] opacity-55 animate-float -bottom-[180px] -left-[120px]"
+          className="absolute w-[520px] h-[520px] rounded-full blur-[60px] opacity-55 animate-float -bottom-[180px] -left-[120px]"
           style={{
             background: "radial-gradient(circle, #1b5faa, transparent 70%)",
             animationDelay: "-6s",
@@ -42,22 +42,22 @@ export default function Hero() {
       </div>
 
       {/* Content */}
-      <div className="relative z-[2] w-[min(100%-2.4rem,73.75rem)] mx-auto grid grid-cols-1 lg:grid-cols-[1.15fr_.85fr] gap-[2.5rem] lg:gap-[3rem] items-center pt-[5.5rem] lg:pt-[7rem]">
+      <div className="relative z-[2] w-[min(100%-2.4rem,1180px)] mx-auto grid grid-cols-[1.15fr_.85fr] gap-12 items-center max-[980px]:grid-cols-1 max-[980px]:gap-10 pt-[112px]">
         <div>
           <p className="reveal inline-flex items-center gap-[.55rem] font-bold text-[.82rem] tracking-[.14em] uppercase text-emerald-glow bg-emerald-glow/10 border border-emerald-glow/25 py-[.45rem] px-[.9rem] rounded-full">
             <span className="w-2 h-2 rounded-full bg-emerald-glow shadow-[0_0_0_4px_rgba(47,214,160,.2)]" />
             Consultant Gastrointestinal Surgeon
           </p>
 
-          <h1 id="hero-name" className="reveal font-serif font-semibold leading-[1.02] tracking-tight text-[4.5rem] mt-[1.1rem] text-white" data-reveal-delay="60">
+          <h1 id="hero-name" className="reveal font-serif font-semibold leading-[1.02] tracking-tight text-[clamp(2.6rem,6vw,4.5rem)] mt-[1.1rem] text-white" data-reveal-delay="60">
             Dr. T. Ramkumar
           </h1>
 
-          <p className="reveal font-semibold text-[#9fc7d6] mt-[.4rem] text-[1.15rem]" data-reveal-delay="120">
+          <p className="reveal font-semibold text-[#9fc7d6] mt-[.4rem] text-[clamp(.95rem,2vw,1.15rem)]" data-reveal-delay="120">
             Laparoscopic &amp; Robotic Cancer Surgeon
           </p>
 
-          <h2 className="reveal font-serif font-medium text-[2.6rem] leading-[1.12] mt-[1.4rem] text-[#eef6f4]" data-reveal-delay="180">
+          <h2 className="reveal font-serif font-medium text-[clamp(1.6rem,3.6vw,2.6rem)] leading-[1.12] mt-[1.4rem] text-[#eef6f4]" data-reveal-delay="180">
             Surgical Excellence,
             <br />
             <span className="bg-gradient-to-r from-emerald-glow via-[#7fe3c4] to-[#aee9ff] bg-clip-text text-transparent">
@@ -118,8 +118,8 @@ export default function Hero() {
         </div>
 
         {/* Portrait */}
-        <div className="reveal flex justify-center" data-reveal-delay="200">
-          <div className="relative w-[min(100%,23.75rem)]">
+        <div className="reveal flex justify-center max-[980px]:order-first max-[980px]:max-w-[320px] max-[980px]:mx-auto" data-reveal-delay="200">
+          <div className="relative w-[min(100%,380px)]">
             <div className="relative rounded-[30px] overflow-hidden shadow-[0_40px_80px_-28px_rgba(10,35,66,.45)] border border-white/12 aspect-[5/6]">
               <img
                 src="/brand/portrait.jpeg"
@@ -134,7 +134,7 @@ export default function Hero() {
             </div>
 
             {/* Experience badge */}
-            <div className="absolute left-[-1.2rem] md:left-[-3rem] bottom-[10%] z-[3] bg-white text-navy rounded-[18px] py-[.85rem] px-[1.1rem] flex items-center gap-[.7rem] shadow-[0_18px_50px_-20px_rgba(16,56,98,.28)] animate-float-y">
+            <div className="absolute left-[-22px] md:left-[-54px] bottom-[42px] z-[3] bg-white text-navy rounded-[18px] py-[.85rem] px-[1.1rem] flex items-center gap-[.7rem] shadow-[0_18px_50px_-20px_rgba(16,56,98,.28)] animate-float-y">
               <span className="font-serif font-bold text-[2.1rem] leading-none text-teal">
                 24<span className="text-emerald-2">+</span>
               </span>
@@ -145,14 +145,14 @@ export default function Hero() {
 
             {/* Floating pills */}
             <div
-              className="absolute right-[-0.8rem] md:right-[-2.5rem] top-[8%] z-[3] flex items-center gap-[.4rem] bg-white/95 text-navy font-bold text-[.8rem] py-[.45rem] px-[.8rem] rounded-full shadow-[0_4px_18px_rgba(16,56,98,.07)] animate-float-y-slow"
+              className="absolute right-[-14px] md:right-[-48px] top-[34px] z-[3] flex items-center gap-[.4rem] bg-white/95 text-navy font-bold text-[.8rem] py-[.45rem] px-[.8rem] rounded-full shadow-[0_4px_18px_rgba(16,56,98,.07)] animate-float-y-slow"
               style={{ animationDelay: "-1.5s" }}
             >
               <CheckMini className="ico w-[15px] h-[15px] text-emerald" style={{ strokeWidth: 2.2 }} />
               Robotic Surgery
             </div>
             <div
-              className="absolute right-[-1.5rem] md:right-[-3.5rem] top-[26%] z-[3] flex items-center gap-[.4rem] bg-white/95 text-navy font-bold text-[.8rem] py-[.45rem] px-[.8rem] rounded-full shadow-[0_4px_18px_rgba(16,56,98,.07)] animate-float-y-slow"
+              className="absolute right-[-26px] md:right-[-64px] top-[96px] z-[3] flex items-center gap-[.4rem] bg-white/95 text-navy font-bold text-[.8rem] py-[.45rem] px-[.8rem] rounded-full shadow-[0_4px_18px_rgba(16,56,98,.07)] animate-float-y-slow"
               style={{ animationDelay: "-3.5s" }}
             >
               <CheckMini className="ico w-[15px] h-[15px] text-emerald" style={{ strokeWidth: 2.2 }} />

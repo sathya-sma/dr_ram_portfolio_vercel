@@ -59,16 +59,6 @@
     /* Keep anchor targets clear of the fixed header */
     scroll-padding-top: 5.5rem;
     -webkit-text-size-adjust: 100%;
-
-    /* Proportional scaling relative to 1440px desktop base layout */
-    font-size: calc(100vw / 1440 * 16);
-  }
-
-  @media (min-width: 1441px) {
-    html {
-      /* Lock sizing on screens wider than 1440px to prevent infinite text/layout growth */
-      font-size: 16px;
-    }
   }
   body {
     font-family: var(--font-sans);

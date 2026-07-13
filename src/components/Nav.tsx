@@ -112,9 +112,10 @@ export default function Nav() {
           </div>
         </div>
 
+        {/* Main nav */}
         <div
           className={`w-[min(100%-2.4rem,1600px)] mx-auto flex xl:grid justify-between xl:justify-normal xl:grid-cols-[1fr_auto_1fr] items-center gap-6 transition-all duration-400 ${
-            scrolled ? "py-[0.625rem]" : "py-[1rem]"
+            scrolled ? "py-[10px]" : "py-[16px]"
           }`}
           style={EASE}
         >
@@ -127,7 +128,7 @@ export default function Nav() {
           >
             <div
               className={`relative aspect-[457/128] shrink-0 transition-all duration-400 ${
-                scrolled ? "h-[2.875rem] sm:h-[3.375rem] xl:h-[4.0625rem]" : "h-[3.375rem] sm:h-[4.5rem] xl:h-[6.125rem]"
+                scrolled ? "h-[46px] sm:h-[54px] xl:h-[65px]" : "h-[54px] sm:h-[72px] xl:h-[98px]"
               }`}
               style={EASE}
             >
@@ -156,7 +157,7 @@ export default function Nav() {
 
           {/* Desktop navbar menu - Trigger rebuild */}
           <nav
-            className="flex items-center gap-[.35rem] xl:justify-self-center xl:-translate-x-[20px]"
+            className="flex items-center gap-[.35rem] xl:justify-self-center xl:-translate-x-[20px] max-xl:hidden"
             aria-label="Primary"
           >
             {LINKS.map(([label, href]) => (
@@ -183,7 +184,7 @@ export default function Nav() {
             <a
               href="#contact"
               className="
-                inline-flex items-center gap-[0.55rem] font-sans font-bold text-[0.92rem]
+                max-xl:hidden xl:inline-flex items-center gap-[0.55rem] font-sans font-bold text-[0.92rem]
                 py-[0.75rem] px-[1.3rem] rounded-full border border-transparent
                 bg-gradient-to-br from-emerald-2 to-teal text-white
                 shadow-[0_14px_30px_-12px_rgba(21,151,106,0.5)]
@@ -196,7 +197,7 @@ export default function Nav() {
             </a>
             <button
               ref={burgerRef}
-              className="hidden flex-col gap-[5px] bg-transparent border-0 cursor-pointer p-[6px]"
+              className="max-xl:flex xl:hidden flex-col gap-[5px] bg-transparent border-0 cursor-pointer p-[6px]"
               aria-label={open ? "Close menu" : "Open menu"}
               aria-expanded={open}
               aria-controls="navLinks"
@@ -225,15 +226,20 @@ export default function Nav() {
         </div>
       </header>
 
-      {/* Mobile Drawer (disabled/hidden) */}
+      {/* Mobile Drawer (Sibling to header to avoid backdrop-filter containers clipping fixed drawers) */}
       <div
-        className="hidden"
+        className={`hidden max-xl:block fixed inset-0 z-[940] bg-navy/45 backdrop-blur-[2px] transition-all duration-400 ${
+          open ? "opacity-100 visible" : "opacity-0 invisible pointer-events-none"
+        }`}
+        onClick={() => setOpen(false)}
         aria-hidden
       />
 
       <nav
         ref={drawerRef}
-        className="hidden"
+        className={`hidden max-xl:flex max-xl:flex-col max-xl:items-center max-xl:justify-start max-xl:fixed max-xl:inset-y-0 max-xl:right-0 max-xl:left-auto max-xl:w-[min(85%,320px)] max-xl:pt-[90px] max-xl:overflow-y-auto max-xl:gap-4 max-xl:bg-navy max-xl:p-8 max-xl:transition-[transform,visibility] max-xl:duration-400 z-[950] ${
+          open ? "max-xl:translate-x-0 max-xl:visible" : "max-xl:translate-x-full max-xl:invisible"
+        }`}
         style={EASE}
         id="navLinks"
         aria-label="Mobile Navigation"
@@ -258,7 +264,7 @@ export default function Nav() {
         <a
           href="#contact"
           className="
-            inline-flex xl:hidden items-center justify-center gap-[.55rem]
+            max-xl:inline-flex xl:hidden items-center justify-center gap-[.55rem]
             font-sans font-bold text-[1rem] mt-4 w-full
             py-[.85rem] px-[1.3rem] rounded-full border border-transparent
             bg-gradient-to-br from-emerald-2 to-teal text-white text-center

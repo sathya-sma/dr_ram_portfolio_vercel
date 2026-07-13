@@ -13,7 +13,7 @@ const CARDS: { Icon: (p: SVGProps<SVGSVGElement>) => JSX.Element; title: string;
 export default function Approach() {
   return (
     <section className="py-[clamp(1.8rem,3.5vw,2.8rem)] relative" id="patient-care">
-      <div className="w-[min(100%-2.4rem,73.75rem)] mx-auto">
+      <div className="w-[min(100%-2.4rem,1180px)] mx-auto">
         {/* Section head */}
         <div className="reveal max-w-[680px] mx-auto mb-[3.2rem] text-center">
           <p className="inline-flex items-center gap-[.6rem] font-bold text-[.78rem] tracking-[.16em] uppercase text-teal justify-center">
@@ -21,7 +21,7 @@ export default function Approach() {
             Patient Care
             <span className="w-[26px] h-[2px] bg-emerald-2 rounded-sm" />
           </p>
-          <h2 className="font-serif font-semibold leading-[1.1] tracking-tight text-[2.9rem] text-navy mt-[.9rem] text-center">
+          <h2 className="font-serif font-semibold leading-[1.1] tracking-tight text-[clamp(1.9rem,4vw,2.9rem)] text-navy mt-[.9rem] text-center">
             Approach to Patient Care
           </h2>
           <p className="mt-4 text-muted text-[1.05rem]">
@@ -30,11 +30,11 @@ export default function Approach() {
         </div>
 
         {/* Cards grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-[1.3rem]">
+        <div className="grid grid-cols-3 gap-[1.3rem] max-[980px]:grid-cols-2 max-[560px]:grid-cols-1">
           {CARDS.map(({ Icon, title, body }, i) => (
             <article
               className="
-                reveal group bg-card border border-line rounded-[18px] p-[clamp(1.2rem,3vw,1.8rem)]
+                reveal group bg-card border border-line rounded-[18px] p-[1.8rem]
                 shadow-[0_4px_18px_rgba(16,56,98,.07)] relative overflow-hidden
                 transition-all duration-400 cursor-default
                 hover:-translate-y-[7px] hover:shadow-[0_18px_50px_-20px_rgba(16,56,98,.28)] hover:border-transparent
@@ -49,7 +49,7 @@ export default function Approach() {
             >
               <div
                 className="
-                  w-[clamp(44px,8vw,50px)] h-[clamp(44px,8vw,50px)] rounded-[14px] grid place-items-center
+                  w-[50px] h-[50px] rounded-[14px] grid place-items-center
                   bg-gradient-to-br from-emerald-2/14 to-teal/14 text-teal
                   mb-[1.1rem] transition-transform duration-400
                   group-hover:scale-108 group-hover:-rotate-[4deg]

@@ -134,7 +134,7 @@ export default function Specialities() {
 
   return (
     <section className="py-[clamp(1.8rem,3.5vw,2.8rem)] relative" id="specialities">
-      <div className="w-[min(100%-2.4rem,73.75rem)] mx-auto">
+      <div className="w-[min(100%-2.4rem,1180px)] mx-auto">
         {/* Section head */}
         <div className="reveal max-w-[680px] mx-auto mb-[3.2rem] text-center">
           <p className="inline-flex items-center gap-[.6rem] font-bold text-[.78rem] tracking-[.16em] uppercase text-teal justify-center">
@@ -142,7 +142,7 @@ export default function Specialities() {
             What we treat
             <span className="w-[26px] h-[2px] bg-emerald-2 rounded-sm" />
           </p>
-          <h2 className="font-serif font-semibold leading-[1.1] tracking-tight text-[2.9rem] text-navy mt-[.9rem] text-center">
+          <h2 className="font-serif font-semibold leading-[1.1] tracking-tight text-[clamp(1.9rem,4vw,2.9rem)] text-navy mt-[.9rem] text-center">
             Surgical Specialities
           </h2>
           <p className="mt-4 text-muted text-[1.05rem]">
@@ -154,7 +154,7 @@ export default function Specialities() {
         </div>
 
         {/* Split explorer: selector list left, showcase panel right (accordion on mobile) */}
-        <div className="reveal grid grid-cols-1 lg:grid-cols-[.92fr_1.08fr] gap-6 items-start">
+        <div className="reveal grid min-[900px]:grid-cols-[.92fr_1.08fr] gap-6 items-start">
           {/* Selector list */}
           <div className="flex flex-col gap-[.85rem]">
             {DATA.map((item, i) => {
@@ -189,7 +189,7 @@ export default function Specialities() {
                   />
 
                   <button
-                    className="relative w-full flex items-center gap-[.9rem] py-[clamp(0.8rem,2vw,1rem)] px-[clamp(0.9rem,2.5vw,1.15rem)] bg-transparent border-0 cursor-pointer text-left font-sans"
+                    className="relative w-full flex items-center gap-[.9rem] py-[1rem] px-[1.15rem] bg-transparent border-0 cursor-pointer text-left font-sans"
                     aria-expanded={isOpen}
                     onClick={() => toggle(i)}
                   >
@@ -201,7 +201,7 @@ export default function Specialities() {
                       {String(i + 1).padStart(2, "0")}
                     </span>
                     <span
-                      className={`w-[clamp(38px,6vw,44px)] h-[clamp(38px,6vw,44px)] shrink-0 rounded-[12px] grid place-items-center transition-all duration-400 ${
+                      className={`w-[44px] h-[44px] shrink-0 rounded-[12px] grid place-items-center transition-all duration-400 ${
                         isOpen
                           ? "bg-gradient-to-br from-emerald-2 to-teal text-white shadow-[0_10px_24px_-10px_rgba(21,151,106,.8)]"
                           : "bg-gradient-to-br from-emerald-2/14 to-teal/14 text-teal"
@@ -218,19 +218,19 @@ export default function Specialities() {
                       {item.title}
                     </span>
                     <span
-                      className={`w-[clamp(28px,5vw,34px)] h-[clamp(28px,5vw,34px)] shrink-0 rounded-full grid place-items-center border transition-all duration-400 ${
+                      className={`w-[34px] h-[34px] shrink-0 rounded-full grid place-items-center border transition-all duration-400 ${
                         isOpen
-                          ? "bg-gradient-to-br from-emerald-2 to-teal text-white border-transparent"
-                          : "text-muted border-line bg-bg"
+                          ? "rotate-180 min-[900px]:-rotate-90 bg-gradient-to-br from-emerald-2 to-teal text-white border-transparent"
+                          : "min-[900px]:-rotate-90 text-muted border-line bg-bg"
                       }`}
                       style={EASE}
                     >
-                      <Chevron className="ico w-[17px] h-[17px] -rotate-90" />
+                      <Chevron className="ico w-[17px] h-[17px]" />
                     </span>
                   </button>
 
-                  {/* Mobile / tablet drawer — disabled */}
-                  <div className="hidden">
+                  {/* Mobile / tablet drawer — the showcase panel takes over from 900px up */}
+                  <div className="min-[900px]:hidden">
                     <div className={`spec-body relative ${isOpen ? "is-open" : ""}`}>
                       <div>
                         <div className="mx-[1.15rem] h-px bg-line" aria-hidden />
@@ -246,10 +246,10 @@ export default function Specialities() {
           </div>
 
           {/* Showcase panel (desktop) */}
-          <aside className="relative">
+          <aside className="max-[899px]:hidden relative">
             <div
               key={detailIdx}
-              className="panel-swap relative overflow-hidden rounded-[26px] border border-line bg-card p-[clamp(1.8rem,3vw,2.6rem)] shadow-[0_18px_45px_-20px_rgba(16,56,98,.12)] min-h-[clamp(360px,30vw,460px)]"
+              className="panel-swap relative overflow-hidden rounded-[26px] border border-line bg-card p-[clamp(1.8rem,3vw,2.6rem)] shadow-[0_18px_45px_-20px_rgba(16,56,98,.12)] min-h-[460px]"
             >
               {/* Soft light glow */}
               <span
@@ -260,12 +260,12 @@ export default function Specialities() {
               {/* Watermark number */}
               <span
                 aria-hidden
-                className="absolute -top-4 right-6 font-serif font-bold leading-none text-[clamp(5rem,8vw,6.5rem)] text-navy/4 select-none pointer-events-none"
+                className="absolute -top-4 right-6 font-serif font-bold leading-none text-[6.5rem] text-navy/4 select-none pointer-events-none"
               >
                 {String(detailIdx + 1).padStart(2, "0")}
               </span>
 
-              <span className="relative w-[clamp(48px,5vw,58px)] h-[clamp(48px,5vw,58px)] rounded-[16px] grid place-items-center bg-gradient-to-br from-emerald-2/14 to-teal/14 text-teal border border-teal/10">
+              <span className="relative w-[58px] h-[58px] rounded-[16px] grid place-items-center bg-gradient-to-br from-emerald-2/14 to-teal/14 text-teal border border-teal/10">
                 <DetailIcon className="ico w-[29px] h-[29px]" />
               </span>
 
