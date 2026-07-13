@@ -1,25 +1,99 @@
-import { Stethoscope } from "@/lib/icons";
+import { useState, useEffect } from "react";
+import { Stethoscope, Chevron } from "@/lib/icons";
+
+const SLIDES = [
+  {
+    src: "/brand/or-action.jpeg",
+    alt: "Dr. T. Ramkumar performing laparoscopic surgery",
+    label: "Laparoscopic Surgery",
+  },
+  {
+    src: "/gallery/robotic-surgery-console.jpg",
+    alt: "Dr. T. Ramkumar at the controls of the DaVinci robotic console",
+    label: "Robotic Surgery",
+  },
+];
 
 export default function About() {
+  const [current, setCurrent] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrent((prev) => (prev + 1) % SLIDES.length);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, []);
+
+  const nextSlide = () => {
+    setCurrent((prev) => (prev + 1) % SLIDES.length);
+  };
+
+  const prevSlide = () => {
+    setCurrent((prev) => (prev - 1 + SLIDES.length) % SLIDES.length);
+  };
+
   return (
     <section className="py-[clamp(1.8rem,3.5vw,2.8rem)] relative" id="about">
-      <div className="w-[min(100%-2.4rem,73.75rem)] mx-auto grid grid-cols-[.9fr_1.1fr] gap-[4rem] items-center">
-        {/* Image */}
-        <div className="reveal relative">
+      <div className="w-[min(100%-2.4rem,73.75rem)] mx-auto grid md:grid-cols-[.9fr_1.1fr] gap-[2rem] md:gap-[4rem] items-center">
+        {/* Image Slider */}
+        <div className="reveal relative aspect-[4/3.4] w-full rounded-[26px] overflow-hidden shadow-[0_18px_50px_-20px_rgba(16,56,98,.28)] group">
           {/* Decorative corner */}
           <div className="absolute -top-[0.875rem] -left-[0.875rem] w-[clamp(80px,10vw,120px)] h-[clamp(80px,10vw,120px)] rounded-[20px] bg-gradient-to-br from-emerald-2 to-teal opacity-18 -z-[1]" />
-          <img
-            src="/brand/or-action.jpeg"
-            alt="Dr. T. Ramkumar performing laparoscopic surgery"
-            width="1200"
-            height="900"
-            loading="lazy"
-            decoding="async"
-            className="rounded-[26px] shadow-[0_18px_50px_-20px_rgba(16,56,98,.28)] w-full aspect-[4/3.4] object-cover"
-          />
-          <div className="absolute left-[1.1rem] bottom-[1.1rem] flex items-center gap-2 bg-navy/82 backdrop-blur-[6px] text-[#eaf3f1] font-semibold text-[.82rem] py-[.55rem] px-[.9rem] rounded-full">
-            <Stethoscope className="ico w-4 h-4 text-emerald-glow" />
-            Laparoscopic Surgery
+          
+          {/* Slides */}
+          <div className="w-full h-full relative">
+            {SLIDES.map((slide, idx) => (
+              <div
+                key={slide.src}
+                className={`absolute inset-0 transition-opacity duration-700 ease-in-out ${
+                  idx === current ? "opacity-100 z-10" : "opacity-0 z-0"
+                }`}
+              >
+                <img
+                  src={slide.src}
+                  alt={slide.alt}
+                  width="1200"
+                  height="900"
+                  loading="lazy"
+                  decoding="async"
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute left-[1.1rem] bottom-[1.1rem] flex items-center gap-2 bg-navy/82 backdrop-blur-[6px] text-[#eaf3f1] font-semibold text-[.82rem] py-[.55rem] px-[.9rem] rounded-full">
+                  <Stethoscope className="ico w-4 h-4 text-emerald-glow" />
+                  {slide.label}
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Navigation Arrows */}
+          <button
+            onClick={prevSlide}
+            className="absolute left-4 top-1/2 -translate-y-1/2 z-20 w-8 h-8 rounded-full bg-navy/40 hover:bg-navy/80 text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 border-0 cursor-pointer"
+            aria-label="Previous slide"
+          >
+            <Chevron className="ico w-4 h-4 rotate-90" />
+          </button>
+          <button
+            onClick={nextSlide}
+            className="absolute right-4 top-1/2 -translate-y-1/2 z-20 w-8 h-8 rounded-full bg-navy/40 hover:bg-navy/80 text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 border-0 cursor-pointer"
+            aria-label="Next slide"
+          >
+            <Chevron className="ico w-4 h-4 rotate-270" />
+          </button>
+
+          {/* Indicators */}
+          <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-20 flex gap-2">
+            {SLIDES.map((_, idx) => (
+              <button
+                key={idx}
+                onClick={() => setCurrent(idx)}
+                className={`w-2 h-2 rounded-full transition-all duration-300 border-0 cursor-pointer ${
+                  idx === current ? "bg-white w-4" : "bg-white/40"
+                }`}
+                aria-label={`Go to slide ${idx + 1}`}
+              />
+            ))}
           </div>
         </div>
 

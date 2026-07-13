@@ -30,7 +30,7 @@ export default function Approach() {
         </div>
 
         {/* Cards grid */}
-        <div className="grid grid-cols-3 gap-[1.3rem]">
+        <div className="grid grid-cols-2 lg:grid-cols-3 gap-[0.8rem] md:gap-[1.3rem]">
           {CARDS.map(({ Icon, title, body }, i) => (
             <article
               className="

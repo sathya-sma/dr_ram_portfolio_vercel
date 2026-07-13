@@ -119,7 +119,7 @@ export default function Contact() {
 
   return (
     <section className="py-[2.8rem] relative" id="contact">
-      <div className="w-[min(100%-2.4rem,73.75rem)] mx-auto grid grid-cols-[1.05fr_.95fr] gap-[3.5rem] items-start">
+      <div className="w-[min(100%-2.4rem,73.75rem)] mx-auto grid grid-cols-1 lg:grid-cols-[1.05fr_.95fr] gap-[2.5rem] lg:gap-[3.5rem] items-start">
         {/* Info */}
         <div className="reveal">
           <p className="inline-flex items-center gap-[.6rem] font-bold text-[.78rem] tracking-[.16em] uppercase text-teal">

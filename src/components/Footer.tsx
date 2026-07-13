@@ -32,7 +32,7 @@ export default function Footer() {
         aria-hidden
       />
 
-      <div className="w-[min(100%-2.4rem,73.75rem)] mx-auto grid grid-cols-[1.6fr_1fr_1.2fr_1.1fr] gap-8">
+      <div className="w-[min(100%-2.4rem,73.75rem)] mx-auto grid grid-cols-1 md:grid-cols-[1.6fr_1fr_1.2fr_1.1fr] gap-8">
         {/* Brand */}
         <div>
           <span className="inline-block bg-white rounded-[12px] p-[6px] mb-4">

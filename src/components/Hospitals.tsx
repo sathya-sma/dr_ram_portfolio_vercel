@@ -29,7 +29,7 @@ export default function Hospitals() {
           </p>
         </div>
 
-        <div className="grid grid-cols-4 gap-[1.2rem]">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-[0.8rem] md:gap-[1.2rem]">
           {HOSPITALS.map(([name, loc], i) => (
             <a
               href="#contact"

@@ -154,7 +154,7 @@ export default function Specialities() {
         </div>
 
         {/* Split explorer: selector list left, showcase panel right (accordion on mobile) */}
-        <div className="reveal grid grid-cols-[.92fr_1.08fr] gap-6 items-start">
+        <div className="reveal grid grid-cols-1 lg:grid-cols-[.92fr_1.08fr] gap-6 items-start">
           {/* Selector list */}
           <div className="flex flex-col gap-[.85rem]">
             {DATA.map((item, i) => {

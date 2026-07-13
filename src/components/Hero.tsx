@@ -42,7 +42,7 @@ export default function Hero() {
       </div>
 
       {/* Content */}
-      <div className="relative z-[2] w-[min(100%-2.4rem,73.75rem)] mx-auto grid grid-cols-[1.15fr_.85fr] gap-[3rem] items-center pt-[7rem]">
+      <div className="relative z-[2] w-[min(100%-2.4rem,73.75rem)] mx-auto grid grid-cols-1 lg:grid-cols-[1.15fr_.85fr] gap-[2.5rem] lg:gap-[3rem] items-center pt-[5.5rem] lg:pt-[7rem]">
         <div>
           <p className="reveal inline-flex items-center gap-[.55rem] font-bold text-[.82rem] tracking-[.14em] uppercase text-emerald-glow bg-emerald-glow/10 border border-emerald-glow/25 py-[.45rem] px-[.9rem] rounded-full">
             <span className="w-2 h-2 rounded-full bg-emerald-glow shadow-[0_0_0_4px_rgba(47,214,160,.2)]" />
