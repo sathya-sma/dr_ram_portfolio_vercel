@@ -167,3 +167,8 @@ input:focus-visible, textarea:focus-visible { outline: none; }
   transform-origin: left;
   transition: transform 0.1s linear;
 }
+
+/* Card borders override to resolve Tailwind v4 default currentColor fallback */
+.border-line {
+  border-color: #e3ece9 !important;
+}

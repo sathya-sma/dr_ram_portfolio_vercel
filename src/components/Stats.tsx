@@ -52,48 +52,35 @@ function Counter({ value, suffix }: { value: number; suffix?: string }) {
   }, [value]);
 
   return (
-    <div className="font-serif font-semibold text-[clamp(2.2rem,5vw,3.1rem)] leading-none text-white flex justify-center items-baseline">
+    <div className="font-serif font-semibold text-[clamp(2.1rem,4vw,2.7rem)] leading-none text-navy flex justify-center items-baseline">
       <span ref={ref}>{display}</span>
-      {suffix ? <i className="not-italic text-emerald-glow ml-[2px]">{suffix}</i> : null}
+      {suffix ? <i className="not-italic text-teal ml-[3px]">{suffix}</i> : null}
     </div>
   );
 }
 
+const EASE = { transitionTimingFunction: "cubic-bezier(.22,1,.36,1)" } as const;
+
 export default function Stats() {
   return (
-    <section className="relative text-[#eaf3f1] py-[clamp(1.5rem,3vw,2.2rem)] bg-navy isolate" id="stats">
-      {/* Background */}
-      <div
-        className="absolute inset-0 -z-[1]"
-        style={{
-          background: `
-            radial-gradient(60% 120% at 85% 110%, rgba(31,184,134,.18), transparent 60%),
-            radial-gradient(rgba(255,255,255,.05) 1.5px, transparent 1.5px) 0 0/30px 30px,
-            linear-gradient(180deg, #0c2c52, #0a2342)
-          `,
-        }}
-        aria-hidden
-      />
-
-      <div className="w-[min(100%-2.4rem,1180px)] mx-auto grid grid-cols-4 gap-[1.2rem] text-center max-[980px]:grid-cols-2 max-[980px]:gap-[.6rem]">
+    <section className="relative py-[clamp(2.2rem,4.5vw,3.5rem)] bg-gradient-to-b from-[#eaf2f5] to-[#f8fafc] border-y border-line" id="stats">
+      <div className="w-[min(100%-2.4rem,1180px)] mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 text-center">
         {STATS.map(({ value, suffix, label, Icon }, i) => (
           <div
-            className={`reveal py-[1.4rem] px-4 rounded-[18px] relative ${
-              i < 3
-                ? `after:content-[''] after:absolute after:-right-[.6rem] after:top-[22%] after:bottom-[22%] after:w-px after:bg-white/12 ${
-                    i === 1 ? "max-[980px]:after:hidden" : ""
-                  }`
-                : ""
-            }`}
+            className="reveal bg-card border border-line rounded-[24px] py-8 px-6 shadow-[0_4px_22px_rgba(16,56,98,0.03)] hover:shadow-[0_16px_36px_-10px_rgba(16,56,98,0.11)] hover:-translate-y-1 transition-all duration-400 flex flex-col items-center justify-between"
             key={label}
             data-reveal-delay={i * 80}
+            style={EASE}
           >
-            <div className="w-[54px] h-[54px] mx-auto mb-4 rounded-[15px] grid place-items-center bg-emerald-glow/12 border border-emerald-glow/25 text-emerald-glow">
+            <div className="w-[56px] h-[56px] mb-5 rounded-[18px] grid place-items-center bg-teal/10 border border-teal/20 text-teal">
               <Icon className="ico w-[26px] h-[26px]" />
             </div>
-            <Counter value={value} suffix={suffix} />
-            <div className="mt-[.6rem] text-[.85rem] font-semibold tracking-[.04em] uppercase text-[#a7c0c9]">
-              {label}
+            
+            <div className="flex-1 flex flex-col justify-center gap-[.45rem]">
+              <Counter value={value} suffix={suffix} />
+              <div className="text-[.82rem] font-bold tracking-[.06em] uppercase text-muted leading-tight">
+                {label}
+              </div>
             </div>
           </div>
         ))}
