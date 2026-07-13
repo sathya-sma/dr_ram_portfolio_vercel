@@ -29,19 +29,17 @@ export default function Conditions() {
           </p>
         </div>
 
-        <ul className="reveal list-none flex flex-wrap gap-[0.6rem] md:gap-[.85rem] justify-center max-w-[900px] mx-auto p-0">
+        <ul className="reveal list-none flex flex-wrap gap-[.85rem] justify-center max-w-[900px] mx-auto p-0">
           {CONDITIONS.map((c) => (
             <li
               key={c}
               className="
-                font-semibold text-[.82rem] md:text-[.98rem] text-navy bg-card border border-line
-                rounded-[20px] md:rounded-full py-3 md:py-[clamp(0.5rem,1.5vw,0.7rem)] px-3 md:px-[clamp(0.9rem,2.5vw,1.25rem)]
+                font-semibold text-[.98rem] text-navy bg-card border border-line
+                rounded-full py-[clamp(0.5rem,1.5vw,0.7rem)] px-[clamp(0.9rem,2.5vw,1.25rem)]
                 shadow-[0_4px_18px_rgba(16,56,98,.07)]
                 transition-all duration-300 cursor-default
                 hover:-translate-y-1 hover:bg-gradient-to-br hover:from-emerald-2 hover:to-teal
                 hover:text-white hover:shadow-[0_16px_30px_-16px_rgba(14,124,139,.7)] hover:border-transparent
-                flex items-center justify-center text-center
-                w-[calc(50%-0.3rem)] sm:w-[calc(33.33%-0.4rem)] md:w-auto
               "
               style={{ transitionTimingFunction: "cubic-bezier(.22,1,.36,1)" }}
             >
