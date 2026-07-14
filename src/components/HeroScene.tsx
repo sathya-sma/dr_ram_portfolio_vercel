@@ -38,13 +38,13 @@ type Ribbon = {
 
 const RIBBONS: Ribbon[] = [
   // Broad emerald current along the bottom.
-  { yBase: 0.8, slope: 0.02, amp: 0.05, thick: 0.13, k: 1.15, speed: 0.3, phase: 0.0, depth: 0.9, tint: "31,184,134", alpha: 0.16 },
+  { yBase: 0.62, slope: 0.02, amp: 0.05, thick: 0.13, k: 1.15, speed: 0.3, phase: 0.0, depth: 0.9, tint: "31,184,134", alpha: 0.16 },
   // Deep blue undercurrent, drifting the other way.
-  { yBase: 0.9, slope: -0.03, amp: 0.045, thick: 0.11, k: 1.55, speed: -0.22, phase: 2.1, depth: 0.55, tint: "27,95,170", alpha: 0.14 },
+  { yBase: 0.72, slope: -0.03, amp: 0.045, thick: 0.11, k: 1.55, speed: -0.22, phase: 2.1, depth: 0.55, tint: "27,95,170", alpha: 0.14 },
   // Bright aqua filament riding the crest.
-  { yBase: 0.73, slope: 0.01, amp: 0.055, thick: 0.028, k: 1.9, speed: 0.42, phase: 4.2, depth: 1, tint: "127,227,207", alpha: 0.2 },
+  { yBase: 0.55, slope: 0.01, amp: 0.055, thick: 0.028, k: 1.9, speed: 0.42, phase: 4.2, depth: 1, tint: "127,227,207", alpha: 0.2 },
   // Wide teal sweep diving diagonally from behind the portrait toward the CTAs.
-  { yBase: 0.62, slope: -0.16, amp: 0.04, thick: 0.09, k: 1.3, speed: 0.26, phase: 1.2, depth: 0.35, tint: "14,124,139", alpha: 0.12 },
+  { yBase: 0.42, slope: -0.16, amp: 0.04, thick: 0.09, k: 1.3, speed: 0.26, phase: 1.2, depth: 0.35, tint: "14,124,139", alpha: 0.12 },
 ];
 
 const SEGMENTS = 72;

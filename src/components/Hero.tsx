@@ -7,7 +7,7 @@ const EASE = { transitionTimingFunction: "cubic-bezier(.22,1,.36,1)" } as const;
 export default function Hero() {
   return (
     <section
-      className="hero-minh relative flex items-center py-28 text-[#eaf3f1] overflow-hidden"
+      className="hero-minh relative flex items-center pt-28 pb-0 text-[#eaf3f1] overflow-hidden"
       style={{
         background: "radial-gradient(120% 140% at 85% -10%, #14506b 0%, #0b2a39 55%, #071e2a 100%)",
       }}
@@ -132,7 +132,7 @@ export default function Hero() {
             layout engine handles it on every reflow, the same way it
             already handles text reflow.
         */}
-        <div className="reveal relative w-full" data-reveal-delay="200">
+        <div className="reveal relative w-full self-end" data-reveal-delay="200">
           {/* Decorative glow behind the figure — a background-gradient fill,
               not a positioned/transformed element, so it can't affect layout. */}
           <span
