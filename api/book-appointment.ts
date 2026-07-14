@@ -1,12 +1,12 @@
 import type { VercelRequest, VercelResponse } from "@vercel/node";
-import { getEnv } from "./_lib/env";
-import { sendAppointmentEmails } from "./_lib/email-service";
-import { createRequestLogger } from "./_lib/logger";
-import { generateReferenceNumber } from "./_lib/reference-number";
-import { checkDuplicate, checkRateLimit } from "./_lib/request-guard";
-import { formatPreferredDate, formatSubmittedAt, getClientIp, getUserAgent } from "./_lib/utils";
-import { isHoneypotTripped, validateAppointment } from "./_lib/validation";
-import type { RawBody } from "./_lib/validation";
+import { getEnv } from "./_lib/env.js";
+import { sendAppointmentEmails } from "./_lib/email-service.js";
+import { createRequestLogger } from "./_lib/logger.js";
+import { generateReferenceNumber } from "./_lib/reference-number.js";
+import { checkDuplicate, checkRateLimit } from "./_lib/request-guard.js";
+import { formatPreferredDate, formatSubmittedAt, getClientIp, getUserAgent } from "./_lib/utils.js";
+import { isHoneypotTripped, validateAppointment } from "./_lib/validation.js";
+import type { RawBody } from "./_lib/validation.js";
 
 /**
  * Appointment request handler — thin orchestration only. Each concern

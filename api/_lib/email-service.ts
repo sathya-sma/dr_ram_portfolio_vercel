@@ -1,12 +1,12 @@
 import { Resend } from "resend";
-import type { Env } from "./env";
+import type { Env } from "./env.js";
 import {
   doctorNotificationHtml,
   doctorNotificationText,
   patientConfirmationHtml,
   patientConfirmationText,
-} from "./email-templates";
-import type { AppointmentInput } from "./validation";
+} from "./email-templates.js";
+import type { AppointmentInput } from "./validation.js";
 
 type Meta = { referenceNumber: string; submittedAtDisplay: string; preferredDateDisplay: string };
 type AdminContext = { ip?: string; userAgent?: string };

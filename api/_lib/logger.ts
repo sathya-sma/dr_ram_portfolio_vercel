@@ -1,4 +1,4 @@
-import { generateRequestId } from "./request-id";
+import { generateRequestId } from "./request-id.js";
 
 /**
  * Structured, one-JSON-object-per-line logging for the appointment

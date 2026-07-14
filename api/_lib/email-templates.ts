@@ -1,6 +1,6 @@
-import { CLINIC_NAME, DOCTOR_NAME, PHONE_DISPLAY, PHONE_TEL, SITE_URL } from "../../src/lib/site";
-import { escapeHtml } from "./utils";
-import type { AppointmentInput } from "./validation";
+import { CLINIC_NAME, DOCTOR_NAME, PHONE_DISPLAY, PHONE_TEL, SITE_URL } from "../../src/lib/site.js";
+import { escapeHtml } from "./utils.js";
+import type { AppointmentInput } from "./validation.js";
 
 type Meta = {
   referenceNumber: string;
