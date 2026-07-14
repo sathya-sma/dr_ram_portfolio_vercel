@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import {
   motion,
-  useMotionTemplate,
   useMotionValue,
   useReducedMotion,
   useSpring,
@@ -34,6 +33,7 @@ const RANGE: [number, number] = [0, 90];
 export default function Nav() {
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState<string>("");
+  const [pastHero, setPastHero] = useState(false);
   const drawerRef = useRef<HTMLElement>(null);
   const burgerRef = useRef<HTMLButtonElement>(null);
 
@@ -82,45 +82,13 @@ export default function Nav() {
   // identical) rather than a separate static render.
   const y = useSpring(scrollY, prefersReducedMotion ? { stiffness: 1000, damping: 100 } : { stiffness: 260, damping: 38, mass: 0.5 });
 
-  // --- Background / glass surface -----------------------------------------
-  const blurPx = useTransform(y, RANGE, [0, 16]);
-  const backdropFilter = useMotionTemplate`blur(${blurPx}px) saturate(150%)`;
-  const bgColor = useTransform(y, RANGE, ["rgba(255,255,255,0)", "rgba(255,255,255,0.9)"]);
-
-  // --- Layered shadow, faded in as a separate paint layer (no box-shadow
-  // recompute on the header itself every frame — just its own opacity) -----
-  const shadowOpacity = useTransform(y, [0, 90], [0, 1]);
-  const borderOpacity = useTransform(y, RANGE, [0, 1]);
-
-  // --- Main row ------------------------------------------------------------
-  const rowPaddingY = useTransform(y, RANGE, [12, 8]);
-
-  // --- Logo: crossfade two purpose-made assets (white / colour) instead of
-  // a CSS filter flip, plus a continuous scale — never a discrete swap -----
-  const logoHeight = useTransform(y, RANGE, [58, 44]);
-  const logoWhiteOpacity = useTransform(y, RANGE, [1, 0]);
-  const logoColorOpacity = useTransform(y, RANGE, [0, 1]);
-
-  // --- Doctor name lockup: fades/slides in and crossfades colour ----------
-  const nameOpacity = useTransform(y, RANGE, [0, 1]);
-  const nameX = useTransform(y, RANGE, [-8, 0]);
-  const nameColor = useTransform(y, RANGE, ["#ffffff", "#0a2342"]);
-
-  // --- Desktop nav links: colour interpolates continuously; both the "at
-  // rest" and "active" colours are motion values so the active link never
-  // pops between an unrelated white/navy pair mid-scroll -------------------
-  const linkColor = useTransform(y, RANGE, ["rgba(255,255,255,0.9)", "#5a6b7b"]);
-  const linkActiveColor = useTransform(y, RANGE, ["#ffffff", "#0a2342"]);
-
-  // --- CTA: squircle → pill, and a gentle size step, mirroring the bar ----
-  const ctaPadY = useTransform(y, RANGE, [11, 8]);
-  const ctaPadX = useTransform(y, RANGE, [22, 18]);
-  const ctaRadius = useTransform(y, RANGE, [14, 999]);
-  const ctaFontSize = useTransform(y, RANGE, [14.5, 13.5]);
-
-  // --- Burger bars: colour crossfades with the same rhythm as everything
-  // else instead of an instant bg-navy/bg-white class swap -----------------
-  const burgerColor = useTransform(y, RANGE, ["#ffffff", "#0a2342"]);
+  // --- Floating card bar: compact slightly on scroll -----------------------
+  const rowPaddingY = useTransform(y, RANGE, [10, 6]);
+  const logoHeight = useTransform(y, RANGE, [48, 40]);
+  const barShadow = useTransform(y, RANGE, [
+    "0 2px 12px rgba(10,35,66,0.08), 0 1px 3px rgba(10,35,66,0.06)",
+    "0 4px 24px rgba(10,35,66,0.12), 0 2px 6px rgba(10,35,66,0.08)",
+  ]);
 
   useEffect(() => {
     const ids = LINKS.map(([, h]) => h.slice(1));
@@ -137,6 +105,18 @@ export default function Nav() {
     );
     els.forEach((e) => spy.observe(e));
     return () => spy.disconnect();
+  }, []);
+
+  // Track when user scrolls past the hero section
+  useEffect(() => {
+    const hero = document.getElementById("home");
+    if (!hero) return;
+    const obs = new IntersectionObserver(
+      ([e]) => setPastHero(!e.isIntersecting),
+      { threshold: 0 }
+    );
+    obs.observe(hero);
+    return () => obs.disconnect();
   }, []);
 
   /* Drawer behaviour: lock body scroll, close on Escape, move focus in/out. */
@@ -164,34 +144,20 @@ export default function Nav() {
 
   return (
     <>
-      <motion.header className="fixed inset-x-0 top-0 z-[900]" id="nav">
-        {/* Glass surface — a dedicated layer so animating it never forces the
-            header's own box (and its children) to repaint. */}
+      <motion.header
+        className="fixed inset-x-0 top-0 z-[900] px-4 pt-3"
+        id="nav"
+      >
+        {/* Floating white card */}
         <motion.div
-          aria-hidden
-          className="absolute inset-0 -z-10"
-          style={{ backgroundColor: bgColor, backdropFilter, WebkitBackdropFilter: backdropFilter }}
-        />
-        {/* Border + shadow, each their own opacity-only layer. */}
-        <motion.div
-          aria-hidden
-          className="absolute inset-x-0 top-full h-px bg-navy/10 -z-10"
-          style={{ opacity: borderOpacity }}
-        />
-        <motion.div
-          aria-hidden
-          className="absolute inset-x-0 top-full h-8 -z-10 pointer-events-none"
-          style={{
-            opacity: shadowOpacity,
-            boxShadow: "0 1px 2px rgba(10,35,66,0.06), 0 12px 28px -12px rgba(10,35,66,0.16), 0 24px 48px -15px rgba(10,35,66,0.12)",
-          }}
-        />
-
-        {/* Main nav */}
-        <motion.div
-          className="w-[min(100%-2.4rem,1600px)] mx-auto flex xl:grid justify-between xl:justify-normal xl:grid-cols-[1fr_auto_1fr] items-center gap-6"
-          style={{ paddingTop: rowPaddingY, paddingBottom: rowPaddingY }}
+          className="w-[min(100%,1600px)] mx-auto bg-white rounded-2xl border border-gray-100"
+          style={{ boxShadow: barShadow }}
         >
+          {/* Main nav */}
+          <motion.div
+            className="w-full px-6 flex xl:grid justify-between xl:justify-normal xl:grid-cols-[1fr_auto_1fr] items-center gap-6"
+            style={{ paddingTop: rowPaddingY, paddingBottom: rowPaddingY }}
+          >
           {/* Brand */}
           <a
             href="#home"
@@ -200,31 +166,19 @@ export default function Nav() {
           >
             <motion.div className="relative aspect-[457/128] shrink-0" style={{ height: logoHeight }}>
               <motion.img
-                src="/brand/logo-white.png"
-                alt=""
-                aria-hidden
-                width="457"
-                height="128"
-                className="absolute inset-0 w-full h-full object-contain"
-                style={{ opacity: logoWhiteOpacity }}
-              />
-              <motion.img
                 src="/brand/logo.png"
                 alt={CLINIC_NAME}
                 width="457"
                 height="128"
                 fetchPriority="high"
                 className="absolute inset-0 w-full h-full object-contain"
-                style={{ opacity: logoColorOpacity }}
               />
             </motion.div>
-            <motion.span
-              // Hidden on tight desktop widths (xl..1560) where name + menu + CTA can't all fit
-              className="font-serif font-bold tracking-wide whitespace-nowrap max-[480px]:hidden [@media(min-width:1280px)_and_(max-width:1560px)]:hidden text-[1.2rem]"
-              style={{ opacity: nameOpacity, x: nameX, color: nameColor }}
+            <span
+              className="font-serif font-bold tracking-wide whitespace-nowrap max-[480px]:hidden [@media(min-width:1280px)_and_(max-width:1560px)]:hidden text-[1.2rem] text-[#0a2342]"
             >
               {DOCTOR_NAME}
-            </motion.span>
+            </span>
           </a>
 
           {/* Desktop navbar menu */}
@@ -236,17 +190,17 @@ export default function Nav() {
               const isActive = active === href.slice(1);
               return (
                 <a key={href} href={href} className="relative">
-                  <motion.span
-                    className="
+                  <span
+                    className={`
                       block font-bold text-[1.06rem] py-2 px-[0.8rem] rounded-lg
                       [@media(min-width:1280px)_and_(max-width:1560px)]:text-[0.98rem]
                       [@media(min-width:1280px)_and_(max-width:1560px)]:px-[0.55rem]
-                      cursor-pointer whitespace-nowrap
-                    "
-                    style={{ color: isActive ? linkActiveColor : linkColor }}
+                      cursor-pointer whitespace-nowrap transition-colors duration-200
+                      ${isActive ? "text-[#0a2342]" : "text-[#5a6b7b] hover:text-[#0a2342]"}
+                    `}
                   >
                     {label}
-                  </motion.span>
+                  </span>
                   <motion.span
                     aria-hidden
                     className="absolute left-[0.8rem] right-[0.8rem] bottom-[0.32rem] h-[2px] bg-emerald-glow rounded-sm origin-left"
@@ -264,21 +218,24 @@ export default function Nav() {
             <motion.a
               href="#contact"
               className="
-                max-xl:hidden xl:inline-flex items-center gap-[0.55rem] font-sans font-bold
+                max-xl:hidden xl:inline-flex items-center gap-[0.55rem] font-sans font-bold text-[0.92rem]
                 border border-transparent bg-gradient-to-br from-emerald-2 to-teal text-white
                 whitespace-nowrap leading-none cursor-pointer
+                py-[10px] px-[20px] rounded-full
+                shadow-[0_14px_30px_-12px_rgba(21,151,106,0.5)]
+                hover:-translate-y-[2px] hover:shadow-[0_22px_42px_-14px_rgba(21,151,106,0.65)]
+                transition-[transform,box-shadow] duration-300
               "
-              style={{
-                paddingTop: ctaPadY,
-                paddingBottom: ctaPadY,
-                paddingLeft: ctaPadX,
-                paddingRight: ctaPadX,
-                borderRadius: ctaRadius,
-                fontSize: ctaFontSize,
-                boxShadow: "0 14px 30px -12px rgba(21,151,106,0.5)",
+              initial={false}
+              animate={{
+                opacity: pastHero ? 1 : 0,
+                scale: pastHero ? 1 : 0.85,
+                width: pastHero ? "auto" : 0,
+                paddingLeft: pastHero ? 20 : 0,
+                paddingRight: pastHero ? 20 : 0,
               }}
-              whileHover={{ y: -3, boxShadow: "0 22px 42px -14px rgba(21,151,106,0.65)" }}
-              transition={{ type: "spring", stiffness: 400, damping: 26 }}
+              transition={{ type: "spring", stiffness: 400, damping: 30 }}
+              style={{ overflow: "hidden" }}
             >
               Book Appointment
             </motion.a>
@@ -292,24 +249,24 @@ export default function Nav() {
             >
               <motion.span
                 className="w-6 h-[2px] rounded-sm"
-                style={{ backgroundColor: open ? "#ffffff" : burgerColor }}
+                style={{ backgroundColor: open ? "#ffffff" : "#0a2342" }}
                 animate={{ y: open ? 7 : 0, rotate: open ? 45 : 0 }}
                 transition={{ type: "spring", stiffness: 400, damping: 28 }}
               />
               <motion.span
-                className="w-6 h-[2px] rounded-sm"
-                style={{ backgroundColor: burgerColor }}
+                className="w-6 h-[2px] rounded-sm bg-[#0a2342]"
                 animate={{ opacity: open ? 0 : 1 }}
                 transition={{ type: "spring", stiffness: 400, damping: 28 }}
               />
               <motion.span
                 className="w-6 h-[2px] rounded-sm"
-                style={{ backgroundColor: open ? "#ffffff" : burgerColor }}
+                style={{ backgroundColor: open ? "#ffffff" : "#0a2342" }}
                 animate={{ y: open ? -7 : 0, rotate: open ? -45 : 0 }}
                 transition={{ type: "spring", stiffness: 400, damping: 28 }}
               />
             </button>
           </div>
+        </motion.div>
         </motion.div>
       </motion.header>
 
