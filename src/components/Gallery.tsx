@@ -7,10 +7,17 @@ const CloseMini = (p: React.SVGProps<SVGSVGElement>) => (
   </svg>
 );
 
+const PlayIcon = (p: React.SVGProps<SVGSVGElement>) => (
+  <svg viewBox="0 0 24 24" fill="currentColor" {...p}>
+    <path d="M8 5v14l11-7z" />
+  </svg>
+);
+
 type GalleryItem = {
   type: "image" | "video";
   src: string;
-  thumbnail?: string;
+  /** Static preview shown on the card — the 5MB+ clip itself only loads once the visitor opens the lightbox. */
+  poster: string;
   title: string;
   desc: string;
 };
@@ -19,6 +26,7 @@ const ITEMS: GalleryItem[] = [
   {
     type: "video",
     src: "/gallery/robotic-operation-preview.mp4",
+    poster: "/gallery/robotic-surgery-console.jpg",
     title: "Robotic Operation & OR Setup",
     desc: "A brief walk-through of the operating theatre showing the advanced DaVinci robotic surgical arms and setup prior to a minimally invasive gastroenterology procedure.",
   },
@@ -56,17 +64,25 @@ export default function Gallery() {
               style={EASE}
               onClick={() => setLightbox(item)}
             >
-              {/* Media Container */}
+              {/* Media Container — a static poster, not the video itself: the
+                  clip only downloads once the visitor explicitly opens the
+                  lightbox below, instead of every visitor's browser eagerly
+                  buffering a 5MB+ autoplaying loop before they've scrolled
+                  anywhere near this section. */}
               <div className="relative aspect-[4/3] overflow-hidden bg-navy/5 shrink-0">
-                <video
-                  src={item.src}
-                  autoPlay
-                  muted
-                  loop
-                  playsInline
+                <img
+                  src={item.poster}
+                  alt={item.title}
+                  loading="lazy"
+                  decoding="async"
                   className="w-full h-full object-cover"
                 />
-                <div className="absolute inset-0 bg-navy/0 transition-colors duration-400 group-hover:bg-navy/15" />
+                <div className="absolute inset-0 bg-navy/25 transition-colors duration-400 group-hover:bg-navy/40" />
+                <span className="absolute inset-0 grid place-items-center">
+                  <span className="w-14 h-14 rounded-full bg-white/90 grid place-items-center shadow-[0_8px_24px_rgba(10,35,66,.35)] transition-transform duration-300 group-hover:scale-110">
+                    <PlayIcon className="w-6 h-6 text-navy translate-x-[2px]" />
+                  </span>
+                </span>
               </div>
 
               {/* Text Container */}
@@ -112,8 +128,10 @@ export default function Gallery() {
             <div className="w-full bg-black/95 relative aspect-[16/10] flex items-center justify-center">
               <video
                 src={lightbox.src}
+                poster={lightbox.poster}
                 controls
                 autoPlay
+                preload="metadata"
                 className="w-full h-full object-contain"
               />
             </div>

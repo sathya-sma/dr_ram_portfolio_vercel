@@ -33,16 +33,9 @@ export const MAP_DIRECTIONS_URL =
   encodeURIComponent("Chennai Speciality Clinic, 1 Thiruvalluvarpuram 3rd St, Choolaimedu, Chennai 600094");
 
 /**
- * Appointment enquiries are delivered by Web3Forms (https://web3forms.com) —
- * a static-site form relay that emails submissions to the address the access
- * key is registered with (currently sathyadharsan93@gmail.com).
- *
- * Web3Forms access keys are public-by-design (they identify the recipient,
- * not authenticate a sender), so the key lives here as the default; the
- * VITE_WEB3FORMS_ACCESS_KEY env var still takes precedence when set, which
- * is how to re-point delivery to a different inbox without a code change.
+ * The appointment form posts to /api/book-appointment (a Vercel serverless
+ * function) which sends the notification email via Resend — see that
+ * file's header comment for the required environment variables. Nothing
+ * email-related belongs in this client-side file any more.
  */
-export const WEB3FORMS_ACCESS_KEY: string =
-  (import.meta.env.VITE_WEB3FORMS_ACCESS_KEY as string | undefined) ??
-  "1f7d3462-6c29-436c-9b1e-972469f0f160";
-export const WEB3FORMS_ENDPOINT = "https://api.web3forms.com/submit";
+export const BOOK_APPOINTMENT_ENDPOINT = "/api/book-appointment";

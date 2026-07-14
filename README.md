@@ -18,14 +18,20 @@ All clinic contact details (phone, WhatsApp, address, review URL, site URL) live
 
 ### Appointment form email delivery
 
-The form emails enquiries via [Web3Forms](https://web3forms.com):
+The form posts to [`api/book-appointment.ts`](api/book-appointment.ts), a Vercel
+serverless function that emails the clinic via [Resend](https://resend.com). Nothing
+email-related runs in the browser — the API key never reaches the client.
 
-1. Create a free access key using the clinic's email address.
-2. Copy `.env.example` to `.env` and set `VITE_WEB3FORMS_ACCESS_KEY`.
-3. Set the same variable in the Vercel project's Environment Variables and redeploy.
+1. Create a free Resend account and API key.
+2. Copy `.env.example` to `.env` and set `RESEND_API_KEY` and `CLINIC_NOTIFY_EMAIL`
+   (the inbox that should receive appointment requests).
+3. Set the same two variables in the Vercel project's Environment Variables and redeploy.
+4. Optional: verify a sending domain in Resend and set `RESEND_FROM_EMAIL` — until
+   then, mail sends from Resend's shared sandbox address (works immediately, weaker
+   deliverability/branding than a verified domain).
 
-Until the key is configured, the form falls back to opening WhatsApp with the
-enquiry pre-filled, so requests still reach the clinic.
+Locally, `npm run dev` (plain Vite) does not run the `/api` function — use
+`vercel dev` instead if you need to exercise the real email path before deploying.
 
 ### Going live on a custom domain
 
