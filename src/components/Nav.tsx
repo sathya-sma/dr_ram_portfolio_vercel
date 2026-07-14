@@ -1,6 +1,13 @@
 import { useEffect, useRef, useState } from "react";
-import { Pin, Phone } from "@/lib/icons";
-import { CLINIC_NAME, DOCTOR_NAME, PHONE_DISPLAY, PHONE_TEL } from "@/lib/site";
+import {
+  motion,
+  useMotionTemplate,
+  useMotionValue,
+  useReducedMotion,
+  useSpring,
+  useTransform,
+} from "framer-motion";
+import { CLINIC_NAME, DOCTOR_NAME } from "@/lib/site";
 
 const LINKS = [
   ["About", "#about"],
@@ -13,24 +20,107 @@ const LINKS = [
   ["Contact", "#contact"],
 ] as const;
 
-/** Below this width the inline links collapse into the drawer menu. */
-const EASE = { transitionTimingFunction: "cubic-bezier(.22,1,.36,1)" } as const;
+/**
+ * The whole "compact on scroll" transform is driven by a single continuous
+ * scroll-position value mapped across this range — nothing in this file
+ * reads a boolean "scrolled" state or swaps Tailwind classes at a
+ * threshold, so there is no frame where any property jumps. Every property
+ * below is `useTransform`'d from the same spring-smoothed value, which is
+ * what gives the whole bar a single, coherent, physically-damped motion
+ * instead of a dozen independently-timed CSS transitions.
+ */
+const RANGE: [number, number] = [0, 90];
 
 export default function Nav() {
-  const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState<string>("");
   const drawerRef = useRef<HTMLElement>(null);
   const burgerRef = useRef<HTMLButtonElement>(null);
 
+  // The drawer's open/closed slide is applied as an inline style (not a
+  // Tailwind max-xl:translate-x-* class or an external @media rule) — both
+  // were unreliable on at least one rendering surface this shipped to, and
+  // an inline transform has no cascade/specificity/media-nesting ambiguity
+  // to get wrong. isMobile mirrors the same <1280px breakpoint so the
+  // transform is a no-op (`undefined`) on desktop, where the drawer isn't
+  // used at all.
+  const [isMobile, setIsMobile] = useState(() => typeof window !== "undefined" && window.innerWidth < 1280);
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    const onResize = () => setIsMobile(window.innerWidth < 1280);
+    onResize();
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
   }, []);
 
-  // Removed IntersectionObserver for showBrand as logo is now always visible and shrinks dynamically
+  const prefersReducedMotion = useReducedMotion();
+
+  // A hand-rolled scroll MotionValue instead of framer's useScroll(): kept
+  // in sync via both the native 'scroll' event (instant in every real
+  // browser) AND a rAF poll (belt-and-braces — some embedded/automated
+  // viewports don't dispatch scroll events for programmatic scrolling, so
+  // relying on the event alone can silently freeze the whole bar mid-state).
+  const scrollY = useMotionValue(0);
+  useEffect(() => {
+    const update = () => scrollY.set(window.scrollY);
+    update();
+    window.addEventListener("scroll", update, { passive: true });
+    let raf = requestAnimationFrame(function poll() {
+      update();
+      raf = requestAnimationFrame(poll);
+    });
+    return () => {
+      window.removeEventListener("scroll", update);
+      cancelAnimationFrame(raf);
+    };
+  }, [scrollY]);
+
+  // Spring-smoothing is what turns "the bar tracks scroll position" into
+  // "the bar settles into place like a physical object" — without it, every
+  // derived value below would snap exactly to scroll offset, which reads as
+  // mechanical even though it's technically continuous. Reduced-motion gets
+  // a near-instant spring (still a MotionValue, so the code path is
+  // identical) rather than a separate static render.
+  const y = useSpring(scrollY, prefersReducedMotion ? { stiffness: 1000, damping: 100 } : { stiffness: 260, damping: 38, mass: 0.5 });
+
+  // --- Background / glass surface -----------------------------------------
+  const blurPx = useTransform(y, RANGE, [0, 16]);
+  const backdropFilter = useMotionTemplate`blur(${blurPx}px) saturate(150%)`;
+  const bgColor = useTransform(y, RANGE, ["rgba(255,255,255,0)", "rgba(255,255,255,0.9)"]);
+
+  // --- Layered shadow, faded in as a separate paint layer (no box-shadow
+  // recompute on the header itself every frame — just its own opacity) -----
+  const shadowOpacity = useTransform(y, [0, 90], [0, 1]);
+  const borderOpacity = useTransform(y, RANGE, [0, 1]);
+
+  // --- Main row ------------------------------------------------------------
+  const rowPaddingY = useTransform(y, RANGE, [12, 8]);
+
+  // --- Logo: crossfade two purpose-made assets (white / colour) instead of
+  // a CSS filter flip, plus a continuous scale — never a discrete swap -----
+  const logoHeight = useTransform(y, RANGE, [58, 44]);
+  const logoWhiteOpacity = useTransform(y, RANGE, [1, 0]);
+  const logoColorOpacity = useTransform(y, RANGE, [0, 1]);
+
+  // --- Doctor name lockup: fades/slides in and crossfades colour ----------
+  const nameOpacity = useTransform(y, RANGE, [0, 1]);
+  const nameX = useTransform(y, RANGE, [-8, 0]);
+  const nameColor = useTransform(y, RANGE, ["#ffffff", "#0a2342"]);
+
+  // --- Desktop nav links: colour interpolates continuously; both the "at
+  // rest" and "active" colours are motion values so the active link never
+  // pops between an unrelated white/navy pair mid-scroll -------------------
+  const linkColor = useTransform(y, RANGE, ["rgba(255,255,255,0.9)", "#5a6b7b"]);
+  const linkActiveColor = useTransform(y, RANGE, ["#ffffff", "#0a2342"]);
+
+  // --- CTA: squircle → pill, and a gentle size step, mirroring the bar ----
+  const ctaPadY = useTransform(y, RANGE, [11, 8]);
+  const ctaPadX = useTransform(y, RANGE, [22, 18]);
+  const ctaRadius = useTransform(y, RANGE, [14, 999]);
+  const ctaFontSize = useTransform(y, RANGE, [14.5, 13.5]);
+
+  // --- Burger bars: colour crossfades with the same rhythm as everything
+  // else instead of an instant bg-navy/bg-white class swap -----------------
+  const burgerColor = useTransform(y, RANGE, ["#ffffff", "#0a2342"]);
 
   useEffect(() => {
     const ids = LINKS.map(([, h]) => h.slice(1));
@@ -74,133 +164,124 @@ export default function Nav() {
 
   return (
     <>
-      <header
-        className={`fixed inset-x-0 top-0 z-[900] transition-all duration-400 ${
-          scrolled
-            ? "bg-white/90 backdrop-blur-[16px] backdrop-saturate-[150%] shadow-[0_10px_35px_-15px_rgba(10,35,66,0.12)] border-b border-navy/5"
-            : ""
-        }`}
-        style={EASE}
-        id="nav"
-      >
-        {/* Top strip */}
-        <div
-          className={`overflow-hidden transition-all duration-400 ${
-            scrolled ? "max-h-0 opacity-0 -mt-2" : "max-h-[42px] opacity-100"
-          }`}
-          style={EASE}
-          aria-hidden={scrolled}
-          // Keep the collapsed strip out of the tab order for keyboard/AT users.
-          inert={scrolled}
-        >
-          <div className="w-[min(100%-2.4rem,1380px)] mx-auto flex items-center gap-[.9rem] justify-end py-[.35rem] text-white text-[0.88rem] font-bold">
-            {/* NOTE: the Jotform widget injects unlayered CSS with Tailwind-colliding class
-                names (.hidden/.flex/.inline-flex) that beats our layered utilities, so
-                display toggles here must use media-variant classes on BOTH sides. */}
-            <span className="max-[420px]:hidden min-[421px]:inline-flex items-center gap-[.4rem]">
-              <Pin className="ico text-emerald-glow w-[14px] h-[14px]" />
-              {CLINIC_NAME}, Choolaimedu
-            </span>
-            <span className="max-[420px]:hidden w-px h-[14px] bg-white/22" />
-            <a
-              className="inline-flex items-center gap-[.4rem] transition-colors duration-250 hover:text-white"
-              href={`tel:${PHONE_TEL}`}
-            >
-              <Phone className="ico text-emerald-glow w-[14px] h-[14px]" />
-              {PHONE_DISPLAY}
-            </a>
-          </div>
-        </div>
+      <motion.header className="fixed inset-x-0 top-0 z-[900]" id="nav">
+        {/* Glass surface — a dedicated layer so animating it never forces the
+            header's own box (and its children) to repaint. */}
+        <motion.div
+          aria-hidden
+          className="absolute inset-0 -z-10"
+          style={{ backgroundColor: bgColor, backdropFilter, WebkitBackdropFilter: backdropFilter }}
+        />
+        {/* Border + shadow, each their own opacity-only layer. */}
+        <motion.div
+          aria-hidden
+          className="absolute inset-x-0 top-full h-px bg-navy/10 -z-10"
+          style={{ opacity: borderOpacity }}
+        />
+        <motion.div
+          aria-hidden
+          className="absolute inset-x-0 top-full h-8 -z-10 pointer-events-none"
+          style={{
+            opacity: shadowOpacity,
+            boxShadow: "0 1px 2px rgba(10,35,66,0.06), 0 12px 28px -12px rgba(10,35,66,0.16), 0 24px 48px -15px rgba(10,35,66,0.12)",
+          }}
+        />
 
         {/* Main nav */}
-        <div
-          className={`w-[min(100%-2.4rem,1600px)] mx-auto flex xl:grid justify-between xl:justify-normal xl:grid-cols-[1fr_auto_1fr] items-center gap-6 transition-all duration-400 ${
-            scrolled ? "py-[10px]" : "py-[16px]"
-          }`}
-          style={EASE}
+        <motion.div
+          className="w-[min(100%-2.4rem,1600px)] mx-auto flex xl:grid justify-between xl:justify-normal xl:grid-cols-[1fr_auto_1fr] items-center gap-6"
+          style={{ paddingTop: rowPaddingY, paddingBottom: rowPaddingY }}
         >
-          {/* Brand — visible with dynamic scaling and theme transition on scroll */}
+          {/* Brand */}
           <a
             href="#home"
-            className="flex items-center gap-[0.85rem] transition-all duration-400 hover:scale-[1.01] xl:justify-self-start"
-            style={EASE}
+            className="flex items-center gap-[0.85rem] transition-transform duration-300 hover:scale-[1.01] xl:justify-self-start"
             aria-label={`${DOCTOR_NAME} — home`}
           >
-            <div
-              className={`relative aspect-[457/128] shrink-0 transition-all duration-400 ${
-                scrolled ? "h-[46px] sm:h-[54px] xl:h-[65px]" : "h-[54px] sm:h-[72px] xl:h-[98px]"
-              }`}
-              style={EASE}
-            >
-              {/* Transparent white logo over the dark hero (using CSS filter); colored logo once the bar turns white on scroll */}
-              <img
+            <motion.div className="relative aspect-[457/128] shrink-0" style={{ height: logoHeight }}>
+              <motion.img
+                src="/brand/logo-white.png"
+                alt=""
+                aria-hidden
+                width="457"
+                height="128"
+                className="absolute inset-0 w-full h-full object-contain"
+                style={{ opacity: logoWhiteOpacity }}
+              />
+              <motion.img
                 src="/brand/logo.png"
                 alt={CLINIC_NAME}
                 width="457"
                 height="128"
-                className={`absolute inset-0 w-full h-full object-contain transition-all duration-400 ${
-                  scrolled ? "brightness-100 invert-0" : "brightness-0 invert"
-                }`}
+                fetchPriority="high"
+                className="absolute inset-0 w-full h-full object-contain"
+                style={{ opacity: logoColorOpacity }}
               />
-            </div>
-            <span
+            </motion.div>
+            <motion.span
               // Hidden on tight desktop widths (xl..1560) where name + menu + CTA can't all fit
-              className={`font-serif font-bold tracking-wide whitespace-nowrap transition-all duration-400 max-[480px]:hidden [@media(min-width:1280px)_and_(max-width:1560px)]:hidden ${
-                scrolled
-                  ? "text-navy text-[1.15rem] opacity-100 translate-x-0"
-                  : "text-white text-[1.35rem] opacity-0 -translate-x-2 pointer-events-none"
-              }`}
-              style={EASE}
+              className="font-serif font-bold tracking-wide whitespace-nowrap max-[480px]:hidden [@media(min-width:1280px)_and_(max-width:1560px)]:hidden text-[1.2rem]"
+              style={{ opacity: nameOpacity, x: nameX, color: nameColor }}
             >
               {DOCTOR_NAME}
-            </span>
+            </motion.span>
           </a>
 
-          {/* Desktop navbar menu - Trigger rebuild */}
+          {/* Desktop navbar menu */}
           <nav
             className="flex items-center gap-[.35rem] xl:justify-self-center xl:-translate-x-[20px] max-xl:hidden"
             aria-label="Primary"
           >
-            {LINKS.map(([label, href]) => (
-              <a
-                key={href}
-                href={href}
-                className={`
-                  relative font-bold text-[1.06rem] py-2 px-[0.8rem] rounded-lg
-                  [@media(min-width:1280px)_and_(max-width:1560px)]:text-[0.98rem]
-                  [@media(min-width:1280px)_and_(max-width:1560px)]:px-[0.55rem]
-                  transition-colors duration-250 cursor-pointer whitespace-nowrap
-                  ${scrolled ? "text-muted hover:text-navy" : "text-white/90 hover:text-white"}
-                  ${active === href.slice(1) ? (scrolled ? "!text-navy" : "!text-white") : ""}
-                  after:content-[''] after:absolute after:left-[0.8rem] after:right-[0.8rem]
-                  after:bottom-[0.32rem] after:h-[2px] after:bg-emerald-glow after:rounded-sm
-                  after:origin-left after:transition-transform after:duration-300
-                  ${active === href.slice(1) ? "after:scale-x-100" : "after:scale-x-0 hover:after:scale-x-100"}
-                `}
-              >
-                {label}
-              </a>
-            ))}
+            {LINKS.map(([label, href]) => {
+              const isActive = active === href.slice(1);
+              return (
+                <a key={href} href={href} className="relative">
+                  <motion.span
+                    className="
+                      block font-bold text-[1.06rem] py-2 px-[0.8rem] rounded-lg
+                      [@media(min-width:1280px)_and_(max-width:1560px)]:text-[0.98rem]
+                      [@media(min-width:1280px)_and_(max-width:1560px)]:px-[0.55rem]
+                      cursor-pointer whitespace-nowrap
+                    "
+                    style={{ color: isActive ? linkActiveColor : linkColor }}
+                  >
+                    {label}
+                  </motion.span>
+                  <motion.span
+                    aria-hidden
+                    className="absolute left-[0.8rem] right-[0.8rem] bottom-[0.32rem] h-[2px] bg-emerald-glow rounded-sm origin-left"
+                    initial={false}
+                    animate={{ scaleX: isActive ? 1 : 0 }}
+                    whileHover={{ scaleX: 1 }}
+                    transition={{ type: "spring", stiffness: 400, damping: 32 }}
+                  />
+                </a>
+              );
+            })}
           </nav>
 
           <div className="flex items-center gap-[.8rem] xl:justify-self-end">
-            {/* Shown only once the bar compacts on scroll — at the top it overflows
-                narrow desktop widths and the hero already carries the same CTA. */}
-            <a
+            <motion.a
               href="#contact"
-              className={`
-                items-center gap-[0.55rem] font-sans font-bold text-[0.92rem]
-                py-[0.75rem] px-[1.3rem] rounded-full border border-transparent
-                bg-gradient-to-br from-emerald-2 to-teal text-white
-                shadow-[0_14px_30px_-12px_rgba(21,151,106,0.5)]
-                hover:-translate-y-[3px] hover:shadow-[0_22px_42px_-14px_rgba(21,151,106,0.65)]
-                transition-all duration-350 whitespace-nowrap leading-none cursor-pointer
-                ${scrolled ? "max-xl:hidden xl:inline-flex" : "hidden"}
-              `}
-              style={EASE}
+              className="
+                max-xl:hidden xl:inline-flex items-center gap-[0.55rem] font-sans font-bold
+                border border-transparent bg-gradient-to-br from-emerald-2 to-teal text-white
+                whitespace-nowrap leading-none cursor-pointer
+              "
+              style={{
+                paddingTop: ctaPadY,
+                paddingBottom: ctaPadY,
+                paddingLeft: ctaPadX,
+                paddingRight: ctaPadX,
+                borderRadius: ctaRadius,
+                fontSize: ctaFontSize,
+                boxShadow: "0 14px 30px -12px rgba(21,151,106,0.5)",
+              }}
+              whileHover={{ y: -3, boxShadow: "0 22px 42px -14px rgba(21,151,106,0.65)" }}
+              transition={{ type: "spring", stiffness: 400, damping: 26 }}
             >
               Book Appointment
-            </a>
+            </motion.a>
             <button
               ref={burgerRef}
               className="max-xl:flex xl:hidden flex-col gap-[5px] bg-transparent border-0 cursor-pointer p-[6px]"
@@ -209,44 +290,53 @@ export default function Nav() {
               aria-controls="navLinks"
               onClick={() => setOpen((v) => !v)}
             >
-              <span
-                className={`w-6 h-[2px] rounded-sm transition-all duration-300 ${
-                  scrolled || open ? "bg-navy" : "bg-white"
-                } ${open ? "translate-y-[7px] rotate-45 !bg-white" : ""}`}
-                style={EASE}
+              <motion.span
+                className="w-6 h-[2px] rounded-sm"
+                style={{ backgroundColor: open ? "#ffffff" : burgerColor }}
+                animate={{ y: open ? 7 : 0, rotate: open ? 45 : 0 }}
+                transition={{ type: "spring", stiffness: 400, damping: 28 }}
               />
-              <span
-                className={`w-6 h-[2px] rounded-sm transition-all duration-300 ${
-                  scrolled ? "bg-navy" : "bg-white"
-                } ${open ? "opacity-0" : ""}`}
-                style={EASE}
+              <motion.span
+                className="w-6 h-[2px] rounded-sm"
+                style={{ backgroundColor: burgerColor }}
+                animate={{ opacity: open ? 0 : 1 }}
+                transition={{ type: "spring", stiffness: 400, damping: 28 }}
               />
-              <span
-                className={`w-6 h-[2px] rounded-sm transition-all duration-300 ${
-                  scrolled || open ? "bg-navy" : "bg-white"
-                } ${open ? "-translate-y-[7px] -rotate-45 !bg-white" : ""}`}
-                style={EASE}
+              <motion.span
+                className="w-6 h-[2px] rounded-sm"
+                style={{ backgroundColor: open ? "#ffffff" : burgerColor }}
+                animate={{ y: open ? -7 : 0, rotate: open ? -45 : 0 }}
+                transition={{ type: "spring", stiffness: 400, damping: 28 }}
               />
             </button>
           </div>
-        </div>
-      </header>
+        </motion.div>
+      </motion.header>
 
       {/* Mobile Drawer (Sibling to header to avoid backdrop-filter containers clipping fixed drawers) */}
       <div
-        className={`hidden max-xl:block fixed inset-0 z-[940] bg-navy/45 backdrop-blur-[2px] transition-all duration-400 ${
-          open ? "opacity-100 visible" : "opacity-0 invisible pointer-events-none"
-        }`}
+        className={`hidden max-xl:block fixed inset-0 z-[940] bg-navy/45 backdrop-blur-[2px] transition-all duration-400 ${open ? "opacity-100 visible" : "opacity-0 invisible pointer-events-none"
+          }`}
         onClick={() => setOpen(false)}
         aria-hidden
       />
 
+      {/* `inert` (native attribute, not a Tailwind visibility utility) drops
+          the closed drawer from focus/AT and hit-testing without needing a
+          separate display/visibility toggle. The slide transform is inline
+          (see isMobile above) rather than a Tailwind translate-x-* class or
+          an external @media rule — both compile/resolve in ways that didn't
+          reliably apply on at least one rendering surface this shipped to;
+          an inline style has no cascade/specificity/media-nesting to get
+          wrong, at the cost of one extra resize listener. */}
       <nav
         ref={drawerRef}
-        className={`hidden max-xl:flex max-xl:flex-col max-xl:items-center max-xl:justify-start max-xl:fixed max-xl:inset-y-0 max-xl:right-0 max-xl:left-auto max-xl:w-[min(85%,320px)] max-xl:pt-[90px] max-xl:overflow-y-auto max-xl:gap-4 max-xl:bg-navy max-xl:p-8 max-xl:transition-[transform,visibility] max-xl:duration-400 z-[950] ${
-          open ? "max-xl:translate-x-0 max-xl:visible" : "max-xl:translate-x-full max-xl:invisible"
-        }`}
-        style={EASE}
+        inert={!open}
+        className="hidden max-xl:flex max-xl:flex-col max-xl:items-center max-xl:justify-start max-xl:fixed max-xl:inset-y-0 max-xl:right-0 max-xl:left-auto max-xl:w-[min(85%,320px)] max-xl:pt-[90px] max-xl:overflow-y-auto max-xl:gap-4 max-xl:bg-navy max-xl:p-8 max-xl:transition-transform max-xl:duration-400 z-[950]"
+        style={{
+          transitionTimingFunction: "cubic-bezier(.22,1,.36,1)",
+          transform: isMobile ? (open ? "translateX(0)" : "translateX(100%)") : undefined,
+        }}
         id="navLinks"
         aria-label="Mobile Navigation"
       >
