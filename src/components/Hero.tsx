@@ -141,7 +141,7 @@ export default function Hero() {
             style={{ background: "radial-gradient(circle at 50% 42%, rgba(47,214,160,.16), transparent 65%)" }}
           />
           <img
-            src="/brand/dr-ram-portrait.webp"
+            src="/brand/dr-ram-portrait-v2.webp"
             alt="Dr. T. Ramkumar, Consultant Gastrointestinal Surgeon"
             width="689"
             height="1029"
