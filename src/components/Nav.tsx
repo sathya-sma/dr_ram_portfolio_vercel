@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import {
   motion,
+  useMotionTemplate,
   useMotionValue,
   useReducedMotion,
   useSpring,
@@ -87,8 +88,17 @@ export default function Nav() {
   const logoHeight = useTransform(y, RANGE, [48, 40]);
   const barShadow = useTransform(y, RANGE, [
     "0 2px 12px rgba(10,35,66,0.08), 0 1px 3px rgba(10,35,66,0.06)",
-    "0 4px 24px rgba(10,35,66,0.12), 0 2px 6px rgba(10,35,66,0.08)",
+    "0 8px 32px rgba(10,35,66,0.16), 0 2px 8px rgba(10,35,66,0.1)",
   ]);
+
+  // --- Liquid glass surface: heavy blur + saturation so whatever scrolls
+  // underneath actually reads through the bar (that's the "liquid" part —
+  // a flat translucent white is just a dimmer solid bar), gently deepening
+  // as more page content passes behind it. -------------------------------
+  const glassBlurPx = useTransform(y, RANGE, [18, 26]);
+  const glassSaturate = useTransform(y, RANGE, [160, 180]);
+  const glassBackdrop = useMotionTemplate`blur(${glassBlurPx}px) saturate(${glassSaturate}%)`;
+  const glassBg = useTransform(y, RANGE, ["rgba(255,255,255,0.5)", "rgba(255,255,255,0.68)"]);
 
   useEffect(() => {
     const ids = LINKS.map(([, h]) => h.slice(1));
@@ -148,11 +158,43 @@ export default function Nav() {
         className="fixed inset-x-0 top-0 z-[900] px-4 pt-3"
         id="nav"
       >
-        {/* Floating white card */}
+        {/* Floating liquid-glass card */}
         <motion.div
-          className="w-[min(100%,1600px)] mx-auto bg-white rounded-2xl border border-gray-100"
+          className="relative w-[min(100%,1600px)] mx-auto rounded-2xl overflow-hidden"
           style={{ boxShadow: barShadow }}
         >
+          {/* Glass surface — heavy blur/saturate so page content actually
+              shows through, tinted rather than a flat translucent white. */}
+          <motion.div
+            aria-hidden
+            className="absolute inset-0 -z-20"
+            style={{ backgroundColor: glassBg, backdropFilter: glassBackdrop, WebkitBackdropFilter: glassBackdrop }}
+          />
+          {/* Specular highlight — a soft diagonal sheen, like light catching
+              the top-left of a curved glass surface. Purely decorative,
+              never animated (a moving highlight reads as a loading shimmer,
+              not glass). */}
+          <div
+            aria-hidden
+            className="absolute inset-0 -z-10 pointer-events-none"
+            style={{
+              background:
+                "linear-gradient(135deg, rgba(255,255,255,.65) 0%, rgba(255,255,255,.22) 22%, rgba(255,255,255,0) 45%), radial-gradient(120% 180% at 15% -40%, rgba(255,255,255,.5), transparent 60%)",
+            }}
+          />
+          {/* Glass edge lighting — bright hairline on top where light would
+              catch the rim, soft dark hairline underneath for depth, plus a
+              faint outer ring so the card reads as a solid object, not a
+              flat cutout. All inset box-shadows: paint-only, no layout. */}
+          <div
+            aria-hidden
+            className="absolute inset-0 -z-10 rounded-2xl pointer-events-none"
+            style={{
+              boxShadow:
+                "inset 0 1px 0 rgba(255,255,255,.85), inset 0 0 0 1px rgba(255,255,255,.4), inset 0 -1px 1px rgba(10,35,66,.05)",
+            }}
+          />
+
           {/* Main nav */}
           <motion.div
             className="w-full px-6 flex xl:grid justify-between xl:justify-normal xl:grid-cols-[1fr_auto_1fr] items-center gap-6"

@@ -143,8 +143,8 @@ export default function Hero() {
           <img
             src="/brand/dr-ram-portrait.webp"
             alt="Dr. T. Ramkumar, Consultant Gastrointestinal Surgeon"
-            width="691"
-            height="1030"
+            width="689"
+            height="1029"
             fetchPriority="high"
             className="relative block w-full h-auto object-contain max-h-[90vh] mx-auto filter drop-shadow-[0_18px_40px_rgba(0,0,0,0.4)]"
           />
