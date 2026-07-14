@@ -21,17 +21,17 @@ export default function App() {
       <SiteEffects />
       <Nav />
       <main>
-        <Hero />
+        <div className="snap-section"><Hero /></div>
         <Stats />
-        <About />
-        <Approach />
-        <Specialities />
-        <Conditions />
-        <Publications />
-        <Gallery />
-        <Hospitals />
-        <Reviews />
-        <Contact />
+        <div className="snap-section"><About /></div>
+        <div className="snap-section"><Approach /></div>
+        <div className="snap-section"><Specialities /></div>
+        <div className="snap-section"><Conditions /></div>
+        <div className="snap-section"><Publications /></div>
+        <div className="snap-section"><Gallery /></div>
+        <div className="snap-section"><Hospitals /></div>
+        <div className="snap-section"><Reviews /></div>
+        <div className="snap-section"><Contact /></div>
       </main>
       <Footer />
       <Floaties />

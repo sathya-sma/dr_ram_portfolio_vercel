@@ -172,3 +172,16 @@ input:focus-visible, textarea:focus-visible { outline: none; }
 .border-line {
   border-color: #e3ece9 !important;
 }
+
+/* Scroll Snapping (Desktop Only) */
+@media (min-width: 1025px) {
+  html {
+    scroll-snap-type: y proximity;
+    scroll-behavior: smooth;
+  }
+
+  .snap-section {
+    scroll-snap-align: start;
+    scroll-snap-stop: normal;
+  }
+}
