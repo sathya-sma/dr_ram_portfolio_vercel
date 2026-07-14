@@ -126,7 +126,7 @@ export default function Hero() {
             positioning, no transform, no inline styles for size/position).
           - align-items:center on the grid above vertically centers this
             column against the text column at all times.
-          - The image itself caps at max-h-[75vh] with object-contain, so
+          - The image itself caps at max-h-[90vh] with object-contain, so
             the full figure is always visible and never overflows the
             viewport, at any zoom level or window size — the browser's
             layout engine handles it on every reflow, the same way it
@@ -146,7 +146,7 @@ export default function Hero() {
             width="691"
             height="1030"
             fetchPriority="high"
-            className="relative block w-full h-auto object-contain max-h-[75vh] mx-auto filter drop-shadow-[0_18px_40px_rgba(0,0,0,0.4)]"
+            className="relative block w-full h-auto object-contain max-h-[90vh] mx-auto filter drop-shadow-[0_18px_40px_rgba(0,0,0,0.4)]"
           />
         </div>
       </div>
