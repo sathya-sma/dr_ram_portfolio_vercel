@@ -143,12 +143,19 @@ export default function Hero() {
           />
 
           <img
+            src="/brand/caduceus.png"
+            alt=""
+            aria-hidden
+            className="absolute left-1/2 top-[46%] -translate-x-1/2 -translate-y-1/2 w-[76%] max-w-[420px] h-auto object-contain opacity-[0.24] pointer-events-none select-none z-[1]"
+          />
+
+          <img
             src="/brand/dr-ram-portrait-v2.webp"
             alt="Dr. T. Ramkumar, Consultant Gastrointestinal Surgeon"
             width="689"
             height="1029"
             fetchPriority="high"
-            className="relative block w-full h-auto object-contain max-h-[90vh] mx-auto filter drop-shadow-[0_18px_40px_rgba(0,0,0,0.4)]"
+            className="relative z-[2] block w-full h-auto object-contain max-h-[90vh] mx-auto filter drop-shadow-[0_18px_40px_rgba(0,0,0,0.4)]"
           />
 
           {/* Minimalist Floating HUD Stats (No Cards / Borderless Layout) */}

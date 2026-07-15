@@ -4,7 +4,6 @@ import {
   DOCTOR_NAME,
   PHONE_DISPLAY,
   PHONE_TEL,
-  REVIEW_URL,
 } from "@/lib/site";
 import { openLegal } from "./Legal";
 
@@ -35,17 +34,15 @@ export default function Footer() {
       <div className="w-[min(100%-2.4rem,1180px)] mx-auto grid grid-cols-[1.6fr_1fr_1.2fr_1.1fr] gap-8 max-[980px]:grid-cols-2 max-[560px]:grid-cols-1">
         {/* Brand */}
         <div>
-          <span className="inline-block bg-white rounded-[12px] p-[6px] mb-4">
-            <img
-              src="/brand/logo.png"
-              alt={CLINIC_NAME}
-              width="493"
-              height="138"
-              loading="lazy"
-              decoding="async"
-              className="h-[38px] w-auto block"
-            />
-          </span>
+          <img
+            src="/brand/logo-white.png"
+            alt={CLINIC_NAME}
+            width="493"
+            height="138"
+            loading="lazy"
+            decoding="async"
+            className="h-[38px] w-auto block mb-4"
+          />
           <p className="font-serif text-[1.4rem] text-white font-semibold">{DOCTOR_NAME}</p>
           <p className="text-[.9rem] mt-[.3rem] text-[#9fb6bf]">
             Consultant Gastrointestinal Surgeon
@@ -86,40 +83,39 @@ export default function Footer() {
             {PHONE_DISPLAY}
           </a>
         </div>
-
-        {/* Appointments */}
-        <div>
-          <p className={headingClass}>Appointments</p>
-          <a
-            href="#contact"
-            className="
-              inline-flex items-center gap-[.55rem] font-sans font-bold text-[.9rem]
-              py-[.7rem] px-[1.15rem] rounded-full border border-transparent
-              bg-gradient-to-br from-emerald-2 to-teal text-white
-              shadow-[0_14px_30px_-12px_rgba(21,151,106,.7)]
-              hover:-translate-y-[3px] hover:shadow-[0_22px_42px_-14px_rgba(21,151,106,.85)]
-              transition-all duration-350 whitespace-nowrap leading-none cursor-pointer mb-[.9rem]
-            "
-            style={{ transitionTimingFunction: "cubic-bezier(.22,1,.36,1)" }}
-          >
-            Book Appointment
-          </a>
-          <a
-            href={REVIEW_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block text-[#f5c451]! font-semibold text-[.93rem] w-fit transition-all duration-250 hover:text-emerald-glow hover:pl-1"
-          >
-            ★ Leave a Google review
-          </a>
+        {/* Technology Partner */}
+        <div className="flex flex-col items-start">
+          <p className={headingClass}>Technology Partner</p>
+          <div className="group block cursor-default">
+            <img
+              src="/brand/axion-logo.png"
+              alt="Axion Technologies Private Limited"
+              className="h-[125px] w-auto block object-contain ml-[-24px] mt-[-28px] mb-[-24px] transition-all duration-300 group-hover:scale-[1.06] group-hover:translate-x-1"
+            />
+            <div className="text-[0.8rem] text-[#8ba4ad] leading-relaxed mt-1">
+              <span className="block text-[#7fa3b0] text-[0.74rem] uppercase font-semibold tracking-wider">Designed &amp; Developed by</span>
+              <span className="block font-serif text-[1.2rem] font-bold text-white group-hover:text-emerald-glow transition-colors duration-250 mt-1">
+                Axion Technologies
+              </span>
+              <span className="block text-[0.66rem] font-extrabold text-[#5a7b88] tracking-[0.12em] uppercase mt-0.5">
+                Private Limited
+              </span>
+            </div>
+          </div>
         </div>
+
+
+
       </div>
 
       {/* Bottom bar */}
       <div className="w-[min(100%-2.4rem,1180px)] mx-auto flex justify-between items-center gap-4 flex-wrap mt-12 pt-[1.4rem] border-t border-white/12 text-[.82rem] text-[#8ba4ad]">
-        <p className="m-0">
-          © {new Date().getFullYear()} {DOCTOR_NAME} · {CLINIC_NAME}. All rights reserved.
-        </p>
+        <div className="flex flex-col gap-2">
+          <p className="m-0">
+            © {new Date().getFullYear()} {DOCTOR_NAME} · {CLINIC_NAME}. All rights reserved.
+          </p>
+
+        </div>
         <div className="flex items-center gap-4 flex-wrap">
           <button
             onClick={() => openLegal()}

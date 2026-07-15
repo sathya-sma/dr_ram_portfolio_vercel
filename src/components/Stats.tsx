@@ -85,39 +85,19 @@ export default function Stats() {
               <div className="text-[.82rem] text-muted mt-1 max-w-[34ch] leading-relaxed">
                 Specialized gastrointestinal, laparoscopic, colorectal, and hepatobiliary interventions.
               </div>
-              <span className="inline-flex items-center gap-1.5 py-1 px-3.5 rounded-full text-[0.72rem] font-bold bg-[#e3fcf3] text-[#0f8b63] border border-[#bef3e1] mt-4">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#1fb886] animate-pulse" />
-                99.2% Success Rate
-              </span>
             </div>
             
-            <div className="w-full md:w-[260px] h-[100px] shrink-0 self-end overflow-visible select-none mt-2 md:mt-0 relative">
-              <svg className="w-full h-full overflow-visible" viewBox="0 0 260 100" preserveAspectRatio="none">
-                <defs>
-                  <linearGradient id="spark-grad" x1="0" y1="0" x2="1" y2="0">
-                    <stop offset="0%" stopColor="#1fb886" />
-                    <stop offset="50%" stopColor="#0e7c8b" />
-                    <stop offset="100%" stopColor="#1fb886" />
-                  </linearGradient>
-                  <linearGradient id="spark-fill" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stopColor="#1fb886" stopOpacity="0.18" />
-                    <stop offset="100%" stopColor="#1fb886" stopOpacity="0" />
-                  </linearGradient>
-                </defs>
-                <path
-                  d="M 5,85 Q 40,82 70,68 T 130,62 T 190,38 T 250,15"
-                  fill="none"
-                  stroke="url(#spark-grad)"
-                  strokeWidth="3.5"
-                  strokeLinecap="round"
-                  className="transition-all duration-500 group-hover:stroke-[4px]"
-                />
-                <path
-                  d="M 5,85 Q 40,82 70,68 T 130,62 T 190,38 T 250,15 L 250,100 L 5,100 Z"
-                  fill="url(#spark-fill)"
-                />
-                <circle cx="250" cy="15" r="5.5" fill="#1fb886" className="animate-ping" />
-                <circle cx="250" cy="15" r="4.5" fill="#0e7c8b" className="group-hover:scale-125 transition-transform duration-300" />
+            {/* Structured Column Chart showing volume trend */}
+            <div className="w-full md:w-[240px] h-[75px] shrink-0 self-end overflow-visible select-none mt-2 md:mt-0 flex items-end justify-between px-2">
+              <svg className="w-full h-full overflow-visible" viewBox="0 0 200 60" preserveAspectRatio="none">
+                <rect x="5" y="45" width="10" height="15" rx="3" fill="#e3ece9" className="transition-all duration-500 group-hover:fill-teal/40" />
+                <rect x="30" y="38" width="10" height="22" rx="3" fill="#e3ece9" className="transition-all duration-500 group-hover:fill-teal/50" />
+                <rect x="55" y="30" width="10" height="30" rx="3" fill="#1fb886" opacity="0.4" className="transition-all duration-500 group-hover:opacity-60" />
+                <rect x="80" y="24" width="10" height="36" rx="3" fill="#1fb886" opacity="0.6" className="transition-all duration-500 group-hover:opacity-85" />
+                <rect x="105" y="18" width="10" height="42" rx="3" fill="#0e7c8b" opacity="0.5" className="transition-all duration-500 group-hover:opacity-75" />
+                <rect x="130" y="12" width="10" height="48" rx="3" fill="#0e7c8b" opacity="0.8" className="transition-all duration-500 group-hover:opacity-95" />
+                <rect x="155" y="6" width="10" height="54" rx="3" fill="#1fb886" className="transition-all duration-500 group-hover:scale-y-105 origin-bottom" />
+                <rect x="180" y="1" width="10" height="59" rx="3" fill="#0e7c8b" className="transition-all duration-500 group-hover:scale-y-105 origin-bottom" />
               </svg>
             </div>
           </div>
@@ -145,19 +125,23 @@ export default function Stats() {
               </div>
             </div>
             
+            {/* Clean Progress Slider metric */}
             <div className="mt-5 pt-4 border-t border-line/60">
-              <div className="relative h-1.5 bg-[#eaf3f0] rounded-full overflow-hidden">
-                <div className="absolute top-0 left-0 h-full w-[92%] bg-gradient-to-r from-[#1fb886] to-[#0e7c8b] rounded-full transition-all duration-500 group-hover:w-[96%]" />
+              <div className="relative h-2 bg-[#eaf3f0] rounded-full flex items-center">
+                {/* Active slider track */}
+                <div className="absolute top-0 left-0 h-full w-[80%] bg-gradient-to-r from-[#1fb886] to-[#0e7c8b] rounded-full transition-all duration-500 group-hover:w-[85%]" />
+                {/* Active thumb indicator */}
+                <span className="absolute left-[80%] w-3.5 h-3.5 rounded-full bg-white border-2 border-teal shadow-md transition-all duration-500 group-hover:left-[85%] z-10" />
               </div>
-              <div className="flex justify-between text-[0.62rem] font-bold text-muted mt-2 tracking-wide uppercase">
-                <span>2002</span>
-                <span>2014</span>
-                <span className="text-teal font-extrabold">2026 (Present)</span>
+              <div className="flex justify-between text-[0.6rem] font-bold text-muted mt-2 tracking-wide uppercase">
+                <span>Start</span>
+                <span>20 Yr Target</span>
+                <span className="text-teal font-extrabold">24+ Yrs</span>
               </div>
             </div>
           </div>
 
-          {/* Card 3: Advanced Robotic Surgery (Tech Card) */}
+          {/* Card 3: Advanced Robotic Surgery */}
           <div
             className="reveal bg-gradient-to-br from-[#0c2237] to-[#071524] border border-[#1b354d] rounded-[28px] p-6 lg:p-8 shadow-[0_12px_36px_-10px_rgba(7,21,36,0.3)] hover:shadow-[0_24px_50px_-12px_rgba(7,21,36,0.45)] hover:-translate-y-1.5 transition-all duration-500 flex flex-col justify-between group overflow-hidden"
             style={EASE}
@@ -168,7 +152,7 @@ export default function Stats() {
                   <span className="w-2.5 h-2.5 rounded-full bg-[#2fd6a0] animate-pulse shadow-[0_0_8px_#2fd6a0]" />
                 </div>
                 <span className="py-0.5 px-2.5 rounded-full text-[0.66rem] font-bold bg-[#143224] text-[#2fd6a0] border border-[#1d4d35]">
-                  Pioneer Tech
+                  Console Expert
                 </span>
               </div>
               
@@ -183,27 +167,32 @@ export default function Stats() {
               </div>
             </div>
 
+            {/* Circular Progress Gauge Dial */}
             <div className="mt-5 pt-4 border-t border-[#1b354d] flex justify-between items-center gap-4">
               <div className="text-[0.68rem] text-[#8fa7be] font-medium leading-tight">
                 <div className="flex items-center gap-1.5">
                   <span className="w-1.5 h-1.5 rounded-full bg-[#2fd6a0]" />
-                  DaVinci System Expert
+                  DaVinci Console
                 </div>
                 <div className="flex items-center gap-1.5 mt-1.5">
                   <span className="w-1.5 h-1.5 rounded-full bg-[#2fd6a0]" />
-                  Laparoscopic Specialist
+                  100% Competency
                 </div>
               </div>
-              <div className="w-14 h-14 shrink-0 relative flex items-center justify-center">
-                <svg className="absolute w-full h-full text-[#2fd6a0]/20" viewBox="0 0 100 100">
-                  <circle cx="50" cy="50" r="44" fill="none" stroke="currentColor" strokeWidth="1" strokeDasharray="3 3" className="animate-[spin_40s_linear_infinite]" />
-                  <circle cx="50" cy="50" r="30" fill="none" stroke="currentColor" strokeWidth="1.5" />
-                  <circle cx="50" cy="50" r="16" fill="none" stroke="currentColor" strokeWidth="1" strokeDasharray="2 2" />
-                  <circle cx="50" cy="50" r="3" fill="#2fd6a0" className="animate-ping" />
-                  <circle cx="50" cy="50" r="3" fill="#2fd6a0" />
-                  <line x1="50" y1="5" x2="50" y2="95" stroke="currentColor" strokeWidth="0.5" strokeDasharray="4 4" />
-                  <line x1="5" y1="50" x2="95" y2="50" stroke="currentColor" strokeWidth="0.5" strokeDasharray="4 4" />
+              <div className="w-12 h-12 shrink-0 relative flex items-center justify-center">
+                <svg className="w-full h-full transform -rotate-90" viewBox="0 0 36 36">
+                  <circle cx="18" cy="18" r="15.915" fill="none" stroke="#1b354d" strokeWidth="3" />
+                  <circle cx="18" cy="18" r="15.915" fill="none" stroke="url(#robotic-dial-grad)" strokeWidth="3"
+                          strokeDasharray="100 0" strokeDashoffset="0"
+                          className="transition-all duration-1000 ease-out" />
+                  <defs>
+                    <linearGradient id="robotic-dial-grad" x1="0" y1="0" x2="1" y2="1">
+                      <stop offset="0%" stopColor="#0e7c8b" />
+                      <stop offset="100%" stopColor="#2fd6a0" />
+                    </linearGradient>
+                  </defs>
                 </svg>
+                <span className="absolute text-[0.65rem] font-extrabold text-[#2fd6a0]">100%</span>
               </div>
             </div>
           </div>
@@ -231,31 +220,25 @@ export default function Stats() {
               </div>
             </div>
 
-            <div className="mt-5 pt-4 border-t border-line/60 flex justify-between items-center gap-4">
-              <div className="text-[0.68rem] text-muted font-medium leading-tight">
-                <div className="flex items-center gap-1.5">
-                  <span className="w-1.5 h-1.5 rounded-full bg-teal" />
-                  Clinical Studies
+            {/* Segmented horizontal comparison progress bar */}
+            <div className="mt-5 pt-4 border-t border-line/60 flex flex-col gap-2">
+              <div className="flex flex-col gap-1">
+                <div className="flex justify-between text-[0.65rem] text-muted font-bold">
+                  <span>International Journals</span>
+                  <span className="text-teal">12</span>
                 </div>
-                <div className="flex items-center gap-1.5 mt-1.5">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#1fb886]" />
-                  Peer-Reviewed Papers
+                <div className="h-1.5 bg-[#eaf3f0] rounded-full overflow-hidden">
+                  <div className="h-full w-[60%] bg-teal rounded-full" />
                 </div>
               </div>
-              <div className="w-12 h-12 shrink-0 relative flex items-center justify-center">
-                <svg className="w-full h-full transform -rotate-90" viewBox="0 0 36 36">
-                  <circle cx="18" cy="18" r="15.915" fill="none" stroke="#e3ece9" strokeWidth="3.5" />
-                  <circle cx="18" cy="18" r="15.915" fill="none" stroke="url(#donut-grad)" strokeWidth="3.5"
-                          strokeDasharray="80 20" strokeDashoffset="0"
-                          className="transition-all duration-1000 ease-out group-hover:stroke-teal" />
-                  <defs>
-                    <linearGradient id="donut-grad" x1="0" y1="0" x2="1" y2="1">
-                      <stop offset="0%" stopColor="#0e7c8b" />
-                      <stop offset="100%" stopColor="#1fb886" />
-                    </linearGradient>
-                  </defs>
-                </svg>
-                <span className="absolute text-[0.68rem] font-extrabold text-navy">80%</span>
+              <div className="flex flex-col gap-1 mt-1">
+                <div className="flex justify-between text-[0.65rem] text-muted font-bold">
+                  <span>National Reviews</span>
+                  <span className="text-[#1fb886]">8</span>
+                </div>
+                <div className="h-1.5 bg-[#eaf3f0] rounded-full overflow-hidden">
+                  <div className="h-full w-[40%] bg-[#1fb886] rounded-full" />
+                </div>
               </div>
             </div>
           </div>
@@ -283,25 +266,21 @@ export default function Stats() {
               </div>
             </div>
 
+            {/* Waffle Chart grid visual overlay */}
             <div className="mt-5 pt-4 border-t border-line/60 flex flex-col justify-center">
-              <div className="w-full h-12 overflow-visible relative select-none">
-                <svg className="w-full h-full text-line group-hover:text-teal/15 transition-colors duration-500" viewBox="0 0 200 60" preserveAspectRatio="none">
-                  <line x1="20" y1="30" x2="60" y2="15" stroke="currentColor" strokeWidth="1.5" strokeDasharray="3 3" />
-                  <line x1="60" y1="15" x2="100" y2="40" stroke="currentColor" strokeWidth="1.5" strokeDasharray="3 3" />
-                  <line x1="100" y1="40" x2="140" y2="15" stroke="currentColor" strokeWidth="1.5" strokeDasharray="3 3" />
-                  <line x1="140" y1="15" x2="180" y2="35" stroke="currentColor" strokeWidth="1.5" strokeDasharray="3 3" />
-                  <line x1="20" y1="30" x2="70" y2="45" stroke="currentColor" strokeWidth="1.5" strokeDasharray="3 3" />
-                  <line x1="70" y1="45" x2="130" y2="45" stroke="currentColor" strokeWidth="1.5" strokeDasharray="3 3" />
-                  <line x1="130" y1="45" x2="180" y2="35" stroke="currentColor" strokeWidth="1.5" strokeDasharray="3 3" />
-                  
-                  <circle cx="20" cy="30" r="4" fill="#0e7c8b" className="transition-all duration-300 group-hover:scale-125 group-hover:fill-[#1fb886]" />
-                  <circle cx="60" cy="15" r="4" fill="#1fb886" className="transition-all duration-300 group-hover:scale-125 group-hover:fill-[#0e7c8b]" />
-                  <circle cx="100" cy="40" r="4" fill="#0e7c8b" className="transition-all duration-300 group-hover:scale-125 group-hover:fill-[#1fb886]" />
-                  <circle cx="140" cy="15" r="4" fill="#1fb886" className="transition-all duration-300 group-hover:scale-125 group-hover:fill-[#0e7c8b]" />
-                  <circle cx="180" cy="35" r="4" fill="#0e7c8b" className="transition-all duration-300 group-hover:scale-125 group-hover:fill-[#1fb886]" />
-                  <circle cx="70" cy="45" r="4" fill="#1fb886" className="transition-all duration-300 group-hover:scale-125 group-hover:fill-[#0e7c8b]" />
-                  <circle cx="130" cy="45" r="4" fill="#0e7c8b" className="transition-all duration-300 group-hover:scale-125 group-hover:fill-[#1fb886]" />
-                  <circle cx="110" cy="10" r="4" fill="#1fb886" className="transition-all duration-300 group-hover:scale-125 group-hover:fill-[#0e7c8b]" />
+              <div className="w-full h-8 overflow-visible flex items-center justify-between px-1">
+                <svg className="w-full h-full text-line" viewBox="0 0 190 30" preserveAspectRatio="none">
+                  {/* 10 nodes: 8 active (Teal/Emerald), 2 inactive */}
+                  <circle cx="10" cy="15" r="5" fill="#0e7c8b" className="transition-all duration-300 group-hover:scale-125" />
+                  <circle cx="30" cy="15" r="5" fill="#1fb886" className="transition-all duration-300 group-hover:scale-125" />
+                  <circle cx="50" cy="15" r="5" fill="#0e7c8b" className="transition-all duration-300 group-hover:scale-125" />
+                  <circle cx="70" cy="15" r="5" fill="#1fb886" className="transition-all duration-300 group-hover:scale-125" />
+                  <circle cx="90" cy="15" r="5" fill="#0e7c8b" className="transition-all duration-300 group-hover:scale-125" />
+                  <circle cx="110" cy="15" r="5" fill="#1fb886" className="transition-all duration-300 group-hover:scale-125" />
+                  <circle cx="130" cy="15" r="5" fill="#0e7c8b" className="transition-all duration-300 group-hover:scale-125" />
+                  <circle cx="150" cy="15" r="5" fill="#1fb886" className="transition-all duration-300 group-hover:scale-125" />
+                  <circle cx="170" cy="15" r="5" fill="#e3ece9" />
+                  <circle cx="190" cy="15" r="5" fill="#e3ece9" />
                 </svg>
               </div>
             </div>
