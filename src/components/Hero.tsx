@@ -36,6 +36,14 @@ export default function Hero() {
           }}
         />
         <HeroScene />
+        {/* Caduceus watermark — centered on the whole section like a
+            letterhead mark on a page, not tied to the portrait, so it sits
+            behind both the copy and the doctor's photo at low opacity. */}
+        <img
+          src="/brand/caduceus-white.png"
+          alt=""
+          className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[42%] max-w-[520px] h-auto object-contain opacity-[0.14] select-none"
+        />
       </div>
 
       {/*
@@ -140,13 +148,6 @@ export default function Hero() {
             aria-hidden
             className="absolute inset-0 pointer-events-none"
             style={{ background: "radial-gradient(circle at 50% 42%, rgba(47,214,160,.16), transparent 65%)" }}
-          />
-
-          <img
-            src="/brand/caduceus.png"
-            alt=""
-            aria-hidden
-            className="absolute left-1/2 top-[46%] -translate-x-1/2 -translate-y-1/2 w-[76%] max-w-[420px] h-auto object-contain opacity-[0.24] pointer-events-none select-none z-[1]"
           />
 
           <img
