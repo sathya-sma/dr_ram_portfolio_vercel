@@ -1,4 +1,4 @@
-import { ArrowRight, CheckMini, Phone } from "@/lib/icons";
+import { ArrowRight, Phone } from "@/lib/icons";
 import { PHONE_DISPLAY, PHONE_TEL } from "@/lib/site";
 import HeroScene from "./HeroScene";
 import { motion } from "framer-motion";
@@ -142,54 +142,6 @@ export default function Hero() {
             style={{ background: "radial-gradient(circle at 50% 42%, rgba(47,214,160,.16), transparent 65%)" }}
           />
 
-          {/* Floating badge 1: Robotic Surgery (Mid Right - Shoulder/Chest Level) */}
-          <motion.div
-            className="absolute top-[34%] right-[-2%] min-[1200px]:-right-[6%] z-10 select-none max-[480px]:scale-[0.85] max-[480px]:origin-right"
-            animate={{ y: [0, -6, 0] }}
-            transition={{ repeat: Infinity, duration: 5, ease: "easeInOut" }}
-          >
-            <div className="flex items-center gap-2.5 bg-white/92 backdrop-blur-[8px] py-2.5 px-[1.2rem] rounded-full shadow-[inset_0_1px_0_rgba(255,255,255,0.9),0_12px_32px_-6px_rgba(10,35,66,0.18)] border border-white/40">
-              <span className="w-5 h-5 rounded-full bg-emerald-500/12 text-emerald border border-emerald-500/15 flex items-center justify-center shrink-0 shadow-sm">
-                <CheckMini className="ico w-[10px] h-[10px]" style={{ strokeWidth: 3.2 }} />
-              </span>
-              <span className="font-sans font-extrabold text-[0.86rem] tracking-tight leading-none text-navy">
-                Robotic Surgery
-              </span>
-            </div>
-          </motion.div>
-
-          {/* Floating badge 2: 7,500+ GI Surgeries (Lower Right - Elbow Level) */}
-          <motion.div
-            className="absolute bottom-[28%] right-[-4%] min-[1200px]:-right-[8%] z-10 select-none max-[480px]:scale-[0.85] max-[480px]:origin-right"
-            animate={{ y: [0, 6, 0] }}
-            transition={{ repeat: Infinity, duration: 4.5, ease: "easeInOut", delay: 0.5 }}
-          >
-            <div className="flex items-center gap-2.5 bg-white/92 backdrop-blur-[8px] py-2.5 px-[1.2rem] rounded-full shadow-[inset_0_1px_0_rgba(255,255,255,0.9),0_12px_32px_-6px_rgba(10,35,66,0.18)] border border-white/40">
-              <span className="w-5 h-5 rounded-full bg-emerald-500/12 text-emerald border border-emerald-500/15 flex items-center justify-center shrink-0 shadow-sm">
-                <CheckMini className="ico w-[10px] h-[10px]" style={{ strokeWidth: 3.2 }} />
-              </span>
-              <span className="font-sans font-extrabold text-[0.86rem] tracking-tight leading-none text-navy">
-                7,500+ GI Surgeries
-              </span>
-            </div>
-          </motion.div>
-
-          {/* Floating badge 3: 24+ Years of Experience (Bottom Left - Waist Level) */}
-          <motion.div
-            className="absolute bottom-[18%] left-[-4%] min-[1200px]:-left-[8%] z-10 select-none max-[480px]:scale-[0.85] max-[480px]:origin-left"
-            animate={{ y: [0, -5, 0] }}
-            transition={{ repeat: Infinity, duration: 5.2, ease: "easeInOut", delay: 1.0 }}
-          >
-            <div className="flex items-center gap-3.5 bg-white/92 backdrop-blur-[8px] p-3 px-4.5 rounded-[20px] shadow-[inset_0_1px_0_rgba(255,255,255,0.9),0_16px_36px_-8px_rgba(10,35,66,0.2)] border border-white/45">
-              <span className="font-serif font-extrabold text-[2.1rem] text-teal leading-none tracking-tight bg-gradient-to-r from-teal to-emerald-2 bg-clip-text text-transparent">24+</span>
-              <div className="w-[1px] h-7 bg-line/80 self-center" />
-              <div className="flex flex-col text-left leading-[1.1] uppercase tracking-[0.05em] shrink-0">
-                <span className="text-[0.6rem] font-bold text-muted/80">Years of</span>
-                <span className="text-[0.72rem] font-extrabold text-navy">Experience</span>
-              </div>
-            </div>
-          </motion.div>
-
           <img
             src="/brand/dr-ram-portrait-v2.webp"
             alt="Dr. T. Ramkumar, Consultant Gastrointestinal Surgeon"
@@ -198,6 +150,63 @@ export default function Hero() {
             fetchPriority="high"
             className="relative block w-full h-auto object-contain max-h-[90vh] mx-auto filter drop-shadow-[0_18px_40px_rgba(0,0,0,0.4)]"
           />
+
+          {/* Minimalist Floating HUD Stats (No Cards / Borderless Layout) */}
+          <div className="
+            min-[981px]:absolute min-[981px]:inset-0 min-[981px]:pointer-events-none
+            max-[980px]:relative max-[980px]:mt-8 max-[980px]:mx-auto max-[980px]:flex max-[980px]:flex-row max-[980px]:items-center max-[980px]:justify-between max-[980px]:max-w-[480px] max-[980px]:w-full max-[980px]:gap-4 max-[980px]:pointer-events-auto
+          ">
+            {/* HUD Stat 1: Robotic Surgery (right side, upper). Horizontal
+                position lives on this plain wrapper, not the motion.div
+                below — Framer Motion writes its own `transform` for the
+                y-bounce animate prop, which would clobber a Tailwind
+                translate/right class on the same element. */}
+            <div className="
+              min-[981px]:absolute min-[981px]:top-[38%] min-[981px]:right-[-8%] min-[1200px]:-right-[18%] min-[1300px]:-right-[24%]
+              max-[980px]:relative max-[980px]:flex-1
+              min-[981px]:max-[1200px]:scale-[0.8] min-[981px]:max-[1200px]:origin-right max-[480px]:scale-[0.85] max-[480px]:origin-center
+            ">
+              <motion.div
+                className="select-none pointer-events-auto"
+                animate={{ y: [0, -6, 0] }}
+                transition={{ repeat: Infinity, duration: 4.8, ease: "easeInOut", delay: 0.2 }}
+              >
+                <div className="flex items-center gap-2 max-[980px]:flex-col max-[980px]:text-center justify-center">
+                  <span className="w-2 h-2 rounded-full bg-emerald-glow animate-pulse shadow-[0_0_8px_#2fd6a0] shrink-0" />
+                  <div className="flex flex-col text-left max-[980px]:text-center">
+                    <span className="font-sans font-extrabold text-[0.82rem] tracking-[0.06em] text-white uppercase leading-none">
+                      Robotic Surgery
+                    </span>
+                    <span className="text-[0.6rem] font-semibold text-[#7fe3c4] tracking-[0.08em] mt-1 uppercase leading-none">
+                      Specialist
+                    </span>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+
+            {/* HUD Stat 2: 7,500+ GI Surgeries (right side, directly below Robotic Surgery — same right offset) */}
+            <div className="
+              min-[981px]:absolute min-[981px]:top-[52%] min-[981px]:right-[-8%] min-[1200px]:-right-[18%] min-[1300px]:-right-[24%]
+              max-[980px]:relative max-[980px]:flex-1
+              min-[981px]:max-[1200px]:scale-[0.8] min-[981px]:max-[1200px]:origin-right max-[480px]:scale-[0.85] max-[480px]:origin-center
+            ">
+              <motion.div
+                className="select-none pointer-events-auto"
+                animate={{ y: [0, 5, 0] }}
+                transition={{ repeat: Infinity, duration: 4.5, ease: "easeInOut", delay: 0.5 }}
+              >
+                <div className="flex flex-col max-[980px]:items-center max-[980px]:text-center">
+                  <span className="font-serif font-extrabold text-[2.4rem] tracking-tight leading-none bg-gradient-to-br from-white via-[#7fe3c4] to-teal bg-clip-text text-transparent filter drop-shadow-[0_4px_12px_rgba(47,214,160,0.15)]">
+                    7,500+
+                  </span>
+                  <span className="text-[0.66rem] font-bold text-[#a5c2d0] uppercase tracking-[0.1em] mt-1.5 leading-tight">
+                    GI Surgeries
+                  </span>
+                </div>
+              </motion.div>
+            </div>
+          </div>
         </div>
       </div>
 
