@@ -1,15 +1,13 @@
-import { Pin } from "@/lib/icons";
-
 const HOSPITALS = [
-  ["Apollo Speciality Hospital", "Mount Road"],
-  ["Apollo Spectra Hospital", "MRC Nagar"],
-  ["Aakash Hospital Endosurg", "Mylapore"],
-  ["BSS Hospital", "Mandaveli"],
-  ["Kumaran Hospital", "Kilpauk"],
-  ["KHM Hospital", "Anna Nagar"],
-  ["The Brain & Spine Hospital", "T Nagar"],
-  ["MGM Cancer Institute", "Mehta Nagar"],
-];
+  ["Apollo Speciality Hospital", "Mount Road", "/brand/apollo logo.jpg"],
+  ["Apollo Spectra Hospital", "MRC Nagar", "/brand/apollo logo.jpg"],
+  ["Aakash Hospital Endosurg", "Mylapore", "/brand/Aakash hospital.jpg"],
+  ["BSS Hospital", "Mandaveli", "/brand/BSS hospital.jpg"],
+  ["Kumaran Hospital", "Kilpauk", "/brand/kumar hospital logo.jpg"],
+  ["KHM Hospital", "Anna Nagar", "/brand/khm logo.jpg"],
+  ["The Brain & Spine Hospital", "T Nagar", "/brand/the brain$sprine logo.png"],
+  ["MGM Cancer Institute", "Mehta Nagar", "/brand/mgm health hare.jpg"],
+] as const;
 
 export default function Hospitals() {
   return (
@@ -30,7 +28,7 @@ export default function Hospitals() {
         </div>
 
         <div className="grid grid-cols-4 gap-[1.2rem] max-[980px]:grid-cols-2 max-[560px]:grid-cols-1">
-          {HOSPITALS.map(([name, loc], i) => (
+          {HOSPITALS.map(([name, loc, logo], i) => (
             <a
               href="#contact"
               className="
@@ -48,9 +46,16 @@ export default function Hospitals() {
               key={name}
               data-reveal-delay={(i % 4) * 50}
             >
-              <span className="w-[42px] h-[42px] rounded-[12px] grid place-items-center bg-gradient-to-br from-blue/12 to-teal/12 text-blue mb-[.4rem]">
-                <Pin className="ico w-5 h-5" />
-              </span>
+              <div className="w-[50px] h-[50px] rounded-[10px] overflow-hidden bg-white border border-line p-1 mb-[.4rem] flex items-center justify-center shrink-0">
+                <img
+                  src={logo}
+                  alt={name}
+                  loading="lazy"
+                  className={`w-full h-full object-contain ${
+                    logo.toLowerCase().includes("bss") || logo.toLowerCase().includes("brain") ? "scale-[1.55]" : ""
+                  }`}
+                />
+              </div>
               <span className="font-bold text-navy text-[1.02rem] leading-[1.25]">{name}</span>
               <span className="text-[.85rem] text-muted font-semibold">{loc}</span>
             </a>

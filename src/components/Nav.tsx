@@ -10,11 +10,10 @@ const LINKS = [
   ["About", "#about"],
   ["Patient Care", "#patient-care"],
   ["Specialities", "#specialities"],
-  ["Conditions", "#conditions"],
+  ["Procedures", "#conditions"],
   ["Gallery", "#gallery"],
   ["Hospitals", "#hospitals"],
   ["Reviews", "#reviews"],
-  ["Contact", "#contact"],
 ] as const;
 
 export default function Nav() {
@@ -154,18 +153,18 @@ export default function Nav() {
     },
     floating: {
       y: 16,
-      maxWidth: "1240px",
+      maxWidth: "1180px",
       backgroundColor: "rgba(255, 255, 255, 0.45)",
       borderWidth: "1px",
       borderColor: "rgba(255, 255, 255, 0.6)",
       boxShadow: "0 25px 50px -12px rgba(10, 35, 66, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.8), inset 0 -1px 2px rgba(10, 35, 66, 0.03), 0 0 1px rgba(255, 255, 255, 0.5)",
       backdropFilter: "blur(20px) saturate(190%)",
       WebkitBackdropFilter: "blur(20px) saturate(190%)",
-      paddingTop: "12px",
-      paddingBottom: "12px",
-      paddingLeft: "32px",
-      paddingRight: "32px",
-      borderRadius: "24px",
+      paddingTop: "6px",
+      paddingBottom: "6px",
+      paddingLeft: "24px",
+      paddingRight: "24px",
+      borderRadius: "20px",
       opacity: 1,
     },
   };
@@ -200,7 +199,7 @@ export default function Nav() {
             className="absolute inset-0 -z-10 pointer-events-none"
             animate={{
               opacity: isFloating ? 1 : 0,
-              borderRadius: isFloating ? "24px" : "0px",
+              borderRadius: isFloating ? "20px" : "0px",
             }}
             transition={navbarTransition}
             style={{
@@ -210,17 +209,17 @@ export default function Nav() {
           />
 
           {/* Main nav content layout */}
-          <div className="w-full flex xl:grid justify-between xl:justify-normal xl:grid-cols-[1fr_auto_1fr] items-center gap-6">
+          <div className="w-full flex xl:grid justify-between xl:justify-normal xl:grid-cols-[auto_1fr_auto] items-center gap-6">
             {/* Brand / Logo */}
             <a
               href="#home"
-              className="flex items-center gap-[0.85rem] transition-transform duration-300 hover:scale-[1.01] xl:justify-self-start"
+              className="flex items-center transition-transform duration-300 hover:scale-[1.01] xl:justify-self-start"
               aria-label={`${DOCTOR_NAME} — home`}
             >
               <motion.div
                 className="relative aspect-[457/128] shrink-0"
                 animate={{
-                  height: isFloating ? 54 : 92,
+                  height: isFloating ? 40 : 92,
                   x: isFloating ? 0 : -100,
                 }}
                 transition={navbarTransition}
@@ -249,9 +248,17 @@ export default function Nav() {
                 />
               </motion.div>
               <motion.span
-                className="font-serif font-bold tracking-wide whitespace-nowrap max-[480px]:hidden [@media(min-width:1280px)_and_(max-width:1560px)]:hidden text-[1.2rem]"
-                animate={{ color: isFloating ? "#0a2342" : "#ffffff" }}
-                transition={{ duration: 0.3 }}
+                className="font-serif font-bold tracking-wide whitespace-nowrap max-[480px]:hidden [@media(min-width:1280px)_and_(max-width:1560px)]:hidden"
+                animate={{
+                  opacity: isFloating ? 1 : 0,
+                  x: isFloating ? 0 : -10,
+                  width: isFloating ? "auto" : 0,
+                  fontSize: isFloating ? "1.08rem" : "1.2rem",
+                  marginLeft: isFloating ? "0.6rem" : "0rem",
+                  color: isFloating ? "#0a2342" : "#ffffff",
+                }}
+                transition={navbarTransition}
+                style={{ overflow: "hidden", display: "inline-block" }}
               >
                 {DOCTOR_NAME}
               </motion.span>
@@ -259,7 +266,7 @@ export default function Nav() {
 
             {/* Desktop navbar menu */}
             <motion.nav
-              className="flex items-center gap-[.35rem] xl:justify-self-center max-xl:hidden"
+              className="flex items-center justify-center gap-[0.1rem] xl:justify-self-center max-xl:hidden w-full"
               animate={{ x: isFloating ? 0 : 60 }}
               transition={navbarTransition}
               aria-label="Primary"
@@ -267,15 +274,15 @@ export default function Nav() {
               {LINKS.map(([label, href]) => {
                 const isActive = active === href.slice(1);
                 return (
-                  <a key={href} href={href} className="relative">
+                  <a key={href} href={href} className="relative block">
                     <motion.span
-                      className={`
-                        block font-bold text-[1.06rem] py-2 px-[0.8rem] rounded-lg
-                        [@media(min-width:1280px)_and_(max-width:1560px)]:text-[0.98rem]
-                        [@media(min-width:1280px)_and_(max-width:1560px)]:px-[0.55rem]
-                        cursor-pointer whitespace-nowrap
-                      `}
+                      className="block font-semibold cursor-pointer whitespace-nowrap"
                       animate={{
+                        fontSize: isFloating ? "0.89rem" : "1.02rem",
+                        paddingTop: isFloating ? "5px" : "8px",
+                        paddingBottom: isFloating ? "5px" : "8px",
+                        paddingLeft: isFloating ? "6px" : "12px",
+                        paddingRight: isFloating ? "6px" : "12px",
                         color: isFloating
                           ? (isActive ? "#0a2342" : "#5a6b7b")
                           : (isActive ? "#2fd6a0" : "rgba(255, 255, 255, 0.85)"),
@@ -289,8 +296,10 @@ export default function Nav() {
                     </motion.span>
                     <motion.span
                       aria-hidden
-                      className="absolute left-[0.8rem] right-[0.8rem] bottom-[0.32rem] h-[2px] rounded-sm origin-left"
+                      className="absolute bottom-[0.15rem] h-[2px] rounded-sm origin-left"
                       animate={{
+                        left: isFloating ? "6px" : "12px",
+                        right: isFloating ? "6px" : "12px",
                         scaleX: isActive ? 1 : 0,
                         backgroundColor: isFloating ? "#2fd6a0" : "#ffffff",
                       }}
@@ -315,13 +324,13 @@ export default function Nav() {
                     transition={{
                       duration: 0.3,
                       ease: [0.22, 1, 0.36, 1],
-                      delay: isFloating ? 0.15 : 0, // Delay entrance slightly, exit immediately
+                      delay: isFloating ? 0.15 : 0,
                     }}
                     className="
-                      max-xl:hidden xl:inline-flex items-center gap-[0.55rem] font-sans font-bold text-[0.92rem] shrink-0
+                      max-xl:hidden xl:inline-flex items-center gap-[0.55rem] font-sans font-bold text-[0.84rem] shrink-0
                       border border-transparent bg-gradient-to-br from-emerald-2 to-teal text-white
                       whitespace-nowrap leading-none cursor-pointer
-                      py-[10px] px-[20px] rounded-full
+                      py-[7px] px-[14px] rounded-full
                       shadow-[0_14px_30px_-12px_rgba(21,151,106,0.5)]
                       hover:-translate-y-[2px] hover:shadow-[0_22px_42px_-14px_rgba(21,151,106,0.65)]
                       transition-[transform,box-shadow] duration-300

@@ -1,6 +1,7 @@
-import { ArrowRight, Phone } from "@/lib/icons";
+import { ArrowRight, CheckMini, Phone } from "@/lib/icons";
 import { PHONE_DISPLAY, PHONE_TEL } from "@/lib/site";
 import HeroScene from "./HeroScene";
+import { motion } from "framer-motion";
 
 const EASE = { transitionTimingFunction: "cubic-bezier(.22,1,.36,1)" } as const;
 
@@ -132,7 +133,7 @@ export default function Hero() {
             layout engine handles it on every reflow, the same way it
             already handles text reflow.
         */}
-        <div className="reveal relative w-full self-end" data-reveal-delay="200">
+        <div className="reveal relative w-full self-end pr-2 pl-2" data-reveal-delay="200">
           {/* Decorative glow behind the figure — a background-gradient fill,
               not a positioned/transformed element, so it can't affect layout. */}
           <span
@@ -140,6 +141,55 @@ export default function Hero() {
             className="absolute inset-0 pointer-events-none"
             style={{ background: "radial-gradient(circle at 50% 42%, rgba(47,214,160,.16), transparent 65%)" }}
           />
+
+          {/* Floating badge 1: Robotic Surgery (Mid Right - Shoulder/Chest Level) */}
+          <motion.div
+            className="absolute top-[34%] right-[-2%] min-[1200px]:-right-[6%] z-10 select-none max-[480px]:scale-[0.85] max-[480px]:origin-right"
+            animate={{ y: [0, -6, 0] }}
+            transition={{ repeat: Infinity, duration: 5, ease: "easeInOut" }}
+          >
+            <div className="flex items-center gap-2.5 bg-white/92 backdrop-blur-[8px] py-2.5 px-[1.2rem] rounded-full shadow-[inset_0_1px_0_rgba(255,255,255,0.9),0_12px_32px_-6px_rgba(10,35,66,0.18)] border border-white/40">
+              <span className="w-5 h-5 rounded-full bg-emerald-500/12 text-emerald border border-emerald-500/15 flex items-center justify-center shrink-0 shadow-sm">
+                <CheckMini className="ico w-[10px] h-[10px]" style={{ strokeWidth: 3.2 }} />
+              </span>
+              <span className="font-sans font-extrabold text-[0.86rem] tracking-tight leading-none text-navy">
+                Robotic Surgery
+              </span>
+            </div>
+          </motion.div>
+
+          {/* Floating badge 2: 7,500+ GI Surgeries (Lower Right - Elbow Level) */}
+          <motion.div
+            className="absolute bottom-[28%] right-[-4%] min-[1200px]:-right-[8%] z-10 select-none max-[480px]:scale-[0.85] max-[480px]:origin-right"
+            animate={{ y: [0, 6, 0] }}
+            transition={{ repeat: Infinity, duration: 4.5, ease: "easeInOut", delay: 0.5 }}
+          >
+            <div className="flex items-center gap-2.5 bg-white/92 backdrop-blur-[8px] py-2.5 px-[1.2rem] rounded-full shadow-[inset_0_1px_0_rgba(255,255,255,0.9),0_12px_32px_-6px_rgba(10,35,66,0.18)] border border-white/40">
+              <span className="w-5 h-5 rounded-full bg-emerald-500/12 text-emerald border border-emerald-500/15 flex items-center justify-center shrink-0 shadow-sm">
+                <CheckMini className="ico w-[10px] h-[10px]" style={{ strokeWidth: 3.2 }} />
+              </span>
+              <span className="font-sans font-extrabold text-[0.86rem] tracking-tight leading-none text-navy">
+                7,500+ GI Surgeries
+              </span>
+            </div>
+          </motion.div>
+
+          {/* Floating badge 3: 24+ Years of Experience (Bottom Left - Waist Level) */}
+          <motion.div
+            className="absolute bottom-[18%] left-[-4%] min-[1200px]:-left-[8%] z-10 select-none max-[480px]:scale-[0.85] max-[480px]:origin-left"
+            animate={{ y: [0, -5, 0] }}
+            transition={{ repeat: Infinity, duration: 5.2, ease: "easeInOut", delay: 1.0 }}
+          >
+            <div className="flex items-center gap-3.5 bg-white/92 backdrop-blur-[8px] p-3 px-4.5 rounded-[20px] shadow-[inset_0_1px_0_rgba(255,255,255,0.9),0_16px_36px_-8px_rgba(10,35,66,0.2)] border border-white/45">
+              <span className="font-serif font-extrabold text-[2.1rem] text-teal leading-none tracking-tight bg-gradient-to-r from-teal to-emerald-2 bg-clip-text text-transparent">24+</span>
+              <div className="w-[1px] h-7 bg-line/80 self-center" />
+              <div className="flex flex-col text-left leading-[1.1] uppercase tracking-[0.05em] shrink-0">
+                <span className="text-[0.6rem] font-bold text-muted/80">Years of</span>
+                <span className="text-[0.72rem] font-extrabold text-navy">Experience</span>
+              </div>
+            </div>
+          </motion.div>
+
           <img
             src="/brand/dr-ram-portrait-v2.webp"
             alt="Dr. T. Ramkumar, Consultant Gastrointestinal Surgeon"

@@ -46,7 +46,7 @@ export default function About() {
         <div className="reveal relative group aspect-[4/3.4] w-full rounded-[26px] overflow-hidden shadow-[0_18px_50px_-20px_rgba(16,56,98,.28)]">
           {/* Decorative corner */}
           <div className="absolute -inset-x-0 -top-[14px] -left-[14px] w-[120px] h-[120px] rounded-[20px] bg-gradient-to-br from-emerald-2 to-teal opacity-18 -z-[1]" />
-          
+
           {/* Slides */}
           <div className="w-full h-full relative">
             {SLIDES.map((slide, i) => (
@@ -56,9 +56,8 @@ export default function About() {
                 alt={slide.alt}
                 loading="lazy"
                 decoding="async"
-                className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${
-                  i === current ? "opacity-100 z-0" : "opacity-0 pointer-events-none"
-                }`}
+                className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${i === current ? "opacity-100 z-0" : "opacity-0 pointer-events-none"
+                  }`}
               />
             ))}
           </div>
@@ -69,9 +68,8 @@ export default function About() {
               <button
                 key={i}
                 onClick={() => setCurrent(i)}
-                className={`w-2.5 h-2.5 rounded-full transition-all duration-300 border-0 p-0 cursor-pointer ${
-                  i === current ? "bg-white w-6" : "bg-white/40 hover:bg-white/70"
-                }`}
+                className={`w-2.5 h-2.5 rounded-full transition-all duration-300 border-0 p-0 cursor-pointer ${i === current ? "bg-white w-6" : "bg-white/40 hover:bg-white/70"
+                  }`}
                 aria-label={`Go to slide ${i + 1}`}
               />
             ))}
@@ -99,9 +97,8 @@ export default function About() {
           {SLIDES.map((slide, i) => (
             <div
               key={slide.label}
-              className={`absolute left-[1.1rem] bottom-[1.1rem] flex items-center gap-2 bg-navy/82 backdrop-blur-[6px] text-[#eaf3f1] font-semibold text-[.82rem] py-[.55rem] px-[.9rem] rounded-full transition-all duration-500 ${
-                i === current ? "opacity-100 translate-y-0 z-10" : "opacity-0 translate-y-2 pointer-events-none"
-              }`}
+              className={`absolute left-[1.1rem] bottom-[1.1rem] flex items-center gap-2 bg-navy/82 backdrop-blur-[6px] text-[#eaf3f1] font-semibold text-[.82rem] py-[.55rem] px-[.9rem] rounded-full transition-all duration-500 ${i === current ? "opacity-100 translate-y-0 z-10" : "opacity-0 translate-y-2 pointer-events-none"
+                }`}
               style={EASE}
             >
               <Stethoscope className="ico w-4 h-4 text-emerald-glow" />
@@ -124,7 +121,7 @@ export default function About() {
             <strong className="text-teal">
               oesophagus, stomach, liver, pancreas, gallbladder, intestines, colon and rectum
             </strong>{" "}
-            — with a strong emphasis on evidence-based care and patient safety.
+            with a strong emphasis on evidence-based care and patient safety.
           </p>
           <p className="reveal mt-4 text-muted" data-reveal-delay="160">
             He has extensive expertise in advanced laparoscopic and minimally invasive
