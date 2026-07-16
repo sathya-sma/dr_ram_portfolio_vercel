@@ -26,15 +26,7 @@ export default function Hero() {
           className="absolute w-[560px] h-[560px] rounded-full blur-[70px] -bottom-[240px] -left-[180px]"
           style={{ background: "radial-gradient(circle, rgba(20,80,107,.55), transparent 70%)" }}
         />
-        <span
-          className="absolute inset-0 opacity-50"
-          style={{
-            backgroundImage: "radial-gradient(rgba(255,255,255,.06) 1.4px, transparent 1.4px)",
-            backgroundSize: "26px 26px",
-            maskImage: "radial-gradient(120% 80% at 50% 0%, #000 35%, transparent 75%)",
-            WebkitMaskImage: "radial-gradient(120% 80% at 50% 0%, #000 35%, transparent 75%)",
-          }}
-        />
+
         <HeroScene />
         {/* Caduceus watermark — centered on the whole section like a
             letterhead mark on a page, not tied to the portrait, so it sits
