@@ -95,8 +95,6 @@ export function doctorNotificationHtml(
           ${detailRow("📝", "Message", d.message || "No message provided")}
           ${detailRow("🔖", "Reference Number", meta.referenceNumber)}
           ${detailRow("🕒", "Submitted On", meta.submittedAtDisplay)}
-          ${admin.ip ? detailRow("🌐", "IP Address", admin.ip) : ""}
-          ${admin.userAgent ? detailRow("💻", "Browser", admin.userAgent) : ""}
         </table>
       </td>
     </tr>
