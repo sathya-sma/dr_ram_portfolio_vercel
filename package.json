@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
+    "build": "tsc -b && vite build && node -e \"const fs = require('fs'); fs.cpSync('functions', 'dist/functions', {recursive: true})\"",
     "preview": "vite preview"
   },
   "dependencies": {
