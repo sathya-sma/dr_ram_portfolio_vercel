@@ -379,6 +379,30 @@ export default function Nav() {
             </div>
           </div>
         </motion.div>
+
+        {/* Separate Caduceus Accent Symbol (Outside the floating glass container on standard/large viewports) */}
+        <div className="absolute right-5 top-4 pointer-events-none max-[1400px]:hidden flex items-center shrink-0 w-[100px] h-[100px]">
+          {/* White Logo (Initial Hero State) */}
+          <motion.img
+            src="/brand/caduceus-white.png"
+            alt=""
+            width="100"
+            height="100"
+            className="absolute inset-0 w-full h-full object-contain"
+            animate={{ opacity: isFloating ? 0 : 0.4 }}
+            transition={{ duration: 0.3 }}
+          />
+          {/* Colored Logo (Floating Liquid Glass State) */}
+          <motion.img
+            src="/brand/caduceus.png"
+            alt=""
+            width="100"
+            height="100"
+            className="absolute inset-0 w-full h-full object-contain"
+            animate={{ opacity: isFloating ? 0.45 : 0 }}
+            transition={{ duration: 0.3 }}
+          />
+        </div>
       </motion.header>
 
       {/* Mobile Drawer (Sibling to header to avoid backdrop-filter containers clipping fixed drawers) */}

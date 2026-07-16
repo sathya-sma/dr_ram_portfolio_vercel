@@ -87,18 +87,20 @@ export default function Footer() {
         <div className="flex flex-col items-start">
           <p className={headingClass}>Technology Partner</p>
           <div className="group block cursor-default">
-            <img
-              src="/brand/axion-logo.png"
-              alt="Axion Technologies Private Limited"
-              className="h-[125px] w-auto block object-contain ml-[-24px] mt-[-28px] mb-[-24px] transition-all duration-300 group-hover:scale-[1.06] group-hover:translate-x-1"
-            />
-            <div className="text-[0.8rem] text-[#8ba4ad] leading-relaxed mt-1">
-              <span className="block text-[#7fa3b0] text-[0.74rem] uppercase font-semibold tracking-wider">Designed &amp; Developed by</span>
-              <span className="block font-serif text-[1.2rem] font-bold text-white group-hover:text-emerald-glow transition-colors duration-250 mt-1">
-                Axion Technologies
+            <div className="flex items-center transition-all duration-300 group-hover:scale-[1.04] group-hover:translate-x-1">
+              <img
+                src="/brand/axion-logo.png"
+                alt="Axion Technologies Private Ltd"
+                className="h-[125px] w-auto block object-contain ml-[-24px] mr-[-28px] mt-[-28px] mb-[-28px]"
+              />
+              <span className="font-sans text-[1.3rem] font-extrabold text-white leading-none">
+                Technologies
               </span>
-              <span className="block text-[0.66rem] font-extrabold text-[#5a7b88] tracking-[0.12em] uppercase mt-0.5">
-                Private Limited
+            </div>
+            <div className="text-[0.8rem] text-[#8ba4ad] leading-relaxed mt-1 pl-1">
+              <span className="block text-[#7fa3b0] text-[0.74rem] uppercase font-semibold tracking-wider">Designed &amp; Developed by</span>
+              <span className="block text-[0.68rem] font-extrabold text-white/70 tracking-[0.06em] uppercase mt-1 whitespace-nowrap">
+                Axion Technologies Private Ltd
               </span>
             </div>
           </div>

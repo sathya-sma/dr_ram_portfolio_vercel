@@ -91,6 +91,7 @@ export function doctorNotificationHtml(
           ${detailRow("👤", "Full Name", d.name)}
           ${detailRow("📧", "Email Address", d.email)}
           ${detailRow("📱", "Mobile Number", d.mobile)}
+          ${detailRow("🩺", "Consultation Type", d.type === "online" ? "Online Video Consultation" : "In-Person Clinic Visit")}
           ${detailRow("📅", "Preferred Appointment Date", meta.preferredDateDisplay)}
           ${detailRow("📝", "Message", d.message || "No message provided")}
           ${detailRow("🔖", "Reference Number", meta.referenceNumber)}
@@ -117,6 +118,7 @@ export function doctorNotificationText(d: AppointmentInput, meta: Meta) {
     `Full Name: ${d.name}`,
     `Email Address: ${d.email}`,
     `Mobile Number: ${d.mobile}`,
+    `Consultation Type: ${d.type === "online" ? "Online Video Consultation" : "In-Person Clinic Visit"}`,
     `Preferred Appointment Date: ${meta.preferredDateDisplay}`,
     `Message: ${d.message || "No message provided"}`,
     `Reference Number: ${meta.referenceNumber}`,
@@ -146,6 +148,7 @@ export function patientConfirmationHtml(d: AppointmentInput, meta: Meta) {
     <tr>
       <td style="padding:18px 32px 0;">
         <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
+          ${detailRow("🩺", "Consultation Type", d.type === "online" ? "Online Video Consultation" : "In-Person Clinic Visit")}
           ${detailRow("📅", "Preferred Appointment Date", meta.preferredDateDisplay)}
           ${detailRow("🕒", "Submitted On", meta.submittedAtDisplay)}
         </table>
@@ -179,6 +182,7 @@ export function patientConfirmationText(d: AppointmentInput, meta: Meta) {
     `Thank you for reaching out to ${CLINIC_NAME}. We've received your appointment request and our clinic team is reviewing it now.`,
     "",
     `Reference Number: ${meta.referenceNumber}`,
+    `Consultation Type: ${d.type === "online" ? "Online Video Consultation" : "In-Person Clinic Visit"}`,
     `Preferred Appointment Date: ${meta.preferredDateDisplay}`,
     `Submitted On: ${meta.submittedAtDisplay}`,
     "",

@@ -28,14 +28,6 @@ export default function Hero() {
         />
 
         <HeroScene />
-        {/* Caduceus watermark — centered on the whole section like a
-            letterhead mark on a page, not tied to the portrait, so it sits
-            behind both the copy and the doctor's photo at low opacity. */}
-        <img
-          src="/brand/caduceus-white.png"
-          alt=""
-          className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[42%] max-w-[520px] h-auto object-contain opacity-[0.14] select-none"
-        />
       </div>
 
       {/*
@@ -153,17 +145,13 @@ export default function Hero() {
 
           {/* Minimalist Floating HUD Stats (No Cards / Borderless Layout) */}
           <div className="
-            min-[981px]:absolute min-[981px]:inset-0 min-[981px]:pointer-events-none
+            min-[981px]:absolute min-[981px]:top-[38%] min-[981px]:right-[-8%] min-[1200px]:-right-[18%] min-[1300px]:-right-[24%] min-[981px]:pointer-events-none
+            min-[981px]:flex min-[981px]:flex-col min-[981px]:gap-4 min-[981px]:items-start
             max-[980px]:relative max-[980px]:mt-8 max-[980px]:mx-auto max-[980px]:flex max-[980px]:flex-row max-[980px]:items-center max-[980px]:justify-between max-[980px]:max-w-[480px] max-[980px]:w-full max-[980px]:gap-4 max-[980px]:pointer-events-auto
           ">
-            {/* HUD Stat 1: Robotic Surgery (right side, upper). Horizontal
-                position lives on this plain wrapper, not the motion.div
-                below — Framer Motion writes its own `transform` for the
-                y-bounce animate prop, which would clobber a Tailwind
-                translate/right class on the same element. */}
+            {/* HUD Stat 1: Robotic Surgery (right side, upper) */}
             <div className="
-              min-[981px]:absolute min-[981px]:top-[38%] min-[981px]:right-[-8%] min-[1200px]:-right-[18%] min-[1300px]:-right-[24%]
-              max-[980px]:relative max-[980px]:flex-1
+              min-[981px]:relative max-[980px]:relative max-[980px]:flex-1
               min-[981px]:max-[1200px]:scale-[0.8] min-[981px]:max-[1200px]:origin-right max-[480px]:scale-[0.85] max-[480px]:origin-center
             ">
               <motion.div
@@ -171,7 +159,7 @@ export default function Hero() {
                 animate={{ y: [0, -6, 0] }}
                 transition={{ repeat: Infinity, duration: 4.8, ease: "easeInOut", delay: 0.2 }}
               >
-                <div className="flex items-center gap-2 max-[980px]:flex-col max-[980px]:text-center justify-center">
+                <div className="flex items-center gap-2 max-[980px]:flex-col max-[980px]:text-center justify-start min-[981px]:justify-start">
                   <span className="w-2 h-2 rounded-full bg-emerald-glow animate-pulse shadow-[0_0_8px_#2fd6a0] shrink-0" />
                   <div className="flex flex-col text-left max-[980px]:text-center">
                     <span className="font-sans font-extrabold text-[0.82rem] tracking-[0.06em] text-white uppercase leading-none">
@@ -185,18 +173,18 @@ export default function Hero() {
               </motion.div>
             </div>
 
-            {/* HUD Stat 2: 7,500+ GI Surgeries (right side, directly below Robotic Surgery — same right offset) */}
+            {/* HUD Stat 2: 7,500+ GI Surgeries (right side, lower) */}
             <div className="
-              min-[981px]:absolute min-[981px]:top-[52%] min-[981px]:right-[-8%] min-[1200px]:-right-[18%] min-[1300px]:-right-[24%]
-              max-[980px]:relative max-[980px]:flex-1
+              min-[981px]:relative max-[980px]:relative max-[980px]:flex-1
               min-[981px]:max-[1200px]:scale-[0.8] min-[981px]:max-[1200px]:origin-right max-[480px]:scale-[0.85] max-[480px]:origin-center
+              min-[981px]:pl-4
             ">
               <motion.div
                 className="select-none pointer-events-auto"
                 animate={{ y: [0, 5, 0] }}
                 transition={{ repeat: Infinity, duration: 4.5, ease: "easeInOut", delay: 0.5 }}
               >
-                <div className="flex flex-col max-[980px]:items-center max-[980px]:text-center">
+                <div className="flex flex-col text-left max-[980px]:items-center max-[980px]:text-center">
                   <span className="font-serif font-extrabold text-[2.4rem] tracking-tight leading-none bg-gradient-to-br from-white via-[#7fe3c4] to-teal bg-clip-text text-transparent filter drop-shadow-[0_4px_12px_rgba(47,214,160,0.15)]">
                     7,500+
                   </span>

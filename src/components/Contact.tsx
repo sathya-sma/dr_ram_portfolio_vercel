@@ -14,7 +14,7 @@ import {
 } from "@/lib/site";
 import { openLegal } from "./Legal";
 
-type FieldKey = "name" | "email" | "mobile" | "date" | "message";
+type FieldKey = "name" | "email" | "mobile" | "date" | "message" | "type";
 type FormState = Record<FieldKey, string>;
 type Errors = Partial<Record<FieldKey, string>>;
 type Status = "idle" | "submitting" | "sent" | "error";
@@ -68,6 +68,8 @@ function validateField(key: FieldKey, value: string): string | undefined {
     case "message":
       if (v.length > MESSAGE_MAX) return `Message must be ${MESSAGE_MAX} characters or fewer.`;
       return undefined;
+    case "type":
+      return undefined;
   }
 }
 
@@ -86,7 +88,7 @@ export default function Contact() {
   const [status, setStatus] = useState<Status>("idle");
   const [serverError, setServerError] = useState<string | null>(null);
   const [referenceNumber, setReferenceNumber] = useState<string | null>(null);
-  const [form, setForm] = useState<FormState>({ name: "", email: "", mobile: "", date: "", message: "" });
+  const [form, setForm] = useState<FormState>({ name: "", email: "", mobile: "", date: "", message: "", type: "clinic" });
   const [errors, setErrors] = useState<Errors>({});
   const [touched, setTouched] = useState<Partial<Record<FieldKey, boolean>>>({});
   const resetTimer = useRef<number>(0);
@@ -146,7 +148,7 @@ export default function Contact() {
       setStatus("sent");
       track("appointment_request", { channel: "email" });
       resetTimer.current = window.setTimeout(() => {
-        setForm({ name: "", email: "", mobile: "", date: "", message: "" });
+        setForm({ name: "", email: "", mobile: "", date: "", message: "", type: "clinic" });
         setErrors({});
         setTouched({});
         setReferenceNumber(null);
@@ -173,6 +175,13 @@ export default function Contact() {
             Expert evaluation and surgical care for both routine and complex gastrointestinal
             conditions. Reach the clinic directly or send a request and we&apos;ll call you back.
           </p>
+          <div className="mt-5 inline-flex items-center gap-[.5rem] bg-emerald-2/8 border border-emerald-2/20 text-[#0e7c8b] rounded-full py-[.35rem] px-[.85rem] text-[.82rem] font-semibold">
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-2 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-2"></span>
+            </span>
+            Online &amp; Video Consultations Available
+          </div>
 
           <ul className="list-none mt-[1.8rem] flex flex-col gap-[1.2rem] p-0">
             <li className="flex gap-[.9rem]">
@@ -368,6 +377,52 @@ export default function Contact() {
                     aria-describedby={errors.mobile ? "f-mobile-error" : undefined}
                     className={inputClass(!!errors.mobile)}
                   />
+                </Field>
+
+                <Field id="f-type-clinic" label="Consultation Type" required>
+                  <div className="grid grid-cols-2 gap-4">
+                    <label
+                      className={`flex flex-col p-[1rem] rounded-[16px] border-[1.5px] cursor-pointer transition-all duration-250 select-none
+                        ${
+                          form.type === "clinic"
+                            ? "border-emerald-2 bg-emerald-2/5 shadow-[0_0_0_4px_rgba(31,184,134,.1)]"
+                            : "border-line bg-[#fbfdfc] hover:border-emerald-2/40"
+                        }
+                      `}
+                    >
+                      <input
+                        id="f-type-clinic"
+                        type="radio"
+                        name="type"
+                        value="clinic"
+                        checked={form.type === "clinic"}
+                        onChange={() => setForm((f) => ({ ...f, type: "clinic" }))}
+                        className="sr-only"
+                      />
+                      <span className="font-bold text-[0.92rem] text-navy">Clinic Visit</span>
+                      <span className="text-[0.76rem] text-muted mt-[0.15rem]">Choolaimedu Clinic</span>
+                    </label>
+                    <label
+                      className={`flex flex-col p-[1rem] rounded-[16px] border-[1.5px] cursor-pointer transition-all duration-250 select-none
+                        ${
+                          form.type === "online"
+                            ? "border-emerald-2 bg-emerald-2/5 shadow-[0_0_0_4px_rgba(31,184,134,.1)]"
+                            : "border-line bg-[#fbfdfc] hover:border-emerald-2/40"
+                        }
+                      `}
+                    >
+                      <input
+                        type="radio"
+                        name="type"
+                        value="online"
+                        checked={form.type === "online"}
+                        onChange={() => setForm((f) => ({ ...f, type: "online" }))}
+                        className="sr-only"
+                      />
+                      <span className="font-bold text-[0.92rem] text-navy">Online Consult</span>
+                      <span className="text-[0.76rem] text-muted mt-[0.15rem]">Video Checkup</span>
+                    </label>
+                  </div>
                 </Field>
 
                 <Field id="f-date" label="Preferred Appointment Date" error={errors.date}>

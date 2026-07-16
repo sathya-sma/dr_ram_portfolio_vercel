@@ -18,6 +18,7 @@ export type RawBody = {
   mobile?: unknown;
   date?: unknown;
   message?: unknown;
+  type?: unknown;
   botcheck?: unknown;
 };
 
@@ -30,6 +31,7 @@ export type AppointmentInput = {
   mobileDigits: string;
   date: string;
   message: string;
+  type: string;
 };
 
 export type ValidationResult = { ok: true; data: AppointmentInput } | { ok: false; error: string };
@@ -45,6 +47,7 @@ export function validateAppointment(body: RawBody): ValidationResult {
   const mobileDigits = mobile.replace(/[\s-]/g, "");
   const date = String(body.date ?? "").trim();
   const message = String(body.message ?? "").trim();
+  const type = String(body.type ?? "clinic").trim();
 
   if (!name || name.length < 3 || name.length > 80 || !NAME_RE.test(name)) {
     return { ok: false, error: "Please enter a valid full name (3–80 letters)." };
@@ -66,6 +69,9 @@ export function validateAppointment(body: RawBody): ValidationResult {
   if (message.length > MESSAGE_MAX) {
     return { ok: false, error: `Message must be ${MESSAGE_MAX} characters or fewer.` };
   }
+  if (type !== "clinic" && type !== "online") {
+    return { ok: false, error: "Please select a valid consultation type." };
+  }
 
-  return { ok: true, data: { name, email, mobile, mobileDigits, date, message } };
+  return { ok: true, data: { name, email, mobile, mobileDigits, date, message, type } };
 }
