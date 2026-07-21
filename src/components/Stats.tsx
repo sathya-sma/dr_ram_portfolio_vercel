@@ -68,7 +68,7 @@ export default function Stats() {
 
         {/* Dashboard Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          
+
           {/* Card 1: 7,500+ GI Surgeries */}
           <div
             className="reveal bg-card border border-line rounded-[28px] p-6 lg:p-8 shadow-[0_4px_22px_rgba(16,56,98,0.02)] hover:shadow-[0_20px_45px_-12px_rgba(16,56,98,0.08)] hover:-translate-y-1.5 transition-all duration-500 lg:col-span-2 flex flex-col md:flex-row justify-between items-center gap-6 overflow-hidden group"
@@ -86,7 +86,7 @@ export default function Stats() {
                 Specialized gastrointestinal, laparoscopic, colorectal, and hepatobiliary interventions.
               </div>
             </div>
-            
+
             {/* Structured Column Chart showing volume trend */}
             <div className="w-full md:w-[240px] h-[75px] shrink-0 self-end overflow-visible select-none mt-2 md:mt-0 flex items-end justify-between px-2">
               <svg className="w-full h-full overflow-visible" viewBox="0 0 200 60" preserveAspectRatio="none">
@@ -112,9 +112,7 @@ export default function Stats() {
                 <div className="w-[48px] h-[48px] rounded-[16px] grid place-items-center bg-teal/8 border border-teal/15 text-teal shrink-0 group-hover:scale-110 transition-transform duration-300">
                   <Clock className="ico w-[22px] h-[22px]" />
                 </div>
-                <span className="py-0.5 px-2.5 rounded-full text-[0.66rem] font-bold bg-[#edf4fe] text-[#1b5faa] border border-[#d6e6fd]">
-                  Since 2002
-                </span>
+
               </div>
               <Counter value={24} suffix="+" />
               <div className="text-[.94rem] font-bold text-navy mt-2 leading-tight">
@@ -124,7 +122,7 @@ export default function Stats() {
                 More than two decades of dedicated expertise in complex surgical gastroenterology.
               </div>
             </div>
-            
+
             {/* Clean Progress Slider metric */}
             <div className="mt-5 pt-4 border-t border-line/60">
               <div className="relative h-2 bg-[#eaf3f0] rounded-full flex items-center">
@@ -135,7 +133,6 @@ export default function Stats() {
               </div>
               <div className="flex justify-between text-[0.6rem] font-bold text-muted mt-2 tracking-wide uppercase">
                 <span>Start</span>
-                <span>20 Yr Target</span>
                 <span className="text-teal font-extrabold">24+ Yrs</span>
               </div>
             </div>
@@ -155,7 +152,7 @@ export default function Stats() {
                   Console Expert
                 </span>
               </div>
-              
+
               <div className="font-serif font-extrabold text-[clamp(2.2rem,4.5vw,3rem)] leading-none text-white flex items-baseline">
                 Robotic
               </div>
@@ -179,21 +176,7 @@ export default function Stats() {
                   100% Competency
                 </div>
               </div>
-              <div className="w-12 h-12 shrink-0 relative flex items-center justify-center">
-                <svg className="w-full h-full transform -rotate-90" viewBox="0 0 36 36">
-                  <circle cx="18" cy="18" r="15.915" fill="none" stroke="#1b354d" strokeWidth="3" />
-                  <circle cx="18" cy="18" r="15.915" fill="none" stroke="url(#robotic-dial-grad)" strokeWidth="3"
-                          strokeDasharray="100 0" strokeDashoffset="0"
-                          className="transition-all duration-1000 ease-out" />
-                  <defs>
-                    <linearGradient id="robotic-dial-grad" x1="0" y1="0" x2="1" y2="1">
-                      <stop offset="0%" stopColor="#0e7c8b" />
-                      <stop offset="100%" stopColor="#2fd6a0" />
-                    </linearGradient>
-                  </defs>
-                </svg>
-                <span className="absolute text-[0.65rem] font-extrabold text-[#2fd6a0]">100%</span>
-              </div>
+
             </div>
           </div>
 
@@ -207,9 +190,7 @@ export default function Stats() {
                 <div className="w-[48px] h-[48px] rounded-[16px] grid place-items-center bg-teal/8 border border-teal/15 text-teal shrink-0 group-hover:scale-110 transition-transform duration-300">
                   <Doc className="ico w-[22px] h-[22px]" />
                 </div>
-                <span className="py-0.5 px-2.5 rounded-full text-[0.66rem] font-bold bg-[#fff7ed] text-[#c2410c] border border-[#ffedd5]">
-                  Indexed
-                </span>
+
               </div>
               <Counter value={20} suffix="+" />
               <div className="text-[.94rem] font-bold text-navy mt-2 leading-tight">
@@ -253,9 +234,7 @@ export default function Stats() {
                 <div className="w-[48px] h-[48px] rounded-[16px] grid place-items-center bg-teal/8 border border-teal/15 text-teal shrink-0 group-hover:scale-110 transition-transform duration-300">
                   <Building className="ico w-[22px] h-[22px]" />
                 </div>
-                <span className="py-0.5 px-2.5 rounded-full text-[0.66rem] font-bold bg-[#f0fdf4] text-[#166534] border border-[#dcfce7]">
-                  Chennai Network
-                </span>
+
               </div>
               <Counter value={8} />
               <div className="text-[.94rem] font-bold text-navy mt-2 leading-tight">
@@ -279,8 +258,6 @@ export default function Stats() {
                   <circle cx="110" cy="15" r="5" fill="#1fb886" className="transition-all duration-300 group-hover:scale-125" />
                   <circle cx="130" cy="15" r="5" fill="#0e7c8b" className="transition-all duration-300 group-hover:scale-125" />
                   <circle cx="150" cy="15" r="5" fill="#1fb886" className="transition-all duration-300 group-hover:scale-125" />
-                  <circle cx="170" cy="15" r="5" fill="#e3ece9" />
-                  <circle cx="190" cy="15" r="5" fill="#e3ece9" />
                 </svg>
               </div>
             </div>

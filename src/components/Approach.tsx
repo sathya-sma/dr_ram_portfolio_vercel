@@ -2,11 +2,11 @@ import { Check, Stethoscope, Users, Bolt, Chat, Activity } from "@/lib/icons";
 import type { JSX, SVGProps } from "react";
 
 const CARDS: { Icon: (p: SVGProps<SVGSVGElement>) => JSX.Element; title: string; body: string }[] = [
-  { Icon: Check, title: "Evidence-based decisions", body: "Surgical decision-making grounded in current evidence and the right indication for every patient." },
+  { Icon: Check, title: "Evidence-based decisions", body: "Surgical decision making grounded in current evidence and the right indication for every patient." },
   { Icon: Stethoscope, title: "Minimally invasive first", body: "Laparoscopic and robotic techniques whenever feasible — less pain, faster recovery." },
   { Icon: Users, title: "Multidisciplinary boards", body: "Complex cases discussed in tumour boards with oncology, radiology and critical care." },
   { Icon: Bolt, title: "Enhanced Recovery (ERAS)", body: "Modern ERAS protocols to shorten hospital stay and restore normal life sooner." },
-  { Icon: Chat, title: "Clear communication", body: "Honest, jargon-free conversations with patients and families at every step." },
+  { Icon: Chat, title: "Clear communication", body: "Honest, jargon free conversations with patients and families at every step." },
   { Icon: Activity, title: "Long-term follow-up", body: "Continuous monitoring of outcomes and recovery well beyond the operating theatre." },
 ];
 
