@@ -4,7 +4,7 @@
  */
 
 /** Production origin. Must match the canonical URL in index.html, sitemap.xml and robots.txt. */
-export const SITE_URL = "https://dr-ram-portfolio-vercel.vercel.app";
+export const SITE_URL = "https://chennaigastrosurgeon.in";
 
 export const DOCTOR_NAME = "Dr. T. Ramkumar";
 export const DOCTOR_TITLE = "Consultant Gastrointestinal Surgeon";

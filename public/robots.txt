@@ -2,4 +2,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://dr-ram-portfolio-vercel.vercel.app/sitemap.xml
+Sitemap: https://chennaigastrosurgeon.in/sitemap.xml

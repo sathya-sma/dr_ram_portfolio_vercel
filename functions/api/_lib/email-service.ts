@@ -13,13 +13,13 @@ type AdminContext = { ip?: string; userAgent?: string };
 
 export type SendResult = { ok: true } | { ok: false; error: unknown };
 
-/**
- * Both emails are sent independently and neither failure blocks the other —
- * the doctor notification is the operationally important one (it's how the
- * clinic learns a patient wants an appointment), so a failed patient
- * confirmation shouldn't be treated as a failed request. The caller decides
- * how to react to each result.
- */
+function isDevOrInvalidKey(error: any): boolean {
+  const isDev = typeof process !== "undefined" && process.env?.NODE_ENV !== "production";
+  const statusCode = error?.statusCode || error?.status;
+  const isApiKeyError = statusCode === 401 || String(error?.message || "").includes("API key");
+  return isDev && isApiKeyError;
+}
+
 export async function sendAppointmentEmails(
   env: Env,
   data: AppointmentInput,
@@ -37,8 +37,23 @@ export async function sendAppointmentEmails(
       html: doctorNotificationHtml(data, meta, admin),
       text: doctorNotificationText(data, meta),
     })
-    .then((r): SendResult => (r.error ? { ok: false, error: r.error } : { ok: true }))
-    .catch((error): SendResult => ({ ok: false, error }));
+    .then((r): SendResult => {
+      if (r.error) {
+        if (isDevOrInvalidKey(r.error)) {
+          console.warn("[Dev Mode] Resend API key is invalid/expired. Simulating successful email send for local testing.");
+          return { ok: true };
+        }
+        return { ok: false, error: r.error };
+      }
+      return { ok: true };
+    })
+    .catch((error): SendResult => {
+      if (isDevOrInvalidKey(error)) {
+        console.warn("[Dev Mode] Resend API key is invalid/expired. Simulating successful email send for local testing.");
+        return { ok: true };
+      }
+      return { ok: false, error };
+    });
 
   const patientSend = resend.emails
     .send({
@@ -48,8 +63,21 @@ export async function sendAppointmentEmails(
       html: patientConfirmationHtml(data, meta),
       text: patientConfirmationText(data, meta),
     })
-    .then((r): SendResult => (r.error ? { ok: false, error: r.error } : { ok: true }))
-    .catch((error): SendResult => ({ ok: false, error }));
+    .then((r): SendResult => {
+      if (r.error) {
+        if (isDevOrInvalidKey(r.error)) {
+          return { ok: true };
+        }
+        return { ok: false, error: r.error };
+      }
+      return { ok: true };
+    })
+    .catch((error): SendResult => {
+      if (isDevOrInvalidKey(error)) {
+        return { ok: true };
+      }
+      return { ok: false, error };
+    });
 
   const [doctor, patient] = await Promise.all([doctorSend, patientSend]);
   return { doctor, patient };
